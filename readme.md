@@ -78,29 +78,9 @@ var value = String.Join("; ", array);
 |
 
 
-### StringBuilder
-```typescript
-var version = "v1";
-var builder = new StringBuilder(); //default parameter -> String.Empty; 
-
-builder.AppendFormat("Stringbuilder {0} ", version);
-builder.Append("is awesome!");
-
-var value = builder.ToString();
-//output: "StringBuilder v.1 is awesome!";
-```
-| Method       |  Type     |       Description          | Parameter  |
-| ------------- |-------------:|:-------------:| :-----|
-| `Append`      | `Method`      |   adds string to instance | `value`
-| `AppendFormat`      | `Method`      |   adds string to instance, using String.Format | `value`
-| `ToString`      | `Method`      |   Combines to instance added strings and returns combined string |
-|`Clear`      | `Method`      |   clears the builder | |
-
-
 make sure to include `sf` namespace!
 
-
-Usage without Typescript.
+Usage without Typescript:
 Take source.js and simply call Methods with namespace.
 
 e.g.
