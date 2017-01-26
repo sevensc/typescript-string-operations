@@ -27,10 +27,10 @@ var value = String.Format("{0:L}", "APPLE"); //output "apple"
 
 value = String.Format("{0:U}", "apple"); // output "APPLE"
 
-value = String.Format("{0:d}", "2017-01-23 00:00"); //output "21.01.2017"
+value = String.Format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
 
 
-value = String.Format("{0:s}", "21.03.2017 22:15:01") //output "2017-01-23T21:15:01"
+value = String.Format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
 
 value = String.Format("{0:n}", 1000000);
 //output "1.000.000"
@@ -40,7 +40,7 @@ value = String.Format("{0:n}", 1000000);
 | :-------------: |:---------------------------:|
 |		`L`		  |	LowerCase					|
 |		`U`		  |	UpperCase					|
-|		`d`		  |	ShortDatePatter				|
+|		`d`		  |	ShortDatePattern			|
 |		`s`		  |	SortableDateTimePattern		|
 |		`n`		  |	Thousand seperator			|
 

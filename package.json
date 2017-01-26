@@ -20,5 +20,8 @@
     "url": "https://github.com/sevensc/typescript-string-operations/issues"
   },
   "homepage": "https://github.com/sevensc/typescript-string-operations#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "qunitjs": "^2.1.1"
+  }
 }
