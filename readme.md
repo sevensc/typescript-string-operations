@@ -1,4 +1,4 @@
-# Simple lightweight library for Typescript. 
+# Simple lightweight string operation library for Typescript. 
 #### jQuery required.
 #### USAGE:
 
@@ -41,7 +41,7 @@ value = String.Format("{0:n}", 1000000);
 |		`L`		  |	LowerCase					|
 |		`U`		  |	UpperCase					|
 |		`d`		  |	ShortDatePatter				|
-|		`s`		  |	SortableDateTi­mePattern		|
+|		`s`		  |	SortableDateTimePattern		|
 |		`n`		  |	Thousand seperator			|
 
 
