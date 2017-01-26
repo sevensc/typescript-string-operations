@@ -1,0 +1,24 @@
+{
+  "name": "typescript-string-operations",
+  "version": "1.0.0",
+  "description": "npm publish ./",
+  "main": "source.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sevensc/typescript-string-operations.git"
+  },
+  "keywords": [
+    "typescript",
+    "string format"
+  ],
+  "author": "Sven Ulrich <sven_ulrich@gmx.net> (holdmybeer.de)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/sevensc/typescript-string-operations/issues"
+  },
+  "homepage": "https://github.com/sevensc/typescript-string-operations#readme",
+  "dependencies": {}
+}

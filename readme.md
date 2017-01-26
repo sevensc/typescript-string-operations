@@ -1,5 +1,5 @@
 # Simple lightweight library for Typescript. 
-#### jQuery required, works without Typescript!
+#### jQuery required.
 #### USAGE:
 
 ### String.Empty
@@ -23,24 +23,26 @@ output: "file_2db5da20-1c5d-4f1a-8fd4-b41e34c8c5b5.jpg";
 
 Specifier available!
 ```typescript
-//uppercase
 var value = String.Format("{0:L}", "APPLE"); //output "apple"
 
-//lowercase
 value = String.Format("{0:U}", "apple"); // output "APPLE"
 
-//ShortDatePattern
 value = String.Format("{0:d}", "2017-01-23 00:00"); //output "21.01.2017"
 
-//SortableDateTi­mePattern
+
 value = String.Format("{0:s}", "21.03.2017 22:15:01") //output "2017-01-23T21:15:01"
 
-//Thousands separator
 value = String.Format("{0:n}", 1000000);
 //output "1.000.000"
 ```
 
-
+|	Specifier	  |	 			Result 	   	    |
+| :-------------: |:---------------------------:|
+|		`L`		  |	LowerCase					|
+|		`U`		  |	UpperCase					|
+|		`d`		  |	ShortDatePatter				|
+|		`s`		  |	SortableDateTi­mePattern		|
+|		`n`		  |	Thousand seperator			|
 
 
 
@@ -76,7 +78,6 @@ var value = String.Join("; ", array);
 | `Join`      | `Method`      |   Combines arguments delimited by given seperator.| `delimiter`,`args`
 | `Join`      | `Method`      |   Combines arguments delimited by given seperator from array. | `delimiter`,`array`
 |
-
 
 make sure to include `sf` namespace!
 
