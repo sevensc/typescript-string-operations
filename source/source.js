@@ -20,7 +20,7 @@ var sf;
                 args[_i - 1] = arguments[_i];
             }
             try {
-                if ($.isArray(args[0]) || args[0] === typeof List) {
+                if ($.isArray(args[0]) || args[0] === typeof Array) {
                     var tempString = String.Empty;
                     var count = 0;
                     for (var i = 0; i < args[0].length; i++) {

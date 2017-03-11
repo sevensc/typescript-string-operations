@@ -1,4 +1,5 @@
 namespace sf {
+  declare var $;
     export class String {
         public static Empty: string = "";
 
@@ -17,7 +18,7 @@ namespace sf {
 
         public static Join(delimiter, ...args): string {
             try {
-                if ($.isArray(args[0]) || args[0] === typeof List) {
+                if ($.isArray(args[0]) || args[0] === typeof Array) {
                     var tempString = String.Empty;
                     var count = 0;
 
@@ -115,7 +116,7 @@ namespace sf {
                     else
                         arg += "T" + "00:00:00";
                     break;
-                case 'n': //Tausender Trennzeichen                    
+                case 'n': //Tausender Trennzeichen
                     if (isNaN(parseInt(arg)) || arg.length <= 3)
                         break;
 
@@ -156,26 +157,26 @@ namespace sf {
             }
             return temp;
         }
-        
-        export class StringBuilder {
-            public Values = [];
+    }
 
-            constructor(value: string = String.Empty) {
-                this.Values = new Array(value);
-            }
+    export class StringBuilder {
+        public Values = [];
 
-            public ToString() {
-                return this.Values.join('');
-            }
-            public Append(value: string) {
-                this.Values.push(value);
-            }
-            public AppendFormat(value: string, ...args) {
-                this.Values.push(String.Format(value, args));
-            }
-            public Clear() {
-                this.Values = [];
-            }
+        constructor(value: string = String.Empty) {
+            this.Values = new Array(value);
+        }
+
+        public ToString() {
+            return this.Values.join('');
+        }
+        public Append(value: string) {
+            this.Values.push(value);
+        }
+        public AppendFormat(value: string, ...args) {
+            this.Values.push(String.Format(value, args));
+        }
+        public Clear() {
+            this.Values = [];
         }
     }
 }
