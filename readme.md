@@ -1,3 +1,4 @@
+[![NPM](https://nodei.co/npm/typescript-string-operations.png?mini=true)](https://www.npmjs.com/package/typescript-string-operations)
 # Simple lightweight string operation library for Typescript.
 #### jQuery required. Unit tested.
 #### USAGE:
