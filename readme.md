@@ -19,7 +19,7 @@ if(String.IsNullOrWhiteSpace(id))
 ```typescript
 var id = image.GetId()
 String.Format("image_{0}.jpg", id)
-output: "file_2db5da20-1c5d-4f1a-8fd4-b41e34c8c5b5.jpg";
+output: "image_2db5da20-1c5d-4f1a-8fd4-b41e34c8c5b5.jpg";
 ```
 
 Specifier available!
@@ -64,7 +64,7 @@ var value = String.Join("; ", array);
 #### Simply reference compiled `source.js` in your project.
 
 ```javascript
-<script type="text/javascript" src="scripts/typescript-string-format.js"></script>
+<script type="text/javascript" src="scripts/source.js"></script>
 ```
 
 
