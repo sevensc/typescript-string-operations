@@ -1,6 +1,6 @@
 {
   "name": "typescript-string-operations",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple lightweight string operation library for Typescript",
   "main": "source.ts",
   "scripts": {
