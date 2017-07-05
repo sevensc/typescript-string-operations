@@ -64,7 +64,7 @@ var value = String.Join("; ", array);
 #### Simply reference compiled `source.js` in your project.
 
 ```javascript
-<script type="text/javascript" src="scripts/source.js"></script>
+<script type="text/javascript" src="node_modules/source/source.js"></script>
 ```
 
 
@@ -79,11 +79,3 @@ var value = String.Join("; ", array);
 | `Join`      | `Method`      |   Combines arguments delimited by given seperator.| `delimiter`,`args`
 | `Join`      | `Method`      |   Combines arguments delimited by given seperator from array. | `delimiter`,`array`
 |
-
-make sure to include `sf` namespace!
-
-Usage without Typescript:
-Take source.js and simply call Methods with namespace.
-
-e.g.
-`var value = sf.String.Empty;`
