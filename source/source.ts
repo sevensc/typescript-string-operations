@@ -1,4 +1,4 @@
-namespace sf {
+
   declare var $;
     export class String {
         public static Empty: string = "";
@@ -179,4 +179,3 @@ namespace sf {
             this.Values = [];
         }
     }
-}
