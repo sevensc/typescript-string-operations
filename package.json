@@ -4,7 +4,8 @@
   "description": "Simple lightweight string operation library for Typescript",
   "main": "source.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,11 @@
   "homepage": "https://github.com/sevensc/typescript-string-operations#readme",
   "dependencies": {},
   "devDependencies": {
-    "qunitjs": "^2.1.1"
+    "babel-preset-env": "^1.6.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-typescript": "^3.2.0",
+    "qunitjs": "^2.1.1",
+    "typescript": "^2.4.1"
   }
 }
