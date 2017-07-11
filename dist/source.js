@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var $ = require("jquery");
 exports.num = 12345;
 var StringBuilder = (function () {
     function StringBuilder(value) {
@@ -47,31 +46,28 @@ var StringOperations = (function () {
             args[_i - 1] = arguments[_i];
         }
         try {
-            if ($.isArray(args[0]) || args[0] === typeof Array) {
+            var firstArg = args[0];
+            if (Array.isArray(firstArg) || firstArg instanceof Array) {
                 var tempString = StringOperations.Empty;
                 var count = 0;
-                for (var i = 0; i < args[0].length; i++) {
-                    var current = args[0][i];
-                    if (i < args[0].length - 1)
+                for (var i = 0; i < firstArg.length; i++) {
+                    var current = firstArg[i];
+                    if (i < firstArg.length - 1)
                         tempString += current + delimiter;
                     else
                         tempString += current;
                 }
                 return tempString;
             }
-            else if (typeof args[0] == 'object') {
+            else if (typeof firstArg === 'object') {
                 var tempString_1 = StringOperations.Empty;
-                var count_1 = 0;
-                $(args[0]).each(function () {
-                    if (count_1 < args[0].length - 1)
-                        tempString_1 += $(this).text() + delimiter;
-                    else
-                        tempString_1 += $(this).text();
-                    count_1++;
-                });
+                var objectArg_1 = firstArg;
+                var keys = Object.keys(firstArg);
+                keys.forEach(function (element) { tempString_1 += objectArg_1[element] + delimiter; });
+                tempString_1 = tempString_1.slice(0, tempString_1.length - delimiter.length);
                 return tempString_1;
             }
-            return StringOperations.join(delimiter, args);
+            return StringOperations.join.apply(StringOperations, [delimiter].concat(args));
         }
         catch (e) {
             console.log(e);
@@ -180,10 +176,14 @@ var StringOperations = (function () {
         remainingCount += 1;
         return new Array(remainingCount).join('0') + stringValue;
     };
-    StringOperations.join = function (delimiter, args) {
+    StringOperations.join = function (delimiter) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
         var temp = StringOperations.Empty;
         for (var i = 0; i < args.length; i++) {
-            if (StringOperations.IsNullOrWhiteSpace(args[i]) || (typeof args[i] != "number" && typeof args[i] != "string"))
+            if ((typeof args[i] == 'string' && StringOperations.IsNullOrWhiteSpace(args[i])) || (typeof args[i] != "number" && typeof args[i] != "string"))
                 continue;
             var arg = "" + args[i];
             temp += arg;
