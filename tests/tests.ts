@@ -57,21 +57,51 @@ describe('String.Format', () => {
         });
     });
     describe('formating', () => {
-        it('should format the string correct multiple values', () => {
-            let template = "{0:d}{1}";
-            let valueToInsert = new Date(2017, 4, 13, 4, 15);
+        describe('dates', () => {
+            it('should set the correct display date using Date', () => {
+                let template = "{0:d}";
+                let valueToInsert = new Date(2017, 4, 13);
 
-            let expectedValue = "13.04.2017";
-            let result = String.Format(template, valueToInsert);
-            expect(result).to.equal(expectedValue);
+                let expectedValue = "13.04.2017";
+                let result = String.Format(template, valueToInsert);
+                expect(result).to.equal(expectedValue);
+            });
+
+            it('should set the correct sortable date using Date', () => {
+                let template = "{0:s}";
+                let valueToInsert = new Date(2017, 4, 13);
+
+                let expectedValue = "2017-04-13";
+                let result = String.Format(template, valueToInsert);
+                expect(result).to.equal(expectedValue);
+            });
+            it('should set the correct display date using string', () => {
+                let template = "{0:d}";
+                let valueToInsert = '2017-04-13T00:00:00';
+
+                let expectedValue = "13.04.2017";
+                let result = String.Format(template, valueToInsert);
+                expect(result).to.equal(expectedValue);
+            });
+
+            it('should set the correct sortable date using string', () => {
+                let template = "{0:s}";
+                let valueToInsert = '13.04.2017 00:00:00';
+
+                let expectedValue = "2017-04-13T00:00:00";
+                let result = String.Format(template, valueToInsert);
+                expect(result).to.equal(expectedValue);
+            });
         });
+
         describe('numbers', () => {
-            it('should pad with one zero', () =>{
+            it('should pad 5 to 05 using {0:00}', () =>{
                 let template = '{0:00}';
                 let result = String.Format(template, 5);
                 expect(result).to.equal('05');
             });
-            it('should pad with two zero', () =>{
+
+            it('should pad 5 to 005 using {0:000}', () =>{
                 let template = '{0:000}';
                 let result = String.Format(template, 5);
                 expect(result).to.equal('005');
