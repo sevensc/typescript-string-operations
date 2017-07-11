@@ -4,7 +4,7 @@ import * as $ from "jquery";
 export const num = 12345;
 
 export class StringBuilder {
-    public Values : string[] = [];
+    public Values: string[] = [];
 
     constructor(value: string = StringOperations.Empty) {
         this.Values = new Array(value);
@@ -16,7 +16,7 @@ export class StringBuilder {
     public Append(value: string) {
         this.Values.push(value);
     }
-    public AppendFormat(value: string, ...args : string[]) {
+    public AppendFormat(value: string, ...args: string[]) {
         this.Values.push(StringOperations.Format(value, ...args));
     }
     public Clear() {
@@ -24,13 +24,19 @@ export class StringBuilder {
     }
 }
 
-export module String{
-    export function IsNullOrWhiteSpace(value:string) : boolean{
+export module String {
+    export function IsNullOrWhiteSpace(value: string): boolean {
         return StringOperations.IsNullOrWhiteSpace(value);
+    }
+    export function Join(delimiter: string, ...args: string[]): string {
+        return StringOperations.Join(delimiter, ...args);
+    }
+    export function Format(format: string, ...args: (string | Date | number | any)[]): string {
+        return StringOperations.Format(format, ...args);
     }
 }
 
-export class StringOperations {
+class StringOperations {
     public static Empty: string = "";
 
     public static IsNullOrWhiteSpace(value: string): boolean {
@@ -84,7 +90,7 @@ export class StringOperations {
         }
     }
 
-    public static Format(format: string, ...args: string[]): string {
+    public static Format(format: string, ...args: (string | Date | number | any)[]): string {
         try {
             return format.replace(/{(\d+(:\w*)?)}/g, function (match, i) { //0
                 let s = match.split(':');
@@ -103,49 +109,63 @@ export class StringOperations {
         }
     }
 
-    private static parsePattern(match: 'L' | 'U' | 'd' | 's' | 'n' | string, arg: string): string {
+    private static parsePattern(match: 'L' | 'U' | 'd' | 's' | 'n' | string, arg: string | Date | number | any): string {
         if (arg == null || arg == undefined)
             return arg;
 
         switch (match) {
             case 'L':
                 arg = arg.toLowerCase();
-                break;
+                return arg;
             case 'U':
                 arg = arg.toUpperCase();
-                break;
+                return arg;
             case 'd':
-                var splitted = arg.split('-');
-                if (splitted.length <= 1)
+                if (typeof (arg) === 'string') {
+                    let splitted: string[];
+                    splitted = arg.split('-');
+
+                    if (splitted.length <= 1)
+                        return arg;
+
+                    let day = splitted[splitted.length - 1];
+                    let month = splitted[splitted.length - 2];
+                    let year = splitted[splitted.length - 3];
+                    day = day.split('T')[0];
+                    day = day.split(' ')[0];
+
+                    arg = day + '.' + month + '.' + year;
                     return arg;
-
-                var day = splitted[splitted.length - 1];
-                var month = splitted[splitted.length - 2];
-                var year = splitted[splitted.length - 3];
-                day = day.split('T')[0];
-                day = day.split(' ')[0];
-
-                arg = day + '.' + month + '.' + year;
+                }
+                else if(arg instanceof Date){
+                    return StringOperations.Format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
+                }
                 break;
             case 's':
-                var splitted = arg.replace(',', '').split('.');
-                if (splitted.length <= 1)
+                if (typeof (arg) === 'string') {
+                    let splitted = arg.replace(',', '').split('.');
+                    if (splitted.length <= 1)
+                        return arg;
+
+                    let times = splitted[splitted.length - 1].split(' ');
+                    let time = splitted[0];
+                    if (times.length > 1)
+                        time = time[time.length - 1];
+
+                    let year = splitted[splitted.length - 1].split(' ')[0];
+                    let month = splitted[splitted.length - 2];
+                    let day = splitted[splitted.length - 3];
+
+                    arg = year + "-" + month + "-" + day;
+                    if (time.length > 1)
+                        arg += "T" + time;
+                    else
+                        arg += "T" + "00:00:00";
                     return arg;
-
-                let times = splitted[splitted.length - 1].split(' ');
-                let time = splitted[0];
-                if (times.length > 1)
-                    time = time[time.length - 1];
-
-                var year = splitted[splitted.length - 1].split(' ')[0];
-                var month = splitted[splitted.length - 2];
-                var day = splitted[splitted.length - 3];
-
-                arg = year + "-" + month + "-" + day;
-                if (time.length > 1)
-                    arg += "T" + time;
-                else
-                    arg += "T" + "00:00:00";
+                }
+                else if(arg instanceof Date){
+                    return StringOperations.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
+                }
                 break;
             case 'n': //Tausender Trennzeichen
                 if (isNaN(parseInt(arg)) || arg.length <= 3)
@@ -161,15 +181,29 @@ export class StringOperations {
                         output += '.' + arg.substring(mod + 3 * i, mod + 3 * i + 3);
                 }
                 arg = output;
-                break;
+                return arg;
             default:
                 break;
         }
 
+        if(typeof(arg) === 'number')
+            return StringOperations.formatNumber(arg, match);
+
         return arg;
     }
+    private static formatNumber(input: number, formatTemplate : string) : string
+    {
+        let count = formatTemplate.length;
+        let stringValue = input.toString();
+        if( count <= stringValue.length)
+            return stringValue;
 
-    private static join(delimiter:string, args:string[]): string {
+        let remainingCount = count - stringValue.length;
+        remainingCount += 1; //Das Array muss einen Eintrag mehr als die benötigten Nullen besitzen
+        return new Array(remainingCount).join('0') + stringValue;
+    }
+
+    private static join(delimiter: string, args: string[]): string {
         let temp = StringOperations.Empty;
         for (let i = 0; i < args.length; i++) {
             if (StringOperations.IsNullOrWhiteSpace(args[i]) || (typeof args[i] != "number" && typeof args[i] != "string"))
