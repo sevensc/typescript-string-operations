@@ -1,6 +1,3 @@
-/// <reference path="../definitions/jquery.d.ts" />
-import * as $ from "jquery";
-
 export const num = 12345;
 
 export class StringBuilder {
@@ -9,7 +6,6 @@ export class StringBuilder {
     constructor(value: string = StringOperations.Empty) {
         this.Values = new Array(value);
     }
-
     public ToString() {
         return this.Values.join('');
     }
@@ -24,17 +20,6 @@ export class StringBuilder {
     }
 }
 
-export module String {
-    export function IsNullOrWhiteSpace(value: string): boolean {
-        return StringOperations.IsNullOrWhiteSpace(value);
-    }
-    export function Join(delimiter: string, ...args: string[]): string {
-        return StringOperations.Join(delimiter, ...args);
-    }
-    export function Format(format: string, ...args: (string | Date | number | any)[]): string {
-        return StringOperations.Format(format, ...args);
-    }
-}
 
 class StringOperations {
     public static Empty: string = "";
@@ -52,15 +37,16 @@ class StringOperations {
         }
     }
 
-    public static Join(delimiter: string, ...args: string[]): string {
+    public static Join(delimiter: string, ...args: (string|object|Array<any>)[]): string {
         try {
-            if ($.isArray(args[0]) || args[0] === typeof Array) {
+            let firstArg = args[0];
+            if (Array.isArray(firstArg) || firstArg instanceof Array) {
                 let tempString = StringOperations.Empty;
                 let count = 0;
 
-                for (let i = 0; i < args[0].length; i++) {
-                    let current = args[0][i];
-                    if (i < args[0].length - 1)
+                for (let i = 0; i < firstArg.length; i++) {
+                    let current = firstArg[i];
+                    if (i < firstArg.length - 1)
                         tempString += current + delimiter;
                     else
                         tempString += current;
@@ -68,21 +54,16 @@ class StringOperations {
 
                 return tempString;
             }
-            else if (typeof args[0] == 'object') {
+            else if (typeof firstArg === 'object') {
                 let tempString = StringOperations.Empty;
-                let count = 0;
-                $(args[0]).each(function () {
-                    if (count < args[0].length - 1)
-                        tempString += $(this).text() + delimiter;
-                    else
-                        tempString += $(this).text();
-                    count++;
-                });
-
+                let objectArg = firstArg;
+                let keys = Object.keys(firstArg); //get all Properties of the Object as Array
+                keys.forEach( element  => { tempString += (<any>objectArg)[element] + delimiter; });
+                tempString = tempString.slice(0, tempString.length - delimiter.length); //remove last delimiter
                 return tempString;
             }
 
-            return StringOperations.join(delimiter, args);
+            return StringOperations.join(delimiter, ...args);
         }
         catch (e) {
             console.log(e);
@@ -203,16 +184,16 @@ class StringOperations {
         return new Array(remainingCount).join('0') + stringValue;
     }
 
-    private static join(delimiter: string, args: string[]): string {
+    private static join(delimiter: string, ...args: (string|object|Array<any>)[]): string {
         let temp = StringOperations.Empty;
         for (let i = 0; i < args.length; i++) {
-            if (StringOperations.IsNullOrWhiteSpace(args[i]) || (typeof args[i] != "number" && typeof args[i] != "string"))
+            if (( typeof args[i] == 'string' && StringOperations.IsNullOrWhiteSpace(<string>args[i])) || (typeof args[i] != "number" && typeof args[i] != "string"))
                 continue;
 
             let arg = "" + args[i];
             temp += arg;
             for (let i2 = i + 1; i2 < args.length; i2++) {
-                if (StringOperations.IsNullOrWhiteSpace(args[i2]))
+                if (StringOperations.IsNullOrWhiteSpace(<string>args[i2]))
                     continue;
 
                 temp += delimiter;
@@ -221,5 +202,18 @@ class StringOperations {
             }
         }
         return temp;
+    }
+}
+
+export module String {
+    export const Empty = StringOperations.Empty;
+    export function IsNullOrWhiteSpace(value: string): boolean {
+        return StringOperations.IsNullOrWhiteSpace(value);
+    }
+    export function Join(delimiter: string, ...args: (string|object|Array<any>)[]): string {
+        return StringOperations.Join(delimiter, ...args);
+    }
+    export function Format(format: string, ...args: (string | Date | number | any)[]): string {
+        return StringOperations.Format(format, ...args);
     }
 }

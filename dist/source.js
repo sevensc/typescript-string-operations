@@ -105,37 +105,50 @@ var StringOperations = (function () {
         switch (match) {
             case 'L':
                 arg = arg.toLowerCase();
-                break;
+                return arg;
             case 'U':
                 arg = arg.toUpperCase();
-                break;
+                return arg;
             case 'd':
-                var splitted = arg.split('-');
-                if (splitted.length <= 1)
+                if (typeof (arg) === 'string') {
+                    var splitted = void 0;
+                    splitted = arg.split('-');
+                    if (splitted.length <= 1)
+                        return arg;
+                    var day = splitted[splitted.length - 1];
+                    var month = splitted[splitted.length - 2];
+                    var year = splitted[splitted.length - 3];
+                    day = day.split('T')[0];
+                    day = day.split(' ')[0];
+                    arg = day + '.' + month + '.' + year;
                     return arg;
-                var day = splitted[splitted.length - 1];
-                var month = splitted[splitted.length - 2];
-                var year = splitted[splitted.length - 3];
-                day = day.split('T')[0];
-                day = day.split(' ')[0];
-                arg = day + '.' + month + '.' + year;
+                }
+                else if (arg instanceof Date) {
+                    return StringOperations.Format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
+                }
                 break;
             case 's':
-                var splitted = arg.replace(',', '').split('.');
-                if (splitted.length <= 1)
+                if (typeof (arg) === 'string') {
+                    var splitted = arg.replace(',', '').split('.');
+                    if (splitted.length <= 1)
+                        return arg;
+                    var times = splitted[splitted.length - 1].split(' ');
+                    var time = splitted[0];
+                    if (times.length > 1)
+                        time = time[time.length - 1];
+                    var year = splitted[splitted.length - 1].split(' ')[0];
+                    var month = splitted[splitted.length - 2];
+                    var day = splitted[splitted.length - 3];
+                    arg = year + "-" + month + "-" + day;
+                    if (time.length > 1)
+                        arg += "T" + time;
+                    else
+                        arg += "T" + "00:00:00";
                     return arg;
-                var times = splitted[splitted.length - 1].split(' ');
-                var time = splitted[0];
-                if (times.length > 1)
-                    time = time[time.length - 1];
-                var year = splitted[splitted.length - 1].split(' ')[0];
-                var month = splitted[splitted.length - 2];
-                var day = splitted[splitted.length - 3];
-                arg = year + "-" + month + "-" + day;
-                if (time.length > 1)
-                    arg += "T" + time;
-                else
-                    arg += "T" + "00:00:00";
+                }
+                else if (arg instanceof Date) {
+                    return StringOperations.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
+                }
                 break;
             case 'n':
                 if (isNaN(parseInt(arg)) || arg.length <= 3)
@@ -150,11 +163,22 @@ var StringOperations = (function () {
                         output += '.' + arg.substring(mod + 3 * i, mod + 3 * i + 3);
                 }
                 arg = output;
-                break;
+                return arg;
             default:
                 break;
         }
+        if (typeof (arg) === 'number')
+            return StringOperations.formatNumber(arg, match);
         return arg;
+    };
+    StringOperations.formatNumber = function (input, formatTemplate) {
+        var count = formatTemplate.length;
+        var stringValue = input.toString();
+        if (count <= stringValue.length)
+            return stringValue;
+        var remainingCount = count - stringValue.length;
+        remainingCount += 1;
+        return new Array(remainingCount).join('0') + stringValue;
     };
     StringOperations.join = function (delimiter, args) {
         var temp = StringOperations.Empty;
@@ -176,4 +200,27 @@ var StringOperations = (function () {
     StringOperations.Empty = "";
     return StringOperations;
 }());
-exports.StringOperations = StringOperations;
+var String;
+(function (String) {
+    String.Empty = StringOperations.Empty;
+    function IsNullOrWhiteSpace(value) {
+        return StringOperations.IsNullOrWhiteSpace(value);
+    }
+    String.IsNullOrWhiteSpace = IsNullOrWhiteSpace;
+    function Join(delimiter) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return StringOperations.Join.apply(StringOperations, [delimiter].concat(args));
+    }
+    String.Join = Join;
+    function Format(format) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return StringOperations.Format.apply(StringOperations, [format].concat(args));
+    }
+    String.Format = Format;
+})(String = exports.String || (exports.String = {}));

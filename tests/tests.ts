@@ -1,7 +1,7 @@
 import { String } from '../source/source';
 import { expect } from 'chai';
 import 'mocha';
-
+import * as jquery from 'jquery';
 
 describe('String.IsNullOrWhitespace', () => {
 
@@ -107,5 +107,29 @@ describe('String.Format', () => {
                 expect(result).to.equal('005');
             });
         });
+    });
+});
+
+describe('String.Join', () => {
+    it('should join the given strings',()=>{
+        let stringOne = "Foo", stringTwo="Bar", stringThree = "Baz";
+
+        let result = String.Join('.', stringOne, stringTwo, stringThree);
+
+        expect(result).to.equal("Foo.Bar.Baz");
+    });
+
+    it('should join the given array',()=>{
+        let object = ["Foo",  "Bar"];
+        let result = String.Join('.', object);
+        expect(result).to.equal("Foo.Bar");
+    });
+
+    it('should join the given object',()=>{
+        let object = {Name: "Foo", Value: "Bar"};
+
+        let result = String.Join('.', object);
+
+        expect(result).to.equal("Foo.Bar");
     });
 });
