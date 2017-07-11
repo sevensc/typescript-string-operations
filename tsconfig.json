@@ -5,6 +5,6 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
-        "target": "es6"
+        "target": "es5"
     }
 }

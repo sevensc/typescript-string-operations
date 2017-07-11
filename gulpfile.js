@@ -6,6 +6,6 @@ var babel = require('gulp-babel');
 gulp.task('default', function () {
     return tsProject.src()
         .pipe(tsProject()).js
-        .pipe(babel({presets:["env"]}))
+        //.pipe(babel({presets:["env"]}))
         .pipe(gulp.dest("dist"));
 });
