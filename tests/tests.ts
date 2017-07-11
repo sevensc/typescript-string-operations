@@ -1,7 +1,6 @@
 import { String } from '../source/source';
 import { expect } from 'chai';
 import 'mocha';
-import * as jquery from 'jquery';
 
 describe('String.IsNullOrWhitespace', () => {
 

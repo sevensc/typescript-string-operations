@@ -67,7 +67,8 @@ var StringOperations = (function () {
                 tempString_1 = tempString_1.slice(0, tempString_1.length - delimiter.length);
                 return tempString_1;
             }
-            return StringOperations.join.apply(StringOperations, [delimiter].concat(args));
+            var stringArray = args;
+            return StringOperations.join.apply(StringOperations, [delimiter].concat(stringArray));
         }
         catch (e) {
             console.log(e);

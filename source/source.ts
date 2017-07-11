@@ -62,8 +62,9 @@ class StringOperations {
                 tempString = tempString.slice(0, tempString.length - delimiter.length); //remove last delimiter
                 return tempString;
             }
+            let stringArray = <string[]>args;
 
-            return StringOperations.join(delimiter, ...args);
+            return StringOperations.join(delimiter, ...stringArray);
         }
         catch (e) {
             console.log(e);
@@ -184,16 +185,16 @@ class StringOperations {
         return new Array(remainingCount).join('0') + stringValue;
     }
 
-    private static join(delimiter: string, ...args: (string|object|Array<any>)[]): string {
+    private static join(delimiter: string, ...args: string[]): string {
         let temp = StringOperations.Empty;
         for (let i = 0; i < args.length; i++) {
-            if (( typeof args[i] == 'string' && StringOperations.IsNullOrWhiteSpace(<string>args[i])) || (typeof args[i] != "number" && typeof args[i] != "string"))
+            if (( typeof args[i] == 'string' && StringOperations.IsNullOrWhiteSpace(args[i])) || (typeof args[i] != "number" && typeof args[i] != "string"))
                 continue;
 
             let arg = "" + args[i];
             temp += arg;
             for (let i2 = i + 1; i2 < args.length; i2++) {
-                if (StringOperations.IsNullOrWhiteSpace(<string>args[i2]))
+                if (StringOperations.IsNullOrWhiteSpace(args[i2]))
                     continue;
 
                 temp += delimiter;
