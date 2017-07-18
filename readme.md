@@ -60,14 +60,6 @@ var value = String.Join("; ", array);
 //output: "Apple; Banana";
 ```
 
-
-#### Simply reference compiled `source.js` in your project.
-
-```javascript
-<script type="text/javascript" src="node_modules/source/source.js"></script>
-```
-
-
 ## Methods
 
 | Method                    |  Type       |       Description          | Parameter  |
