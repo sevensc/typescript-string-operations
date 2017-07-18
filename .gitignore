@@ -1,5 +1,8 @@
 node_modules/*
+<<<<<<< HEAD
 .vscode/*
+=======
+>>>>>>> 7419cc9177542febefcb10fc54340266a6acad9b
 
 # Compiled source #
 ###################
