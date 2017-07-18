@@ -94,8 +94,8 @@ describe('String.Format', () => {
             });
         });
 
-        describe('uppercasing', ()=>{
-            it('should return the string as uppercase', ()=>{
+        describe('uppercasing', () => {
+            it('should return the string as uppercase', () => {
                 let expectedValue = 'AWESOME';
                 let template = '{0:U}';
                 let valueToInsert = 'awesome';
@@ -105,10 +105,10 @@ describe('String.Format', () => {
                 expect(actual).to.equal(expectedValue);
             });
 
-            it('should return the string as lowercase', ()=>{
-                let expectedValue ='awesome';
+            it('should return the string as lowercase', () => {
+                let expectedValue = 'awesome';
                 let template = '{0:L}';
-                let valueToInsert =  'AWESOME';
+                let valueToInsert = 'AWESOME';
 
                 let actual = String.Format(template, valueToInsert);
 
@@ -117,22 +117,31 @@ describe('String.Format', () => {
         });
 
         describe('numbers', () => {
-            it('should pad 5 to 05 using {0:00}', () =>{
+            it('should pad 5 to 05 using {0:00}', () => {
                 let template = '{0:00}';
                 let result = String.Format(template, 5);
                 expect(result).to.equal('05');
             });
 
-            it('should pad 5 to 005 using {0:000}', () =>{
+            it('should pad 5 to 005 using {0:000}', () => {
                 let template = '{0:000}';
                 let result = String.Format(template, 5);
                 expect(result).to.equal('005');
             });
 
-            it('should set the correct thousands seperator',()=>{
+            it('should set the correct thousands seperator', () => {
                 let template = '{0:n}';
                 let valueToInsert = '10000000000';
                 let expectedValue = '10.000.000.000';
+
+                let result = String.Format(template, valueToInsert);
+
+                expect(result).to.equal(expectedValue);
+            });
+            it('should set the correct thousands seperator keeping the decimals', () => {
+                let template = '{0:n}';
+                let valueToInsert = '10000000000,12345';
+                let expectedValue = '10.000.000.000,12345';
 
                 let result = String.Format(template, valueToInsert);
 
@@ -144,22 +153,22 @@ describe('String.Format', () => {
 });
 
 describe('String.Join', () => {
-    it('should join the given strings passed as args',()=>{
-        let stringOne = "red", stringTwo="yellow", stringThree = "blue";
+    it('should join the given strings passed as args', () => {
+        let stringOne = "red", stringTwo = "yellow", stringThree = "blue";
 
         let result = String.Join('; ', stringOne, stringTwo, stringThree);
 
         expect(result).to.equal("red; yellow; blue");
     });
 
-    it('should join the given array',()=>{
-        let object =["red", "yellow", "blue"];
+    it('should join the given array', () => {
+        let object = ["red", "yellow", "blue"];
         let result = String.Join('; ', object);
         expect(result).to.equal("red; yellow; blue");
     });
 
-    it('should join the given object',()=>{
-        let object = {Name: "Foo", Value: "Bar"};
+    it('should join the given object', () => {
+        let object = { Name: "Foo", Value: "Bar" };
 
         let result = String.Join('.', object);
 

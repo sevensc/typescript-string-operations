@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.num = 12345;
 var StringBuilder = (function () {
     function StringBuilder(value) {
-        if (value === void 0) { value = StringOperations.Empty; }
+        if (value === void 0) { value = String.Empty; }
         this.Values = [];
         this.Values = new Array(value);
     }
@@ -18,7 +17,7 @@ var StringBuilder = (function () {
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        this.Values.push(StringOperations.Format.apply(StringOperations, [value].concat(args)));
+        this.Values.push(String.Format.apply(String, [value].concat(args)));
     };
     StringBuilder.prototype.Clear = function () {
         this.Values = [];
@@ -26,10 +25,10 @@ var StringBuilder = (function () {
     return StringBuilder;
 }());
 exports.StringBuilder = StringBuilder;
-var StringOperations = (function () {
-    function StringOperations() {
+var String = (function () {
+    function String() {
     }
-    StringOperations.IsNullOrWhiteSpace = function (value) {
+    String.IsNullOrWhiteSpace = function (value) {
         try {
             if (value == null || value == 'undefined')
                 return true;
@@ -40,7 +39,7 @@ var StringOperations = (function () {
             return false;
         }
     };
-    StringOperations.Join = function (delimiter) {
+    String.Join = function (delimiter) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
@@ -48,7 +47,7 @@ var StringOperations = (function () {
         try {
             var firstArg = args[0];
             if (Array.isArray(firstArg) || firstArg instanceof Array) {
-                var tempString = StringOperations.Empty;
+                var tempString = String.Empty;
                 var count = 0;
                 for (var i = 0; i < firstArg.length; i++) {
                     var current = firstArg[i];
@@ -60,7 +59,7 @@ var StringOperations = (function () {
                 return tempString;
             }
             else if (typeof firstArg === 'object') {
-                var tempString_1 = StringOperations.Empty;
+                var tempString_1 = String.Empty;
                 var objectArg_1 = firstArg;
                 var keys = Object.keys(firstArg);
                 keys.forEach(function (element) { tempString_1 += objectArg_1[element] + delimiter; });
@@ -68,14 +67,14 @@ var StringOperations = (function () {
                 return tempString_1;
             }
             var stringArray = args;
-            return StringOperations.join.apply(StringOperations, [delimiter].concat(stringArray));
+            return String.join.apply(String, [delimiter].concat(stringArray));
         }
         catch (e) {
             console.log(e);
-            return StringOperations.Empty;
+            return String.Empty;
         }
     };
-    StringOperations.Format = function (format) {
+    String.Format = function (format) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
@@ -87,16 +86,16 @@ var StringOperations = (function () {
                     i = i[0];
                     match = s[1].replace('}', '');
                 }
-                var arg = StringOperations.parsePattern(match, args[i]);
-                return typeof arg != 'undefined' && arg != null ? arg : StringOperations.Empty;
+                var arg = String.parsePattern(match, args[i]);
+                return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
             });
         }
         catch (e) {
             console.log(e);
-            return StringOperations.Empty;
+            return String.Empty;
         }
     };
-    StringOperations.parsePattern = function (match, arg) {
+    String.parsePattern = function (match, arg) {
         if (arg == null || arg == undefined)
             return arg;
         switch (match) {
@@ -121,7 +120,7 @@ var StringOperations = (function () {
                     return arg;
                 }
                 else if (arg instanceof Date) {
-                    return StringOperations.Format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
+                    return String.Format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
                 }
                 break;
             case 's':
@@ -132,7 +131,7 @@ var StringOperations = (function () {
                     var times = splitted[splitted.length - 1].split(' ');
                     var time = splitted[0];
                     if (times.length > 1)
-                        time = time[time.length - 1];
+                        time = times[times.length - 1];
                     var year = splitted[splitted.length - 1].split(' ')[0];
                     var month = splitted[splitted.length - 2];
                     var day = splitted[splitted.length - 3];
@@ -144,7 +143,7 @@ var StringOperations = (function () {
                     return arg;
                 }
                 else if (arg instanceof Date) {
-                    return StringOperations.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
+                    return String.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
                 }
                 break;
             case 'n':
@@ -152,7 +151,7 @@ var StringOperations = (function () {
                     break;
                 arg = arg.toString();
                 var mod = arg.length % 3;
-                var output = (mod > 0 ? (arg.substring(0, mod)) : StringOperations.Empty);
+                var output = (mod > 0 ? (arg.substring(0, mod)) : String.Empty);
                 for (var i = 0; i < Math.floor(arg.length / 3); i++) {
                     if ((mod == 0) && (i == 0))
                         output += arg.substring(mod + 3 * i, mod + 3 * i + 3);
@@ -165,10 +164,10 @@ var StringOperations = (function () {
                 break;
         }
         if (typeof (arg) === 'number')
-            return StringOperations.formatNumber(arg, match);
+            return String.formatNumber(arg, match);
         return arg;
     };
-    StringOperations.formatNumber = function (input, formatTemplate) {
+    String.formatNumber = function (input, formatTemplate) {
         var count = formatTemplate.length;
         var stringValue = input.toString();
         if (count <= stringValue.length)
@@ -177,19 +176,19 @@ var StringOperations = (function () {
         remainingCount += 1;
         return new Array(remainingCount).join('0') + stringValue;
     };
-    StringOperations.join = function (delimiter) {
+    String.join = function (delimiter) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        var temp = StringOperations.Empty;
+        var temp = String.Empty;
         for (var i = 0; i < args.length; i++) {
-            if ((typeof args[i] == 'string' && StringOperations.IsNullOrWhiteSpace(args[i])) || (typeof args[i] != "number" && typeof args[i] != "string"))
+            if ((typeof args[i] == 'string' && String.IsNullOrWhiteSpace(args[i])) || (typeof args[i] != "number" && typeof args[i] != "string"))
                 continue;
             var arg = "" + args[i];
             temp += arg;
             for (var i2 = i + 1; i2 < args.length; i2++) {
-                if (StringOperations.IsNullOrWhiteSpace(args[i2]))
+                if (String.IsNullOrWhiteSpace(args[i2]))
                     continue;
                 temp += delimiter;
                 i = i2 - 1;
@@ -198,30 +197,7 @@ var StringOperations = (function () {
         }
         return temp;
     };
-    StringOperations.Empty = "";
-    return StringOperations;
+    String.Empty = "";
+    return String;
 }());
-var String;
-(function (String) {
-    String.Empty = StringOperations.Empty;
-    function IsNullOrWhiteSpace(value) {
-        return StringOperations.IsNullOrWhiteSpace(value);
-    }
-    String.IsNullOrWhiteSpace = IsNullOrWhiteSpace;
-    function Join(delimiter) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
-        return StringOperations.Join.apply(StringOperations, [delimiter].concat(args));
-    }
-    String.Join = Join;
-    function Format(format) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
-        return StringOperations.Format.apply(StringOperations, [format].concat(args));
-    }
-    String.Format = Format;
-})(String = exports.String || (exports.String = {}));
+exports.String = String;
