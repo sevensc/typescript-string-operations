@@ -1,0 +1,10 @@
+{
+    "files": [
+        "source/source.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "removeComments": true,
+        "target": "es5"
+    }
+}
