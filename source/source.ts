@@ -132,7 +132,7 @@ class StringOperations {
                     let times = splitted[splitted.length - 1].split(' ');
                     let time = splitted[0];
                     if (times.length > 1)
-                        time = time[time.length - 1];
+                        time = times[times.length - 1];
 
                     let year = splitted[splitted.length - 1].split(' ')[0];
                     let month = splitted[splitted.length - 2];

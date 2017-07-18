@@ -74,22 +74,45 @@ describe('String.Format', () => {
                 let result = String.Format(template, valueToInsert);
                 expect(result).to.equal(expectedValue);
             });
+
             it('should set the correct display date using string', () => {
                 let template = "{0:d}";
-                let valueToInsert = '2017-04-13T00:00:00';
+                let valueToInsert = '2017-01-23 00:00';
 
-                let expectedValue = "13.04.2017";
+                let expectedValue = "23.01.2017";
                 let result = String.Format(template, valueToInsert);
                 expect(result).to.equal(expectedValue);
             });
 
             it('should set the correct sortable date using string', () => {
                 let template = "{0:s}";
-                let valueToInsert = '13.04.2017 00:00:00';
+                let valueToInsert = '21.03.2017 22:15:01';
 
-                let expectedValue = "2017-04-13T00:00:00";
+                let expectedValue = "2017-03-21T22:15:01";
                 let result = String.Format(template, valueToInsert);
                 expect(result).to.equal(expectedValue);
+            });
+        });
+
+        describe('uppercasing', ()=>{
+            it('should return the string as uppercase', ()=>{
+                let expectedValue = 'AWESOME';
+                let template = '{0:U}';
+                let valueToInsert = 'awesome';
+
+                let actual = String.Format(template, valueToInsert);
+
+                expect(actual).to.equal(expectedValue);
+            });
+
+            it('should return the string as lowercase', ()=>{
+                let expectedValue ='awesome';
+                let template = '{0:L}';
+                let valueToInsert =  'AWESOME';
+
+                let actual = String.Format(template, valueToInsert);
+
+                expect(actual).to.equal(expectedValue);
             });
         });
 
@@ -105,23 +128,34 @@ describe('String.Format', () => {
                 let result = String.Format(template, 5);
                 expect(result).to.equal('005');
             });
+
+            it('should set the correct thousands seperator',()=>{
+                let template = '{0:n}';
+                let valueToInsert = '10000000000';
+                let expectedValue = '10.000.000.000';
+
+                let result = String.Format(template, valueToInsert);
+
+                expect(result).to.equal(expectedValue);
+            });
         });
     });
+
 });
 
 describe('String.Join', () => {
-    it('should join the given strings',()=>{
-        let stringOne = "Foo", stringTwo="Bar", stringThree = "Baz";
+    it('should join the given strings passed as args',()=>{
+        let stringOne = "red", stringTwo="yellow", stringThree = "blue";
 
-        let result = String.Join('.', stringOne, stringTwo, stringThree);
+        let result = String.Join('; ', stringOne, stringTwo, stringThree);
 
-        expect(result).to.equal("Foo.Bar.Baz");
+        expect(result).to.equal("red; yellow; blue");
     });
 
     it('should join the given array',()=>{
-        let object = ["Foo",  "Bar"];
-        let result = String.Join('.', object);
-        expect(result).to.equal("Foo.Bar");
+        let object =["red", "yellow", "blue"];
+        let result = String.Join('; ', object);
+        expect(result).to.equal("red; yellow; blue");
     });
 
     it('should join the given object',()=>{

@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-var source_1 = require("../source/source");
+var source_1 = require("../dist/source");
 QUnit.module("String.Format", function () {
     QUnit.test("String.Format() ShortDatePattern", function (assert) {
         var actual = source_1.String.Format("{0:d}", "2017-01-23 00:00");
