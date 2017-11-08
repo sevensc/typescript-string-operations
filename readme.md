@@ -1,6 +1,6 @@
 [![NPM](https://nodei.co/npm/typescript-string-operations.png?mini=true)](https://www.npmjs.com/package/typescript-string-operations)
 # Simple lightweight string operation library for Typescript.
-#### jQuery required. Unit tested.
+#### No jQuery required. Unit tested.
 #### USAGE:
 
 ### String.Empty
@@ -68,5 +68,4 @@ var value = String.Join("; ", array);
 | `IsNullOrWhiteSpace`      | `Method`    | returns true value if given parameter is either null, empty or undefined. | `format`, `args`
 | `Format`                  | `Method`    | Converts the value of objects to strings based on the formats specified and inserts them into another string. | `format`, `args`
 | `Join`                    | `Method`    |   Combines arguments delimited by given seperator.| `delimiter`,`args`
-| `Join`                    | `Method`    |   Combines arguments delimited by given seperator from array. | `delimiter`,`array`
-|
+| `Join`                    | `Method`    |   Combines arguments delimited by given seperator from array. | `delimiter`,`array` |
