@@ -79,7 +79,11 @@ export class String {
                     match = s[1].replace('}', ''); //U
                 }
 
-                let arg = String.parsePattern(match, args[i]);
+                let arg = args[i];
+                if (arg == null || arg == undefined || match.match(/{d+}/))
+                    return arg;        
+                
+                arg = String.parsePattern(match, arg);
                 return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
             });
         }
@@ -90,9 +94,6 @@ export class String {
     }
 
     private static parsePattern(match: 'L' | 'U' | 'd' | 's' | 'n' | string, arg: string | Date | number | any): string {
-        if (arg == null || arg == undefined)
-            return arg;
-
         switch (match) {
             case 'L':
                 arg = arg.toLowerCase();
@@ -141,7 +142,7 @@ export class String {
                 break;
         }
 
-        if (typeof (arg) === 'number')
+        if (typeof (arg) === 'number' || !isNaN(arg))
             return String.formatNumber(arg, match);
 
         return arg;
