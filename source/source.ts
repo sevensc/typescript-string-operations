@@ -10,8 +10,8 @@ export class StringBuilder {
     public Append(value: string) {
         this.Values.push(value);
     }
-    public AppendFormat(value: string, ...args: string[]) {
-        this.Values.push(String.Format(value, ...args));
+    public AppendFormat(format: string, ...args: any[]) {
+        this.Values.push(String.Format(format, ...args));
     }
     public Clear() {
         this.Values = [];

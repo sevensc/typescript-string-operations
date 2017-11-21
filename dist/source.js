@@ -1,6 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var StringBuilder = (function () {
+exports.__esModule = true;
+var StringBuilder = /** @class */ (function () {
     function StringBuilder(value) {
         if (value === void 0) { value = String.Empty; }
         this.Values = [];
@@ -12,12 +12,12 @@ var StringBuilder = (function () {
     StringBuilder.prototype.Append = function (value) {
         this.Values.push(value);
     };
-    StringBuilder.prototype.AppendFormat = function (value) {
+    StringBuilder.prototype.AppendFormat = function (format) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        this.Values.push(String.Format.apply(String, [value].concat(args)));
+        this.Values.push(String.Format.apply(String, [format].concat(args)));
     };
     StringBuilder.prototype.Clear = function () {
         this.Values = [];
@@ -25,7 +25,7 @@ var StringBuilder = (function () {
     return StringBuilder;
 }());
 exports.StringBuilder = StringBuilder;
-var String = (function () {
+var String = /** @class */ (function () {
     function String() {
     }
     String.IsNullOrWhiteSpace = function (value) {
@@ -61,9 +61,9 @@ var String = (function () {
             else if (typeof firstArg === 'object') {
                 var tempString_1 = String.Empty;
                 var objectArg_1 = firstArg;
-                var keys = Object.keys(firstArg);
+                var keys = Object.keys(firstArg); //get all Properties of the Object as Array
                 keys.forEach(function (element) { tempString_1 += objectArg_1[element] + delimiter; });
-                tempString_1 = tempString_1.slice(0, tempString_1.length - delimiter.length);
+                tempString_1 = tempString_1.slice(0, tempString_1.length - delimiter.length); //remove last delimiter
                 return tempString_1;
             }
             var stringArray = args;
@@ -84,9 +84,12 @@ var String = (function () {
                 var s = match.split(':');
                 if (s.length > 1) {
                     i = i[0];
-                    match = s[1].replace('}', '');
+                    match = s[1].replace('}', ''); //U
                 }
-                var arg = String.parsePattern(match, args[i]);
+                var arg = args[i];
+                if (arg == null || arg == undefined || match.match(/{d+}/))
+                    return arg;
+                arg = String.parsePattern(match, arg);
                 return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
             });
         }
@@ -96,8 +99,6 @@ var String = (function () {
         }
     };
     String.parsePattern = function (match, arg) {
-        if (arg == null || arg == undefined)
-            return arg;
         switch (match) {
             case 'L':
                 arg = arg.toLowerCase();
@@ -107,17 +108,7 @@ var String = (function () {
                 return arg;
             case 'd':
                 if (typeof (arg) === 'string') {
-                    var splitted = void 0;
-                    splitted = arg.split('-');
-                    if (splitted.length <= 1)
-                        return arg;
-                    var day = splitted[splitted.length - 1];
-                    var month = splitted[splitted.length - 2];
-                    var year = splitted[splitted.length - 3];
-                    day = day.split('T')[0];
-                    day = day.split(' ')[0];
-                    arg = day + '.' + month + '.' + year;
-                    return arg;
+                    return String.getDisplayDateFromString(arg);
                 }
                 else if (arg instanceof Date) {
                     return String.Format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
@@ -125,47 +116,65 @@ var String = (function () {
                 break;
             case 's':
                 if (typeof (arg) === 'string') {
-                    var splitted = arg.replace(',', '').split('.');
-                    if (splitted.length <= 1)
-                        return arg;
-                    var times = splitted[splitted.length - 1].split(' ');
-                    var time = splitted[0];
-                    if (times.length > 1)
-                        time = times[times.length - 1];
-                    var year = splitted[splitted.length - 1].split(' ')[0];
-                    var month = splitted[splitted.length - 2];
-                    var day = splitted[splitted.length - 3];
-                    arg = year + "-" + month + "-" + day;
-                    if (time.length > 1)
-                        arg += "T" + time;
-                    else
-                        arg += "T" + "00:00:00";
-                    return arg;
+                    return String.getSortableDateFromString(arg);
                 }
                 else if (arg instanceof Date) {
                     return String.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
                 }
                 break;
-            case 'n':
-                if (isNaN(parseInt(arg)) || arg.length <= 3)
+            case 'n'://Tausender Trennzeichen
+                var replacedString = arg.replace(/,/g, '.');
+                if (isNaN(parseFloat(replacedString)) || replacedString.length <= 3)
                     break;
-                arg = arg.toString();
-                var mod = arg.length % 3;
-                var output = (mod > 0 ? (arg.substring(0, mod)) : String.Empty);
-                for (var i = 0; i < Math.floor(arg.length / 3); i++) {
-                    if ((mod == 0) && (i == 0))
-                        output += arg.substring(mod + 3 * i, mod + 3 * i + 3);
-                    else
-                        output += '.' + arg.substring(mod + 3 * i, mod + 3 * i + 3);
+                var numberparts = replacedString.split(/[^0-9]+/g);
+                var parts = numberparts;
+                if (numberparts.length > 1) {
+                    parts = [String.join.apply(String, [''].concat((numberparts.splice(0, numberparts.length - 1)))), numberparts[numberparts.length - 1]];
                 }
-                arg = output;
+                var integer = parts[0];
+                var mod = integer.length % 3;
+                var output = (mod > 0 ? (integer.substring(0, mod)) : String.Empty);
+                var firstGroup = output;
+                var remainingGroups = integer.substring(mod).match(/.{3}/g);
+                output = output + '.' + String.Join('.', remainingGroups);
+                arg = output + (parts.length > 1 ? ',' + parts[1] : '');
                 return arg;
             default:
                 break;
         }
-        if (typeof (arg) === 'number')
+        if (typeof (arg) === 'number' || !isNaN(arg))
             return String.formatNumber(arg, match);
         return arg;
+    };
+    String.getDisplayDateFromString = function (input) {
+        var splitted;
+        splitted = input.split('-');
+        if (splitted.length <= 1)
+            return input;
+        var day = splitted[splitted.length - 1];
+        var month = splitted[splitted.length - 2];
+        var year = splitted[splitted.length - 3];
+        day = day.split('T')[0];
+        day = day.split(' ')[0];
+        return day + '.' + month + '.' + year;
+    };
+    String.getSortableDateFromString = function (input) {
+        var splitted = input.replace(',', '').split('.');
+        if (splitted.length <= 1)
+            return input;
+        var times = splitted[splitted.length - 1].split(' ');
+        var time = splitted[0];
+        if (times.length > 1)
+            time = times[times.length - 1];
+        var year = splitted[splitted.length - 1].split(' ')[0];
+        var month = splitted[splitted.length - 2];
+        var day = splitted[splitted.length - 3];
+        var result = year + "-" + month + "-" + day;
+        if (time.length > 1)
+            result += "T" + time;
+        else
+            result += "T" + "00:00:00";
+        return result;
     };
     String.formatNumber = function (input, formatTemplate) {
         var count = formatTemplate.length;
@@ -173,7 +182,7 @@ var String = (function () {
         if (count <= stringValue.length)
             return stringValue;
         var remainingCount = count - stringValue.length;
-        remainingCount += 1;
+        remainingCount += 1; //Das Array muss einen Eintrag mehr als die benötigten Nullen besitzen
         return new Array(remainingCount).join('0') + stringValue;
     };
     String.join = function (delimiter) {

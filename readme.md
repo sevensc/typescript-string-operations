@@ -1,6 +1,11 @@
 [![NPM](https://nodei.co/npm/typescript-string-operations.png?mini=true)](https://www.npmjs.com/package/typescript-string-operations)
 # Simple lightweight string operation library for Typescript.
-#### No jQuery required. Unit tested.
+## No jQuery required! Unit tested.
+
+```typescript
+ import { String, StringBuilder } from 'typescript-string-operations';
+ ```
+
 #### USAGE:
 
 ### String.Empty
@@ -54,7 +59,8 @@ var value = String.Join("; ", "Apple", "Banana");
 //output: "Apple; Banana";
 ```
 #### OR
-```typscript
+
+```typescript
 var array = ['Apple', 'Banana']
 var value = String.Join("; ", array);
 //output: "Apple; Banana";
@@ -69,3 +75,35 @@ var value = String.Join("; ", array);
 | `Format`                  | `Method`    | Converts the value of objects to strings based on the formats specified and inserts them into another string. | `format`, `args`
 | `Join`                    | `Method`    |   Combines arguments delimited by given seperator.| `delimiter`,`args`
 | `Join`                    | `Method`    |   Combines arguments delimited by given seperator from array. | `delimiter`,`array` |
+
+
+### StringBuilder
+
+Just like you know from C#,
+
+
+```typescript
+
+var favoriteFruit: string = this.fruiteService.getFavorite(); //Blueberries
+
+var builder = new StringBuilder("My favorite fruits are: ");
+builder.Append("Apples, ");
+builder.Append("Bananas ");
+
+// of course using String.Format()
+builder.AppendFormat("and especially {0:U}!", favoriteFruit);
+builder.AppendFormat(" I eat {0} every day!", 10);
+
+var fruits = builder.ToString();
+
+//output: "My favorite fruits are: Apples, Bananas and especially Blueberries! I eat 10 every day!";
+
+```
+## Methods
+
+| Method                    |  Type       |       Description          | Parameter  |
+| :------------------------:|:-----------:|:--------------------------:|:----------:|
+|  `Append`                 | `Method`    |    appends a string.       | `value`    |
+|  `AppendFormat`           | `Method`    |    see description for `String.Format()`| `format`, `args`|
+|  `Clear`		            | `Method`    |    clears the `StringBuilder`   |       |
+|  `ToString`	            | `Method`    |    creates the actual string.  |       |
