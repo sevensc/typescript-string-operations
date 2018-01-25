@@ -84,7 +84,7 @@ Just like you know from C#,
 
 ```typescript
 
-var favoriteFruit: string = this.fruiteService.getFavorite(); //Blueberries
+var favoriteFruit: string = this.fruitService.getFavorite(); //Blueberries
 
 var builder = new StringBuilder("My favorite fruits are: ");
 builder.Append("Apples, ");

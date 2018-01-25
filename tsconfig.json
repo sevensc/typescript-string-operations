@@ -2,6 +2,9 @@
     "files": [
         "source/source.ts"
     ],
+    "include": [
+        "source/source.ts"
+    ],
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
