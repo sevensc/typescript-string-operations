@@ -1,14 +1,11 @@
 {
     "files": [
-        "source/source.ts"
-    ],
-    "include": [
-        "source/source.ts"
+        "dist/index.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
         "target": "es5", 
-        "module": "commonjs"
-    }
+        "module": "commonjs"        
+    }    
 }

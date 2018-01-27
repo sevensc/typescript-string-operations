@@ -1,4 +1,4 @@
-import { String } from '../source/source';
+import { String } from '../dist/index';
 import { expect } from 'chai';
 import 'mocha';
 

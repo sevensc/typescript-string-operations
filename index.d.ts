@@ -1,2 +1,2 @@
-import { String, StringBuilder } from "./source/source";
+import { String, StringBuilder } from "./dist/index";
 export { String, StringBuilder }

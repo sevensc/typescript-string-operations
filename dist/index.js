@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-var StringBuilder = /** @class */ (function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var StringBuilder = (function () {
     function StringBuilder(value) {
         if (value === void 0) { value = String.Empty; }
         this.Values = [];
@@ -25,7 +25,7 @@ var StringBuilder = /** @class */ (function () {
     return StringBuilder;
 }());
 exports.StringBuilder = StringBuilder;
-var String = /** @class */ (function () {
+var String = (function () {
     function String() {
     }
     String.IsNullOrWhiteSpace = function (value) {
@@ -61,9 +61,9 @@ var String = /** @class */ (function () {
             else if (typeof firstArg === 'object') {
                 var tempString_1 = String.Empty;
                 var objectArg_1 = firstArg;
-                var keys = Object.keys(firstArg); //get all Properties of the Object as Array
+                var keys = Object.keys(firstArg);
                 keys.forEach(function (element) { tempString_1 += objectArg_1[element] + delimiter; });
-                tempString_1 = tempString_1.slice(0, tempString_1.length - delimiter.length); //remove last delimiter
+                tempString_1 = tempString_1.slice(0, tempString_1.length - delimiter.length);
                 return tempString_1;
             }
             var stringArray = args;
@@ -84,7 +84,7 @@ var String = /** @class */ (function () {
                 var s = match.split(':');
                 if (s.length > 1) {
                     i = i[0];
-                    match = s[1].replace('}', ''); //U
+                    match = s[1].replace('}', '');
                 }
                 var arg = args[i];
                 if (arg == null || arg == undefined || match.match(/{d+}/))
@@ -122,7 +122,7 @@ var String = /** @class */ (function () {
                     return String.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
                 }
                 break;
-            case 'n'://Tausender Trennzeichen
+            case 'n':
                 var replacedString = arg.replace(/,/g, '.');
                 if (isNaN(parseFloat(replacedString)) || replacedString.length <= 3)
                     break;
@@ -182,7 +182,7 @@ var String = /** @class */ (function () {
         if (count <= stringValue.length)
             return stringValue;
         var remainingCount = count - stringValue.length;
-        remainingCount += 1; //Das Array muss einen Eintrag mehr als die benötigten Nullen besitzen
+        remainingCount += 1;
         return new Array(remainingCount).join('0') + stringValue;
     };
     String.join = function (delimiter) {

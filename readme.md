@@ -1,6 +1,6 @@
 [![NPM](https://nodei.co/npm/typescript-string-operations.png?mini=true)](https://www.npmjs.com/package/typescript-string-operations)
 # Simple lightweight string operation library for Typescript.
-## No jQuery required! Unit tested.
+## No jQuery required! Unit tested, works with Angular.
 
 ```typescript
  import { String, StringBuilder } from 'typescript-string-operations';
@@ -96,7 +96,7 @@ builder.AppendFormat(" I eat {0} every day!", 10);
 
 var fruits = builder.ToString();
 
-//output: "My favorite fruits are: Apples, Bananas and especially Blueberries! I eat 10 every day!";
+//output: "My favorite fruits are: Apples, Bananas and especially BLUEBERRIES! I eat 10 every day!";
 
 ```
 ## Methods
