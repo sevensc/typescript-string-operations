@@ -1,2 +1,3 @@
-import { String, StringBuilder } from "./dist/index";
-export { String, StringBuilder }
+import { String } from "./dist/string";
+import { StringBuilder } from "./dist/stringbuilder";
+export { String, StringBuilder };

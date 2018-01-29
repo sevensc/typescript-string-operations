@@ -12,7 +12,7 @@ gulp.task("default", function() {
     .js.pipe(gulp.dest("dist"));
 });
 
-gulp.task("rename", function(cb) {
+gulp.task("rename", function() {
   return gulp
     .src("dist/index.js")
     .pipe(rename("index.min.js"))

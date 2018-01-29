@@ -1,30 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var StringBuilder = (function () {
-    function StringBuilder(value) {
-        if (value === void 0) { value = String.Empty; }
-        this.Values = [];
-        this.Values = new Array(value);
-    }
-    StringBuilder.prototype.ToString = function () {
-        return this.Values.join('');
-    };
-    StringBuilder.prototype.Append = function (value) {
-        this.Values.push(value);
-    };
-    StringBuilder.prototype.AppendFormat = function (format) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
-        this.Values.push(String.Format.apply(String, [format].concat(args)));
-    };
-    StringBuilder.prototype.Clear = function () {
-        this.Values = [];
-    };
-    return StringBuilder;
-}());
-exports.StringBuilder = StringBuilder;
 var String = (function () {
     function String() {
     }
@@ -210,3 +185,28 @@ var String = (function () {
     return String;
 }());
 exports.String = String;
+var StringBuilder = (function () {
+    function StringBuilder(value) {
+        if (value === void 0) { value = String.Empty; }
+        this.Values = [];
+        this.Values = new Array(value);
+    }
+    StringBuilder.prototype.ToString = function () {
+        return this.Values.join('');
+    };
+    StringBuilder.prototype.Append = function (value) {
+        this.Values.push(value);
+    };
+    StringBuilder.prototype.AppendFormat = function (format) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        this.Values.push(String.Format.apply(String, [format].concat(args)));
+    };
+    StringBuilder.prototype.Clear = function () {
+        this.Values = [];
+    };
+    return StringBuilder;
+}());
+exports.StringBuilder = StringBuilder;

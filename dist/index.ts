@@ -1,24 +1,3 @@
-export class StringBuilder {
-    public Values: string[] = [];
-
-    constructor(value: string = String.Empty) {
-        this.Values = new Array(value);
-    }
-    public ToString() {
-        return this.Values.join('');
-    }
-    public Append(value: string) {
-        this.Values.push(value);
-    }
-    public AppendFormat(format: string, ...args: any[]) {
-        this.Values.push(String.Format(format, ...args));
-    }
-    public Clear() {
-        this.Values = [];
-    }
-}
-
-
 export class String {
     public static Empty: string = "";
 
@@ -215,5 +194,25 @@ export class String {
             }
         }
         return temp;
+    }
+}
+
+export class StringBuilder {
+    public Values: string[] = [];
+
+    constructor(value: string = String.Empty) {
+        this.Values = new Array(value);
+    }
+    public ToString() {
+        return this.Values.join('');
+    }
+    public Append(value: string) {
+        this.Values.push(value);
+    }
+    public AppendFormat(format: string, ...args: any[]) {
+        this.Values.push(String.Format(format, ...args));
+    }
+    public Clear() {
+        this.Values = [];
     }
 }

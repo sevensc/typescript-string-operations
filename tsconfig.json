@@ -6,6 +6,6 @@
         "noImplicitAny": true,
         "removeComments": true,
         "target": "es5", 
-        "module": "commonjs"        
+        "module": "commonjs"
     }    
 }
