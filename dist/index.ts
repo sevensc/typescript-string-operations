@@ -120,8 +120,8 @@ export class String {
             default:
                 break;
         }
-
-        if (typeof (arg) === 'number' || !isNaN(arg))
+        
+        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match))
             return String.formatNumber(arg, match);
 
         return arg;
@@ -167,7 +167,7 @@ export class String {
 
     private static formatNumber(input: number, formatTemplate: string): string {
         let count = formatTemplate.length;
-        let stringValue = input.toString();
+        let stringValue = input.toString();   
         if (count <= stringValue.length)
             return stringValue;
 

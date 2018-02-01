@@ -117,6 +117,13 @@ describe('String.Format', () => {
         });
 
         describe('numbers', () => {
+
+            it('should not pad without specifier using {0}', () => {
+                let template = '{0}';
+                let result = String.Format(template, 5);
+                expect(result).to.equal('5');
+            });
+            
             it('should pad 5 to 05 using {0:00}', () => {
                 let template = '{0:00}';
                 let result = String.Format(template, 5);

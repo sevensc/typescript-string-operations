@@ -40,6 +40,9 @@ value = String.Format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15
 
 value = String.Format("{0:n}", 1000000);
 //output "1.000.000"
+
+value = String.Format("{0:00}", 1);
+//output "01"
 ```
 
 |	Specifier	  |	 			Result 	   	    |
@@ -49,6 +52,7 @@ value = String.Format("{0:n}", 1000000);
 |		`d`		  |	ShortDatePattern			|
 |		`s`		  |	SortableDateTimePattern		|
 |		`n`		  |	Thousand seperator			|
+|		`00`	  |	Padding numbers				|
 
 
 

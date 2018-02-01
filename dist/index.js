@@ -117,7 +117,7 @@ var String = (function () {
             default:
                 break;
         }
-        if (typeof (arg) === 'number' || !isNaN(arg))
+        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match))
             return String.formatNumber(arg, match);
         return arg;
     };
