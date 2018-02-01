@@ -65,6 +65,10 @@ var value = String.Join("; ", "Apple", "Banana");
 #### OR
 
 ```typescript
+ let object = { Name: "Foo", Value: "Bar" };
+ var value = String.Join('.', object);
+//output: "Foo.Bar";
+
 var array = ['Apple', 'Banana']
 var value = String.Join("; ", array);
 //output: "Apple; Banana";

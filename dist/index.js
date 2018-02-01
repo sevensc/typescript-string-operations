@@ -117,7 +117,7 @@ var String = (function () {
             default:
                 break;
         }
-        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match))
+        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !String.IsNullOrWhiteSpace(arg))
             return String.formatNumber(arg, match);
         return arg;
     };
@@ -131,24 +131,24 @@ var String = (function () {
         var year = splitted[splitted.length - 3];
         day = day.split('T')[0];
         day = day.split(' ')[0];
-        return day + '.' + month + '.' + year;
+        return day + "." + month + "." + year;
     };
     String.getSortableDateFromString = function (input) {
         var splitted = input.replace(',', '').split('.');
         if (splitted.length <= 1)
             return input;
         var times = splitted[splitted.length - 1].split(' ');
-        var time = splitted[0];
+        var time = String.Empty;
         if (times.length > 1)
             time = times[times.length - 1];
         var year = splitted[splitted.length - 1].split(' ')[0];
         var month = splitted[splitted.length - 2];
         var day = splitted[splitted.length - 3];
         var result = year + "-" + month + "-" + day;
-        if (time.length > 1)
+        if (!String.IsNullOrWhiteSpace(time) && time.length > 1)
             result += "T" + time;
         else
-            result += "T" + "00:00:00";
+            result += "T00:00:00";
         return result;
     };
     String.formatNumber = function (input, formatTemplate) {

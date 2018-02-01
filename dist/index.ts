@@ -49,7 +49,7 @@ export class String {
         }
     }
 
-    public static Format(format: string, ...args: (string | Date | number | any)[]): string {
+    public static Format(format: string, ...args: any[]): string {
         try {
             return format.replace(/{(\d+(:\w*)?)}/g, function (match, i) { //0
                 let s = match.split(':');
@@ -61,7 +61,7 @@ export class String {
                 let arg = args[i];
                 if (arg == null || arg == undefined || match.match(/{d+}/))
                     return arg;        
-                
+                    
                 arg = String.parsePattern(match, arg);
                 return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
             });
@@ -120,8 +120,8 @@ export class String {
             default:
                 break;
         }
-        
-        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match))
+
+        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !String.IsNullOrWhiteSpace(arg))
             return String.formatNumber(arg, match);
 
         return arg;
@@ -140,7 +140,7 @@ export class String {
         day = day.split('T')[0];
         day = day.split(' ')[0];
 
-        return day + '.' + month + '.' + year;
+        return `${day}.${month}.${year}`;
     }
 
     private static getSortableDateFromString(input: string): string {
@@ -149,19 +149,20 @@ export class String {
             return input;
 
         let times = splitted[splitted.length - 1].split(' ');
-        let time = splitted[0];
+        let time = String.Empty;
         if (times.length > 1)
-            time = times[times.length - 1];
+            time = times[times.length - 1];        
 
         let year = splitted[splitted.length - 1].split(' ')[0];
         let month = splitted[splitted.length - 2];
         let day = splitted[splitted.length - 3];
-
-        let result = year + "-" + month + "-" + day;
-        if (time.length > 1)
-            result += "T" + time;
+        let result = `${year}-${month}-${day}`
+    
+        if (!String.IsNullOrWhiteSpace(time) && time.length > 1)
+            result += `T${time}`;
         else
-            result += "T" + "00:00:00";
+            result += "T00:00:00";        
+
         return result;
     }
 
