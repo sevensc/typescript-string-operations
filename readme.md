@@ -45,6 +45,22 @@ value = String.Format("{0:00}", 1);
 //output "01"
 ```
 
+## UPDATE
+#### String Format for Objects including specifiers
+
+```typescript
+var fruit = new Fruit();
+fruit.type = "apple";
+fruit.color = "RED";
+fruit.shippingDate = "";
+fruit.amount = 10000;
+
+String.Format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}", fruit);
+// output: the APPLE is red shipped on  with an amount of 10.000
+
+```
+
+
 |	Specifier	  |	 			Result 	   	    |
 | :-------------: |:---------------------------:|
 |		`L`		  |	LowerCase					|

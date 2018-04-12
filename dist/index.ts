@@ -1,5 +1,8 @@
 export class String {
-    public static Empty: string = "";
+    private static readonly regexNumber = /{(\d+(:\w*)?)}/g;
+    private static readonly regexObject = /{(\w+(:\w*)?)}/g;
+
+    public static Empty: string = '';
 
     public static IsNullOrWhiteSpace(value: string): boolean {
         try {
@@ -51,25 +54,40 @@ export class String {
 
     public static Format(format: string, ...args: any[]): string {
         try {
-            return format.replace(/{(\d+(:\w*)?)}/g, function (match, i) { //0
-                let s = match.split(':');
-                if (s.length > 1) {
-                    i = i[0];
-                    match = s[1].replace('}', ''); //U
-                }
+            if (format.match(String.regexNumber))
+                return String.format(String.regexNumber, format, args);
 
-                let arg = args[i];
-                if (arg == null || arg == undefined || match.match(/{d+}/))
-                    return arg;        
-                    
-                arg = String.parsePattern(match, arg);
-                return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
-            });
+            if (format.match(String.regexObject))
+                return String.format(String.regexObject, format, args, true);
+
+            return String.Empty;
         }
         catch (e) {
             console.log(e);
             return String.Empty;
         }
+    }
+
+    private static format(regex: any, format: string, args: any, parseByObject: boolean = false): string {
+        return format.replace(regex, function (match, x) { //0
+            let s = match.split(':');
+            if (s.length > 1) {
+                x = s[0].replace('{', '');
+                match = s[1].replace('}', ''); //U
+            }
+
+            let arg;
+            if (parseByObject)
+                arg = args[0][x];
+            else
+                arg = args[x];
+
+            if (arg == null || arg == undefined || match.match(/{\d+}/))
+                return arg;
+
+            arg = String.parsePattern(match, arg);
+            return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
+        });
     }
 
     private static parsePattern(match: 'L' | 'U' | 'd' | 's' | 'n' | string, arg: string | Date | number | any): string {
@@ -97,15 +115,17 @@ export class String {
                 }
                 break;
             case 'n': //Tausender Trennzeichen
-                let replacedString = arg.replace(/,/g,'.');
+                if (typeof (arg) !== "string")
+                    arg = arg.toString();
+                let replacedString = arg.replace(/,/g, '.');
                 if (isNaN(parseFloat(replacedString)) || replacedString.length <= 3)
                     break;
 
                 let numberparts = replacedString.split(/[^0-9]+/g);
                 let parts = numberparts;
 
-                if(numberparts.length > 1){
-                    parts = [String.join('',...(numberparts.splice(0, numberparts.length -1 ))), numberparts[numberparts.length-1]];
+                if (numberparts.length > 1) {
+                    parts = [String.join('', ...(numberparts.splice(0, numberparts.length - 1))), numberparts[numberparts.length - 1]];
                 }
 
                 let integer = parts[0];
@@ -114,8 +134,8 @@ export class String {
                 var output = (mod > 0 ? (integer.substring(0, mod)) : String.Empty);
                 var firstGroup = output;
                 var remainingGroups = integer.substring(mod).match(/.{3}/g);
-                output =  output + '.' + String.Join('.',remainingGroups);
-                arg = output + (parts.length > 1 ? ','+ parts[1] : '');
+                output = output + '.' + String.Join('.', remainingGroups);
+                arg = output + (parts.length > 1 ? ',' + parts[1] : '');
                 return arg;
             default:
                 break;
@@ -151,24 +171,24 @@ export class String {
         let times = splitted[splitted.length - 1].split(' ');
         let time = String.Empty;
         if (times.length > 1)
-            time = times[times.length - 1];        
+            time = times[times.length - 1];
 
         let year = splitted[splitted.length - 1].split(' ')[0];
         let month = splitted[splitted.length - 2];
         let day = splitted[splitted.length - 3];
         let result = `${year}-${month}-${day}`
-    
+
         if (!String.IsNullOrWhiteSpace(time) && time.length > 1)
             result += `T${time}`;
         else
-            result += "T00:00:00";        
+            result += "T00:00:00";
 
         return result;
     }
 
     private static formatNumber(input: number, formatTemplate: string): string {
         let count = formatTemplate.length;
-        let stringValue = input.toString();   
+        let stringValue = input.toString();
         if (count <= stringValue.length)
             return stringValue;
 

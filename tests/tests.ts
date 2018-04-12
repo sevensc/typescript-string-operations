@@ -1,4 +1,5 @@
 import { String } from '../dist/index';
+import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
 
@@ -29,7 +30,7 @@ describe('String.IsNullOrWhitespace', () => {
     });
 });
 
-describe('String.Format', () => {
+describe('String.Format Number Pattern', () => {
     describe('Placeholders', () => {
         it('should format the string correct', () => {
             let template = "{0}";
@@ -177,6 +178,32 @@ describe('String.Format', () => {
         });
     });
 
+});
+
+describe('String.Format Text Pattern', () => {
+    describe("formatting", () => {
+        it("Should parse out the word", () => {
+            // Arrange
+            var fruit = { type: "apple", color: "red" };
+
+            // Act
+            var formatted = String.Format("the {type} is {color}", fruit);
+
+            // Assert
+            expect(formatted).to.equal("the apple is red");
+        });
+
+        it("Should parse out the word with specifiers and TS Class", () => {
+            // Arrange
+            var fruit: Fruit = new Fruit("apple", "RED", "31.12.2018 01:02:03", "10000");
+
+            // Act
+            var formatted = String.Format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}", fruit);
+
+            // Assert
+            expect(formatted).to.equal("the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000");
+        });
+    });
 });
 
 describe('String.Join', () => {

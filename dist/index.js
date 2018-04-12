@@ -55,23 +55,35 @@ var String = (function () {
             args[_i - 1] = arguments[_i];
         }
         try {
-            return format.replace(/{(\d+(:\w*)?)}/g, function (match, i) {
-                var s = match.split(':');
-                if (s.length > 1) {
-                    i = i[0];
-                    match = s[1].replace('}', '');
-                }
-                var arg = args[i];
-                if (arg == null || arg == undefined || match.match(/{d+}/))
-                    return arg;
-                arg = String.parsePattern(match, arg);
-                return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
-            });
+            if (format.match(String.regexNumber))
+                return String.format(String.regexNumber, format, args);
+            if (format.match(String.regexObject))
+                return String.format(String.regexObject, format, args, true);
+            return String.Empty;
         }
         catch (e) {
             console.log(e);
             return String.Empty;
         }
+    };
+    String.format = function (regex, format, args, parseByObject) {
+        if (parseByObject === void 0) { parseByObject = false; }
+        return format.replace(regex, function (match, x) {
+            var s = match.split(':');
+            if (s.length > 1) {
+                x = s[0].replace('{', '');
+                match = s[1].replace('}', '');
+            }
+            var arg;
+            if (parseByObject)
+                arg = args[0][x];
+            else
+                arg = args[x];
+            if (arg == null || arg == undefined || match.match(/{\d+}/))
+                return arg;
+            arg = String.parsePattern(match, arg);
+            return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
+        });
     };
     String.parsePattern = function (match, arg) {
         switch (match) {
@@ -98,6 +110,8 @@ var String = (function () {
                 }
                 break;
             case 'n':
+                if (typeof (arg) !== "string")
+                    arg = arg.toString();
                 var replacedString = arg.replace(/,/g, '.');
                 if (isNaN(parseFloat(replacedString)) || replacedString.length <= 3)
                     break;
@@ -181,7 +195,9 @@ var String = (function () {
         }
         return temp;
     };
-    String.Empty = "";
+    String.regexNumber = /{(\d+(:\w*)?)}/g;
+    String.regexObject = /{(\w+(:\w*)?)}/g;
+    String.Empty = '';
     return String;
 }());
 exports.String = String;
