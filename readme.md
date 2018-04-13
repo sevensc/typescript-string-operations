@@ -52,11 +52,11 @@ value = String.Format("{0:00}", 1);
 var fruit = new Fruit();
 fruit.type = "apple";
 fruit.color = "RED";
-fruit.shippingDate = "";
+fruit.shippingDate = new Date(2018, 1, 1);
 fruit.amount = 10000;
 
 String.Format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}", fruit);
-// output: the APPLE is red shipped on  with an amount of 10.000
+// output: the APPLE is red shipped on 2018-01-01 with an amount of 10.000
 
 ```
 
