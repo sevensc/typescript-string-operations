@@ -17,6 +17,21 @@ export class String {
         }
     }
 
+    public static Contains(value: string, search: string, comparison: StringComparison = StringComparison.Ordinal): boolean
+    {
+        try {
+            if (value == null || value == 'undefined' || search == null || search == 'undefined')
+                return false;
+            const seachIn = comparison == StringComparison.Ordinal ? value.toString() : value.toString().toLocaleLowerCase();
+            const seachTerm = comparison == StringComparison.Ordinal ? search.toString() : search.toString().toLocaleLowerCase();
+            return seachIn.indexOf(seachTerm) !== -1;
+        }
+        catch (e) {
+            console.log(e);
+            return false;
+        }
+    }
+
     public static Join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
         try {
             let firstArg = args[0];
@@ -236,4 +251,9 @@ export class StringBuilder {
     public Clear() {
         this.Values = [];
     }
+}
+
+export enum StringComparison {
+    Ordinal,
+    OrdinalIgnoreCase,
 }
