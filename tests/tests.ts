@@ -32,6 +32,13 @@ describe('String.IsNullOrWhitespace', () => {
 
 describe('String.Format Number Pattern', () => {
     describe('Placeholders', () => {
+        it('should return template if no format is found', () => {
+            let template = "Bar";
+            let valueToInsert = "Foo";
+            let result = String.Format(template, valueToInsert);
+            expect(result).to.equal(template);
+        });
+
         it('should format the string correct', () => {
             let template = "{0}";
             let valueToInsert = "Foo";
