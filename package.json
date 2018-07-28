@@ -30,16 +30,19 @@
     "@types/chai": "^4.1.2",
     "@types/mocha": "^2.2.48",
     "chai": "^4.0.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-typescript": "^3.2.4",
     "gulp-uglify": "^3.0.0",
-    "mocha": "^3.4.2",
+    "mocha": "^5.2.0",
     "pump": "^2.0.1",
     "ts-node": "^3.2.0",
     "typescript": "^2.8.1"
   },
   "directories": {
     "test": "tests"
+  },
+  "resolutions": {
+    "natives": "1.1.3"
   }
 }

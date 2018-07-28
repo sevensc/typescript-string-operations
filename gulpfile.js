@@ -19,6 +19,6 @@ gulp.task("rename", function() {
     .pipe(gulp.dest("dist"));
 });
 
-gulp.task("compress", ["rename"], function(cb) {
+gulp.task("compress", gulp.series("rename"), function(cb) {
   return pump([gulp.src("dist/*.min.js"), uglify(), gulp.dest("dist")], cb);
 });
