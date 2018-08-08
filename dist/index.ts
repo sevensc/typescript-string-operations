@@ -60,7 +60,7 @@ export class String {
             if (format.match(String.regexObject))
                 return String.format(String.regexObject, format, args, true);
 
-            return String.Empty;
+            return format;
         }
         catch (e) {
             console.log(e);

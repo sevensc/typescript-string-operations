@@ -59,7 +59,7 @@ var String = (function () {
                 return String.format(String.regexNumber, format, args);
             if (format.match(String.regexObject))
                 return String.format(String.regexObject, format, args, true);
-            return String.Empty;
+            return format;
         }
         catch (e) {
             console.log(e);
