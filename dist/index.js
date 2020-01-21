@@ -5,8 +5,9 @@ var String = (function () {
     }
     String.IsNullOrWhiteSpace = function (value) {
         try {
-            if (value == null || value == 'undefined')
+            if (value == null || value == 'undefined') {
                 return true;
+            }
             return value.toString().replace(/\s/g, '').length < 1;
         }
         catch (e) {
@@ -26,10 +27,12 @@ var String = (function () {
                 var count = 0;
                 for (var i = 0; i < firstArg.length; i++) {
                     var current = firstArg[i];
-                    if (i < firstArg.length - 1)
+                    if (i < firstArg.length - 1) {
                         tempString += current + delimiter;
-                    else
+                    }
+                    else {
                         tempString += current;
+                    }
                 }
                 return tempString;
             }
@@ -55,10 +58,12 @@ var String = (function () {
             args[_i - 1] = arguments[_i];
         }
         try {
-            if (format.match(String.regexNumber))
+            if (format.match(String.regexNumber)) {
                 return String.format(String.regexNumber, format, args);
-            if (format.match(String.regexObject))
+            }
+            if (format.match(String.regexObject)) {
                 return String.format(String.regexObject, format, args, true);
+            }
             return format;
         }
         catch (e) {
@@ -75,25 +80,30 @@ var String = (function () {
                 match = s[1].replace('}', '');
             }
             var arg;
-            if (parseByObject)
+            if (parseByObject) {
                 arg = args[0][x];
-            else
+            }
+            else {
                 arg = args[x];
-            if (arg == null || arg == undefined || match.match(/{\d+}/))
+            }
+            if (arg == null || arg == undefined || match.match(/{\d+}/)) {
                 return arg;
+            }
             arg = String.parsePattern(match, arg);
             return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
         });
     };
     String.parsePattern = function (match, arg) {
         switch (match) {
-            case 'L':
+            case 'L': {
                 arg = arg.toLowerCase();
                 return arg;
-            case 'U':
+            }
+            case 'U': {
                 arg = arg.toUpperCase();
                 return arg;
-            case 'd':
+            }
+            case 'd': {
                 if (typeof (arg) === 'string') {
                     return String.getDisplayDateFromString(arg);
                 }
@@ -101,7 +111,8 @@ var String = (function () {
                     return String.Format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
                 }
                 break;
-            case 's':
+            }
+            case 's': {
                 if (typeof (arg) === 'string') {
                     return String.getSortableDateFromString(arg);
                 }
@@ -109,12 +120,14 @@ var String = (function () {
                     return String.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
                 }
                 break;
-            case 'n':
+            }
+            case 'n': {
                 if (typeof (arg) !== "string")
                     arg = arg.toString();
                 var replacedString = arg.replace(/,/g, '.');
-                if (isNaN(parseFloat(replacedString)) || replacedString.length <= 3)
+                if (isNaN(parseFloat(replacedString)) || replacedString.length <= 3) {
                     break;
+                }
                 var numberparts = replacedString.split(/[^0-9]+/g);
                 var parts = numberparts;
                 if (numberparts.length > 1) {
@@ -128,18 +141,22 @@ var String = (function () {
                 output = output + '.' + String.Join('.', remainingGroups);
                 arg = output + (parts.length > 1 ? ',' + parts[1] : '');
                 return arg;
-            default:
+            }
+            default: {
                 break;
+            }
         }
-        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !String.IsNullOrWhiteSpace(arg))
+        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !String.IsNullOrWhiteSpace(arg)) {
             return String.formatNumber(arg, match);
+        }
         return arg;
     };
     String.getDisplayDateFromString = function (input) {
         var splitted;
         splitted = input.split('-');
-        if (splitted.length <= 1)
+        if (splitted.length <= 1) {
             return input;
+        }
         var day = splitted[splitted.length - 1];
         var month = splitted[splitted.length - 2];
         var year = splitted[splitted.length - 3];
@@ -149,27 +166,32 @@ var String = (function () {
     };
     String.getSortableDateFromString = function (input) {
         var splitted = input.replace(',', '').split('.');
-        if (splitted.length <= 1)
+        if (splitted.length <= 1) {
             return input;
+        }
         var times = splitted[splitted.length - 1].split(' ');
         var time = String.Empty;
-        if (times.length > 1)
+        if (times.length > 1) {
             time = times[times.length - 1];
+        }
         var year = splitted[splitted.length - 1].split(' ')[0];
         var month = splitted[splitted.length - 2];
         var day = splitted[splitted.length - 3];
         var result = year + "-" + month + "-" + day;
-        if (!String.IsNullOrWhiteSpace(time) && time.length > 1)
+        if (!String.IsNullOrWhiteSpace(time) && time.length > 1) {
             result += "T" + time;
-        else
+        }
+        else {
             result += "T00:00:00";
+        }
         return result;
     };
     String.formatNumber = function (input, formatTemplate) {
         var count = formatTemplate.length;
         var stringValue = input.toString();
-        if (count <= stringValue.length)
+        if (count <= stringValue.length) {
             return stringValue;
+        }
         var remainingCount = count - stringValue.length;
         remainingCount += 1;
         return new Array(remainingCount).join('0') + stringValue;
@@ -181,13 +203,16 @@ var String = (function () {
         }
         var temp = String.Empty;
         for (var i = 0; i < args.length; i++) {
-            if ((typeof args[i] == 'string' && String.IsNullOrWhiteSpace(args[i])) || (typeof args[i] != "number" && typeof args[i] != "string"))
+            if ((typeof args[i] == 'string' && String.IsNullOrWhiteSpace(args[i]))
+                || (typeof args[i] != "number" && typeof args[i] != "string")) {
                 continue;
+            }
             var arg = "" + args[i];
             temp += arg;
             for (var i2 = i + 1; i2 < args.length; i2++) {
-                if (String.IsNullOrWhiteSpace(args[i2]))
+                if (String.IsNullOrWhiteSpace(args[i2])) {
                     continue;
+                }
                 temp += delimiter;
                 i = i2 - 1;
                 break;

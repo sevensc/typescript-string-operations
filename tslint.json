@@ -1,5 +1,5 @@
 {
     "rules":{
-        "curly": false
+        "curly": true
     }
 }
