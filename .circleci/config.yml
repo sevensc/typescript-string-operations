@@ -34,6 +34,7 @@ jobs:
     executor: nodejs
     steps:
       - ceckout-and-restore-cache
+      - run: npm install
       - run: npm run build
       - run: npm run test
 
