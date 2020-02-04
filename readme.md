@@ -1,4 +1,7 @@
-[![NPM](https://nodei.co/npm/typescript-string-operations.png?mini=true)](https://www.npmjs.com/package/typescript-string-operations)
+
+
+![CircleCI](https://img.shields.io/circleci/build/github/sevensc/typescript-string-operations?logo=circleci&token=e3f75ec3d21d6da12384faf594c9d05fe9f65747)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sevensc_typescript-string-operations&metric=alert_status)](https://sonarcloud.io/dashboard?id=sevensc_typescript-string-operations)![npm](https://img.shields.io/npm/v/typescript-string-operations)![npm](https://img.shields.io/npm/dw/typescript-string-operations)
 # Simple lightweight string operation library for Typescript.
 ## No jQuery required! Unit tested, works with Angular.
 

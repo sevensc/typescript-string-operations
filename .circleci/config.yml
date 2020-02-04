@@ -1,0 +1,48 @@
+version: 2.1
+
+executors:
+  nodejs:
+      docker:
+        - image: circleci/node:7.10
+
+commands:
+  ceckout-and-restore-cache:
+    description: "restore cache by package.json"
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+  save-node-modules-cache:
+    steps:
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+jobs:
+  build:
+    executor: nodejs
+    steps:
+      - ceckout-and-restore-cache
+      - run: npm install
+      - save-node-modules-cache
+      - run: npm run build
+
+  test:
+    executor: nodejs
+    steps:
+      - ceckout-and-restore-cache
+      - run: npm install
+      - run: npm run build
+      - run: npm run test
+
+workflows:
+  version: 2.1
+  build-and-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build

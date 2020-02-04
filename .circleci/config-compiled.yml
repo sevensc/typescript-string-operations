@@ -1,0 +1,41 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/node:7.10
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "package.json" }}
+        - v1-dependencies-
+    - run:
+        command: npm install
+    - save_cache:
+        key: v1-dependencies-{{ checksum "package.json" }}
+        paths:
+        - node_modules
+    - run:
+        command: npm run build
+  test:
+    docker:
+    - image: circleci/node:7.10
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "package.json" }}
+        - v1-dependencies-
+    - run:
+        command: npm run build
+    - run:
+        command: npm run test
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+    - build
+    - test:
+        filters:
+          branches:
+            only: master
