@@ -24,19 +24,31 @@ commands:
 jobs:
   build:
     executor: nodejs
+    working_directory: ~/repo
     steps:
-      - ceckout-and-restore-cache
+      - checkout-and-restore-cache
       - run: npm install
       - save-node-modules-cache
       - run: npm run build
 
   test:
     executor: nodejs
+    working_directory: ~/repo
     steps:
-      - ceckout-and-restore-cache
-      - run: npm install
-      - run: npm run build
-      - run: npm run test
+      - checkout-and-restore-cache
+      - run:
+        name: run tests
+        command: |
+          npm install
+          npm run build
+          npm run test
+  
+  publish:
+    executor: nodejs
+    working_directory: ~/repo
+    steps:
+      - checkout-and-restore-cache
+      - run: echo publish        
 
 workflows:
   version: 2.1
@@ -46,3 +58,9 @@ workflows:
       - test:
           requires:
             - build
+      - publish:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
