@@ -6,7 +6,7 @@ executors:
         - image: circleci/node:7.10
 
 commands:
-  ceckout-and-restore-cache:
+  checkout-and-restore-cache:
     description: "restore cache by package.json"
     steps:
       - checkout
@@ -37,11 +37,11 @@ jobs:
     steps:
       - checkout-and-restore-cache
       - run:
-        name: run tests
-        command: |
-          npm install
-          npm run build
-          npm run test
+          name: run tests
+          command: |
+            npm install
+            npm run build
+            npm run test
   
   publish:
     executor: nodejs
