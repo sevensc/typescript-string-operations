@@ -1,5 +1,13 @@
 "use strict";
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.StringBuilder = exports.String = void 0;
 var String = (function () {
     function String() {
     }
@@ -45,7 +53,7 @@ var String = (function () {
                 return tempString_1;
             }
             var stringArray = args;
-            return String.join.apply(String, [delimiter].concat(stringArray));
+            return String.join.apply(String, __spreadArrays([delimiter], stringArray));
         }
         catch (e) {
             console.log(e);
@@ -131,7 +139,7 @@ var String = (function () {
                 var numberparts = replacedString.split(/[^0-9]+/g);
                 var parts = numberparts;
                 if (numberparts.length > 1) {
-                    parts = [String.join.apply(String, [''].concat((numberparts.splice(0, numberparts.length - 1)))), numberparts[numberparts.length - 1]];
+                    parts = [String.join.apply(String, __spreadArrays([''], (numberparts.splice(0, numberparts.length - 1)))), numberparts[numberparts.length - 1]];
                 }
                 var integer = parts[0];
                 var mod = integer.length % 3;
@@ -243,7 +251,7 @@ var StringBuilder = (function () {
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        this.Values.push(String.Format.apply(String, [format].concat(args)));
+        this.Values.push(String.Format.apply(String, __spreadArrays([format], args)));
     };
     StringBuilder.prototype.Clear = function () {
         this.Values = [];
