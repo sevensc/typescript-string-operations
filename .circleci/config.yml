@@ -7,17 +7,17 @@ executors:
 
 commands:
   ceckout-and-restore-cache:
-    description: "restore cache by package.json"
+    description: "restore cache"
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
+            - dependencies-{{ checksum "yarn.lock" }}
+            - dependencies-
   save-node-modules-cache:
     steps:
       - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
 
@@ -39,7 +39,6 @@ jobs:
       - run: npm run test
 
 workflows:
-  version: 2.1
   build-and-deploy:
     jobs:
       - build
