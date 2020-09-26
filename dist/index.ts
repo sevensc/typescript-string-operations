@@ -102,11 +102,11 @@ export class String {
     private static parsePattern(match: 'L' | 'U' | 'd' | 's' | 'n' | string, arg: string | Date | number | any): string {
         switch (match) {
             case 'L': {
-                arg = arg.toLowerCase();
+                arg = arg.toLocaleLowerCase();
                 return arg;
             }
             case 'U': {
-                arg = arg.toUpperCase();
+                arg = arg.toLocaleUpperCase();
                 return arg;
             }
             case 'd': {

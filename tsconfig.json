@@ -1,11 +1,13 @@
 {
     "files": [
-        "dist/index.ts"
+        "./dist/index.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
         "target": "es5", 
-        "module": "commonjs"
+        "module": "commonjs",
+        "outDir": "./dist",
+        "skipLibCheck": true
     }    
 }
