@@ -252,21 +252,27 @@ export class StringBuilder {
     constructor(value: string = String.Empty) {
         this.Values = new Array(value);
     }
+
     public ToString() {
         return this.Values.join('');
     }
+
     public Append(value: string) {
         this.Values.push(value);
     }
+
     public AppendLine(value: string) {
-        this.Values.push('\n' + value);
+        this.Values.push('\r\n' + value);
     }
+
     public AppendFormat(format: string, ...args: any[]) {
         this.Values.push(String.Format(format, ...args));
     }
+
     public AppendLineFormat(format: string, ...args: any[]) {
-        this.Values.push('\n' + String.Format(format, ...args));
+        this.Values.push("\r\n" + String.Format(format, ...args));
     }
+
     public Clear() {
         this.Values = [];
     }

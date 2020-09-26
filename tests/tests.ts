@@ -1,4 +1,4 @@
-import { String } from '../dist/index';
+import { String, StringBuilder } from '../dist/index';
 import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
@@ -234,5 +234,57 @@ describe('String.Join', () => {
 
         console.log(result);
         expect(result).to.equal("Foo.Bar");
+    });
+});
+
+describe('String.Append', () => {
+    it('should append characters', () => {
+        var builder = new StringBuilder();
+        builder.Append('First Part... ');
+        builder.Append('Second Part...');
+
+        expect(builder.ToString()).to
+        .equal('First Part... Second Part...');
+    });
+
+    it('should append characters', () => {
+        var builder = new StringBuilder();
+        builder.AppendFormat('First {0}... ', 'Part');
+        builder.AppendFormat('Second {0}...', 'Part');
+
+        console.log(builder.ToString());
+        expect(builder.ToString()).to
+        .equal('First Part... Second Part...');
+    });
+});
+
+describe('String.AppendLine', () => {
+    it('should append characters and new line', () => {
+        var builder = new StringBuilder();
+        builder.AppendLine('First Line...');
+        builder.AppendLine('Second Line...');
+
+        expect(builder.ToString()).to
+        .equal('\r\nFirst Line...\r\nSecond Line...');
+    });
+
+    it('should append characters and new line', () => {
+        var builder = new StringBuilder();
+        builder.AppendLineFormat('First {0}...', 'Line');
+        builder.AppendLineFormat('Second {0}...', 'Line');
+
+        console.log(builder.ToString());
+        expect(builder.ToString()).to
+        .equal('\r\nFirst Line...\r\nSecond Line...');
+    });
+
+    it('should append characters and new line', () => {
+        var builder = new StringBuilder();
+        builder.AppendLine('First Line...');
+        builder.AppendLine('Second Line...');
+
+        console.log(builder.ToString());
+        expect(builder.ToString()).to
+        .equal('\r\nFirst Line...\r\nSecond Line...');
     });
 });
