@@ -1,4 +1,4 @@
-export declare class String {
+export declare class $String {
     static Empty: string;
     static IsNullOrWhiteSpace(value: string): boolean;
     static Join(delimiter: string, ...args: (string | object | Array<any>)[]): string;

@@ -1,7 +1,4 @@
 {
-    "files": [
-        "./dist/index.ts"
-    ],
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
@@ -9,5 +6,10 @@
         "module": "commonjs",
         "outDir": "./dist",
         "skipLibCheck": true
-    }    
+    },
+    "compileOnSave": true,
+    "exclude": [
+        "tests",
+        "samples"
+    ]
 }

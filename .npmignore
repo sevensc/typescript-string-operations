@@ -1,8 +1,0 @@
-tests\*
-dist\index.ts
-README-Developers.md
-gulpfile.js
-dist\index.js
-tsconfig.json
-tslint.json
-*.github

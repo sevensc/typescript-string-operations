@@ -1,3 +1,3 @@
-import { String } from "./dist/string";
-import { StringBuilder } from "./dist/stringbuilder";
-export { String, StringBuilder };
+import { $String } from "./src/string";
+import { StringBuilder } from "./src/stringbuilder";
+export { $String, StringBuilder };

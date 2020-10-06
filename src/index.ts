@@ -1,4 +1,4 @@
-export class String {
+export class $String {
     private static readonly regexNumber = /{(\d+(:\w*)?)}/g;
     private static readonly regexObject = /{(\w+(:\w*)?)}/g;
 
@@ -22,7 +22,7 @@ export class String {
         try {
             let firstArg = args[0];
             if (Array.isArray(firstArg) || firstArg instanceof Array) {
-                let tempString = String.Empty;
+                let tempString = $String.Empty;
                 let count = 0;
 
                 for (let i = 0; i < firstArg.length; i++) {
@@ -38,7 +38,7 @@ export class String {
                 return tempString;
             }
             else if (typeof firstArg === 'object') {
-                let tempString = String.Empty;
+                let tempString = $String.Empty;
                 let objectArg = firstArg;
                 let keys = Object.keys(firstArg); //get all Properties of the Object as Array
                 keys.forEach(element => { tempString += (<any>objectArg)[element] + delimiter; });
@@ -48,29 +48,29 @@ export class String {
 
             let stringArray = <string[]>args;
 
-            return String.join(delimiter, ...stringArray);
+            return $String.join(delimiter, ...stringArray);
         }
         catch (e) {
             console.log(e);
-            return String.Empty;
+            return $String.Empty;
         }
     }
 
     public static Format(format: string, ...args: any[]): string {
         try {
-            if (format.match(String.regexNumber)) {
-                return String.format(String.regexNumber, format, args);
+            if (format.match($String.regexNumber)) {
+                return $String.format($String.regexNumber, format, args);
             }
 
-            if (format.match(String.regexObject)) {
-                return String.format(String.regexObject, format, args, true);
+            if (format.match($String.regexObject)) {
+                return $String.format($String.regexObject, format, args, true);
             }
 
             return format;
         }
         catch (e) {
             console.log(e);
-            return String.Empty;
+            return $String.Empty;
         }
     }
 
@@ -94,8 +94,8 @@ export class String {
                 return arg;
             }
 
-            arg = String.parsePattern(match, arg);
-            return typeof arg != 'undefined' && arg != null ? arg : String.Empty;
+            arg = $String.parsePattern(match, arg);
+            return typeof arg != 'undefined' && arg != null ? arg : $String.Empty;
         });
     }
 
@@ -111,19 +111,19 @@ export class String {
             }
             case 'd': {
                 if (typeof (arg) === 'string') {
-                    return String.getDisplayDateFromString(arg);
+                    return $String.getDisplayDateFromString(arg);
                 }
                 else if (arg instanceof Date) {
-                    return String.Format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
+                    return $String.Format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
                 }
                 break;
             }
             case 's': {
                 if (typeof (arg) === 'string') {
-                    return String.getSortableDateFromString(arg);
+                    return $String.getSortableDateFromString(arg);
                 }
                 else if (arg instanceof Date) {
-                    return String.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
+                    return $String.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
                 }
                 break;
             }
@@ -139,16 +139,16 @@ export class String {
                 let parts = numberparts;
 
                 if (numberparts.length > 1) {
-                    parts = [String.join('', ...(numberparts.splice(0, numberparts.length - 1))), numberparts[numberparts.length - 1]];
+                    parts = [$String.join('', ...(numberparts.splice(0, numberparts.length - 1))), numberparts[numberparts.length - 1]];
                 }
 
                 let integer = parts[0];
 
                 var mod = integer.length % 3;
-                var output = (mod > 0 ? (integer.substring(0, mod)) : String.Empty);
+                var output = (mod > 0 ? (integer.substring(0, mod)) : $String.Empty);
                 var firstGroup = output;
                 var remainingGroups = integer.substring(mod).match(/.{3}/g);
-                output = output + '.' + String.Join('.', remainingGroups);
+                output = output + '.' + $String.Join('.', remainingGroups);
                 arg = output + (parts.length > 1 ? ',' + parts[1] : '');
                 return arg;
             }
@@ -157,8 +157,8 @@ export class String {
             }
         }
 
-        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !String.IsNullOrWhiteSpace(arg)) {
-            return String.formatNumber(arg, match);
+        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !$String.IsNullOrWhiteSpace(arg)) {
+            return $String.formatNumber(arg, match);
         }
 
         return arg;
@@ -188,7 +188,7 @@ export class String {
         }
 
         let times = splitted[splitted.length - 1].split(' ');
-        let time = String.Empty;
+        let time = $String.Empty;
         if (times.length > 1) {
             time = times[times.length - 1];
         }
@@ -198,7 +198,7 @@ export class String {
         let day = splitted[splitted.length - 3];
         let result = `${year}-${month}-${day}`
 
-        if (!String.IsNullOrWhiteSpace(time) && time.length > 1) {
+        if (!$String.IsNullOrWhiteSpace(time) && time.length > 1) {
             result += `T${time}`;
         }
         else {
@@ -222,9 +222,9 @@ export class String {
     }
 
     private static join(delimiter: string, ...args: string[]): string {
-        let temp = String.Empty;
+        let temp = $String.Empty;
         for (let i = 0; i < args.length; i++) {
-            if ((typeof args[i] == 'string' && String.IsNullOrWhiteSpace(args[i]))
+            if ((typeof args[i] == 'string' && $String.IsNullOrWhiteSpace(args[i]))
                 || (typeof args[i] != "number" && typeof args[i] != "string")) {
                 continue;
             }
@@ -232,7 +232,7 @@ export class String {
             let arg = "" + args[i];
             temp += arg;
             for (let i2 = i + 1; i2 < args.length; i2++) {
-                if (String.IsNullOrWhiteSpace(args[i2])) {
+                if ($String.IsNullOrWhiteSpace(args[i2])) {
                     continue;
                 }
 
@@ -249,7 +249,7 @@ export class String {
 export class StringBuilder {
     public Values: string[] = [];
 
-    constructor(value: string = String.Empty) {
+    constructor(value: string = $String.Empty) {
         this.Values = new Array(value);
     }
 
@@ -266,11 +266,11 @@ export class StringBuilder {
     }
 
     public AppendFormat(format: string, ...args: any[]) {
-        this.Values.push(String.Format(format, ...args));
+        this.Values.push($String.Format(format, ...args));
     }
 
     public AppendLineFormat(format: string, ...args: any[]) {
-        this.Values.push("\r\n" + String.Format(format, ...args));
+        this.Values.push("\r\n" + $String.Format(format, ...args));
     }
 
     public Clear() {
