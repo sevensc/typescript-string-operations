@@ -10,6 +10,6 @@
     "compileOnSave": true,
     "exclude": [
         "tests",
-        "samples"
+        "dist"
     ]
 }

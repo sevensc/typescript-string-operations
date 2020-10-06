@@ -6,50 +6,50 @@
 ## No jQuery required! Unit tested, works with Angular.
 
 ```typescript
- import { String, StringBuilder } from 'typescript-string-operations';
+ import { $String, StringBuilder } from 'typescript-string-operations';
  ```
 
 #### USAGE:
 
-### String.Empty
+### $String.Empty
 ```typescript
-var id = String.Empty;
+var id = $String.Empty;
 ```
 
-### String.IsNullOrWhiteSpace():
+### $String.IsNullOrWhiteSpace():
 ```typescript
 var id = image.GetId();
-if(String.IsNullOrWhiteSpace(id))
+if($String.IsNullOrWhiteSpace(id))
 	return image;
 ```
-### String.Format():
+### $String.Format():
 
 ```typescript
 var id = image.GetId()
-String.Format("image_{0}.jpg", id)
+$String.Format("image_{0}.jpg", id)
 output: "image_2db5da20-1c5d-4f1a-8fd4-b41e34c8c5b5.jpg";
 ```
 
 Specifier available!
 ```typescript
-var value = String.Format("{0:L}", "APPLE"); //output "apple"
+var value = $String.Format("{0:L}", "APPLE"); //output "apple"
 
-value = String.Format("{0:U}", "apple"); // output "APPLE"
+value = $String.Format("{0:U}", "apple"); // output "APPLE"
 
-value = String.Format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
+value = $String.Format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
 
 
-value = String.Format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
+value = $String.Format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
 
-value = String.Format("{0:n}", 1000000);
+value = $String.Format("{0:n}", 1000000);
 //output "1.000.000"
 
-value = String.Format("{0:00}", 1);
+value = $String.Format("{0:00}", 1);
 //output "01"
 ```
 
 ## UPDATE
-#### String Format for Objects including specifiers
+#### $String Format for Objects including specifiers
 
 ```typescript
 var fruit = new Fruit();
@@ -75,21 +75,21 @@ String.Format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amo
 
 
 
-### String.Join():
+### $String.Join():
 
 ```typescript
-var value = String.Join("; ", "Apple", "Banana");
+var value = $String.Join("; ", "Apple", "Banana");
 //output: "Apple; Banana";
 ```
 #### OR
 
 ```typescript
  let object = { Name: "Foo", Value: "Bar" };
- var value = String.Join('.', object);
+ var value = $String.Join('.', object);
 //output: "Foo.Bar";
 
 var array = ['Apple', 'Banana']
-var value = String.Join("; ", array);
+var value = $String.Join("; ", array);
 //output: "Apple; Banana";
 ```
 
@@ -117,7 +117,7 @@ var builder = new StringBuilder("My favorite fruits are: ");
 builder.Append("Apples, ");
 builder.Append("Bananas ");
 
-// of course using String.Format()
+// of course using $String.Format()
 builder.AppendFormat("and especially {0:U}!", favoriteFruit);
 builder.AppendFormat(" I eat {0} every day!", 10);
 
@@ -131,6 +131,6 @@ var fruits = builder.ToString();
 | Method                    |  Type       |       Description          | Parameter  |
 | :------------------------:|:-----------:|:--------------------------:|:----------:|
 |  `Append`                 | `Method`    |    appends a string.       | `value`    |
-|  `AppendFormat`           | `Method`    |    see description for `String.Format()`| `format`, `args`|
+|  `AppendFormat`           | `Method`    |    see description for `$String.Format()`| `format`, `args`|
 |  `Clear`		            | `Method`    |    clears the `StringBuilder`   |       |
 |  `ToString`	            | `Method`    |    creates the actual string.  |       |
