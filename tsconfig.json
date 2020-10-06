@@ -1,15 +1,16 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "removeComments": true,
-        "target": "es5", 
+        "removeComments": false,
+        "target": "es5",
         "module": "commonjs",
         "outDir": "./dist",
-        "skipLibCheck": true
+        "skipLibCheck": true,    
     },
     "compileOnSave": true,
     "exclude": [
         "tests",
-        "dist"
+        "dist",
+        "playground"
     ]
 }

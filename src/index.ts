@@ -2,7 +2,11 @@ export class $String {
     private static readonly regexNumber = /{(\d+(:\w*)?)}/g;
     private static readonly regexObject = /{(\w+(:\w*)?)}/g;
 
-    public static Empty: string = '';
+    /** 
+     * @deprecated following naming-conventions this method will be gone in v3.0.0
+    */
+    static Empty: string = '';
+    static empty: string = '';
 
     /** 
      * @deprecated following naming-conventions this method will be gone in v3.0.0
@@ -36,7 +40,7 @@ export class $String {
         try {
             let firstArg = args[0];
             if (Array.isArray(firstArg) || firstArg instanceof Array) {
-                let tempString = $String.Empty;
+                let tempString = $String.empty;
                 let count = 0;
 
                 for (let i = 0; i < firstArg.length; i++) {
@@ -52,7 +56,7 @@ export class $String {
                 return tempString;
             }
             else if (typeof firstArg === 'object') {
-                let tempString = $String.Empty;
+                let tempString = $String.empty;
                 let objectArg = firstArg;
                 let keys = Object.keys(firstArg); //get all Properties of the Object as Array
                 keys.forEach(element => { tempString += (<any>objectArg)[element] + delimiter; });
@@ -66,7 +70,7 @@ export class $String {
         }
         catch (e) {
             console.log(e);
-            return $String.Empty;
+            return $String.empty;
         }
     }
 
@@ -91,7 +95,7 @@ export class $String {
         }
         catch (e) {
             console.log(e);
-            return $String.Empty;
+            return $String.empty;
         }
     }
 
@@ -116,7 +120,7 @@ export class $String {
             }
 
             arg = $String.parsePattern(match, arg);
-            return typeof arg != 'undefined' && arg != null ? arg : $String.Empty;
+            return typeof arg != 'undefined' && arg != null ? arg : $String.empty;
         });
     }
 
@@ -166,7 +170,7 @@ export class $String {
                 let integer = parts[0];
 
                 var mod = integer.length % 3;
-                var output = (mod > 0 ? (integer.substring(0, mod)) : $String.Empty);
+                var output = (mod > 0 ? (integer.substring(0, mod)) : $String.empty);
                 var firstGroup = output;
                 var remainingGroups = integer.substring(mod).match(/.{3}/g);
                 output = output + '.' + $String.join('.', remainingGroups);
@@ -209,7 +213,7 @@ export class $String {
         }
 
         let times = splitted[splitted.length - 1].split(' ');
-        let time = $String.Empty;
+        let time = $String.empty;
         if (times.length > 1) {
             time = times[times.length - 1];
         }
@@ -243,7 +247,7 @@ export class $String {
     }
 
     private static joinInternal(delimiter: string, ...args: string[]): string {
-        let temp = $String.Empty;
+        let temp = $String.empty;
         for (let i = 0; i < args.length; i++) {
             if ((typeof args[i] == 'string' && $String.isNullOrWhiteSpace(args[i]))
                 || (typeof args[i] != "number" && typeof args[i] != "string")) {
@@ -281,7 +285,7 @@ export class StringBuilder {
         this.Values = values;
     }
 
-    constructor(value: string = $String.Empty) {
+    constructor(value?: string) {
         if (!$String.isNullOrWhiteSpace(value)) {
             this.values = new Array(value);
         }
