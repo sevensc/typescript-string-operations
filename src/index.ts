@@ -4,7 +4,14 @@ export class $String {
 
     public static Empty: string = '';
 
-    public static IsNullOrWhiteSpace(value: string): boolean {
+    /** 
+     * @deprecated following naming-conventions this method will be gone in v3.0.0
+    */
+    static IsNullOrWhiteSpace(value: string): boolean {
+        return $String.isNullOrWhiteSpace(value);
+    }
+
+    static isNullOrWhiteSpace(value: string): boolean {
         try {
             if (value == null || value == 'undefined') {
                 return true;
@@ -18,7 +25,14 @@ export class $String {
         }
     }
 
-    public static Join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
+    /** 
+     * @deprecated following naming-conventions this method will be gone in v3.0.0
+    */
+    static Join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
+        return $String.join(delimiter, ...args);
+    }
+
+    static join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
         try {
             let firstArg = args[0];
             if (Array.isArray(firstArg) || firstArg instanceof Array) {
@@ -48,7 +62,7 @@ export class $String {
 
             let stringArray = <string[]>args;
 
-            return $String.join(delimiter, ...stringArray);
+            return $String.joinInternal(delimiter, ...stringArray);
         }
         catch (e) {
             console.log(e);
@@ -56,14 +70,21 @@ export class $String {
         }
     }
 
-    public static Format(format: string, ...args: any[]): string {
+    /** 
+     * @deprecated following naming-conventions this method will be gone in v3.0.0
+    */
+    static Format(format: string, ...args: any[]): string {
+        return $String.format(format, ...args);
+    }
+
+    static format(format: string, ...args: any[]): string {
         try {
             if (format.match($String.regexNumber)) {
-                return $String.format($String.regexNumber, format, args);
+                return $String.formatInternal($String.regexNumber, format, args);
             }
 
             if (format.match($String.regexObject)) {
-                return $String.format($String.regexObject, format, args, true);
+                return $String.formatInternal($String.regexObject, format, args, true);
             }
 
             return format;
@@ -74,7 +95,7 @@ export class $String {
         }
     }
 
-    private static format(regex: any, format: string, args: any, parseByObject: boolean = false): string {
+    private static formatInternal(regex: any, format: string, args: any, parseByObject: boolean = false): string {
         return format.replace(regex, function (match, x) { //0
             let s = match.split(':');
             if (s.length > 1) {
@@ -114,7 +135,7 @@ export class $String {
                     return $String.getDisplayDateFromString(arg);
                 }
                 else if (arg instanceof Date) {
-                    return $String.Format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
+                    return $String.format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
                 }
                 break;
             }
@@ -123,7 +144,7 @@ export class $String {
                     return $String.getSortableDateFromString(arg);
                 }
                 else if (arg instanceof Date) {
-                    return $String.Format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
+                    return $String.format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
                 }
                 break;
             }
@@ -139,7 +160,7 @@ export class $String {
                 let parts = numberparts;
 
                 if (numberparts.length > 1) {
-                    parts = [$String.join('', ...(numberparts.splice(0, numberparts.length - 1))), numberparts[numberparts.length - 1]];
+                    parts = [$String.joinInternal('', ...(numberparts.splice(0, numberparts.length - 1))), numberparts[numberparts.length - 1]];
                 }
 
                 let integer = parts[0];
@@ -148,7 +169,7 @@ export class $String {
                 var output = (mod > 0 ? (integer.substring(0, mod)) : $String.Empty);
                 var firstGroup = output;
                 var remainingGroups = integer.substring(mod).match(/.{3}/g);
-                output = output + '.' + $String.Join('.', remainingGroups);
+                output = output + '.' + $String.join('.', remainingGroups);
                 arg = output + (parts.length > 1 ? ',' + parts[1] : '');
                 return arg;
             }
@@ -157,7 +178,7 @@ export class $String {
             }
         }
 
-        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !$String.IsNullOrWhiteSpace(arg)) {
+        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !$String.isNullOrWhiteSpace(arg)) {
             return $String.formatNumber(arg, match);
         }
 
@@ -221,10 +242,10 @@ export class $String {
         return new Array(remainingCount).join('0') + stringValue;
     }
 
-    private static join(delimiter: string, ...args: string[]): string {
+    private static joinInternal(delimiter: string, ...args: string[]): string {
         let temp = $String.Empty;
         for (let i = 0; i < args.length; i++) {
-            if ((typeof args[i] == 'string' && $String.IsNullOrWhiteSpace(args[i]))
+            if ((typeof args[i] == 'string' && $String.isNullOrWhiteSpace(args[i]))
                 || (typeof args[i] != "number" && typeof args[i] != "string")) {
                 continue;
             }
@@ -232,7 +253,7 @@ export class $String {
             let arg = "" + args[i];
             temp += arg;
             for (let i2 = i + 1; i2 < args.length; i2++) {
-                if ($String.IsNullOrWhiteSpace(args[i2])) {
+                if ($String.isNullOrWhiteSpace(args[i2])) {
                     continue;
                 }
 
@@ -247,33 +268,74 @@ export class $String {
 }
 
 export class StringBuilder {
+    /** 
+     * @deprecated following naming-conventions this method will be gone in v3.0.0
+    */
     public Values: string[] = [];
 
-    constructor(value: string = $String.Empty) {
-        this.Values = new Array(value);
+    get values(): string[] {
+        return this.Values;
     }
 
-    public ToString() {
+    set values(values: string[]) {
+        this.Values = values;
+    }
+
+    constructor(value: string = $String.Empty) {
+        if (!$String.isNullOrWhiteSpace(value)) {
+            this.values = new Array(value);
+        }
+    }
+
+    /** 
+     * @deprecated following naming-conventions this method will be gone in v3.0.0
+    */
+    ToString() {
+        return this.toString();
+    }
+
+    toString() {
         return this.Values.join('');
     }
 
-    public Append(value: string) {
+    /** 
+     * @deprecated following naming-conventions this method will be gone in v3.0.0
+    */
+    Append(value: string) {
+        this.append(value);
+    }
+
+    append(value: string) {
         this.Values.push(value);
     }
 
-    public AppendLine(value: string) {
+    /** 
+     * @deprecated following naming-conventions this method will be gone in v3.0.0
+    */
+    AppendFormat(format: string, ...args: any[]) {
+        this.appendFormat(format, ...args);
+    }
+
+    appendFormat(format: string, ...args: any[]) {
+        this.Values.push($String.format(format, ...args));
+    }
+
+    appendLine(value: string) {
         this.Values.push('\r\n' + value);
     }
 
-    public AppendFormat(format: string, ...args: any[]) {
-        this.Values.push($String.Format(format, ...args));
+    appendLineFormat(format: string, ...args: any[]) {
+        this.Values.push("\r\n" + $String.format(format, ...args));
     }
 
-    public AppendLineFormat(format: string, ...args: any[]) {
-        this.Values.push("\r\n" + $String.Format(format, ...args));
+    /** 
+     * @deprecated following naming-conventions this method will be gone in v3.0.0
+    */
+    Clear() {
+        return this.clear();
     }
 
-    public Clear() {
+    clear() {
         this.Values = [];
     }
 }

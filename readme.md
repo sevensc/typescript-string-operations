@@ -1,9 +1,19 @@
 
 
-![CircleCI](https://img.shields.io/circleci/build/github/sevensc/typescript-string-operations?logo=circleci&token=e3f75ec3d21d6da12384faf594c9d05fe9f65747)
+![CircleCI](https://img.shields.io/circleci/build/github/iwt-svenulrich/typescript-string-operations?logo=circleci&token=e3f75ec3d21d6da12384faf594c9d05fe9f65747)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sevensc_typescript-string-operations&metric=alert_status)](https://sonarcloud.io/dashboard?id=sevensc_typescript-string-operations)![npm](https://img.shields.io/npm/v/typescript-string-operations)![npm](https://img.shields.io/npm/dw/typescript-string-operations)
+
+# Action Required !!
+in v2.0.0 `String` is renamed to `$String` to prevent overriding the native JS String. If you dont want to change all of your code,
+you can create an alias in your import statement like so:
+
+```typescript
+ import { $String as String, StringBuilder } from 'typescript-string-operations';
+ ```
+
 # Simple lightweight string operation library for Typescript.
 ## No jQuery required! Unit tested, works with Angular.
+
 
 ```typescript
  import { $String, StringBuilder } from 'typescript-string-operations';

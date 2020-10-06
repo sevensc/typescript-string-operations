@@ -10,10 +10,7 @@
   ],
   "scripts": {
     "test": "mocha -r ts-node/register tests/**/tests.ts",
-    "build": "gulp default && gulp compress",
-    "pack-sample": "yarn build && yarn pack --filename samples/package.tgz",
-    "debug": "yarn run pack && open-cli samples/index.html",
-    "play": "yarn build && open-cli playground/index.html"
+    "build": "gulp default && gulp compress"
   },
   "repository": {
     "type": "git",
@@ -38,16 +35,15 @@
     "@types/chai": "^4.2.7",
     "@types/mocha": "^2.2.48",
     "chai": "^4.2.0",
-    "codemirror": "^5.58.1",
     "gulp": "^4.0.2",
     "gulp-rename": "^1.4.0",
     "gulp-typescript": "^3.2.4",
     "gulp-uglify": "^3.0.2",
     "mocha": "^5.2.0",
-    "open-cli": "^6.0.1",
     "pump": "^2.0.1",
     "ts-node": "^3.2.0",
-    "typescript": "^2.9.2"
+    "tslint": "^6.1.3",
+    "typescript": "^4.0.3"
   },
   "directories": {
     "test": "tests"
