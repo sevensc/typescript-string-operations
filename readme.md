@@ -21,45 +21,45 @@ you can create an alias in your import statement like so:
 
 #### USAGE:
 
-### $String.Empty
+### $String.empty
 ```typescript
-var id = $String.Empty;
+var id = $String.empty;
 ```
 
-### $String.IsNullOrWhiteSpace():
+### $String.isNullOrWhiteSpace():
 ```typescript
 var id = image.GetId();
-if($String.IsNullOrWhiteSpace(id))
+if($String.isNullOrWhiteSpace(id))
 	return image;
 ```
-### $String.Format():
+### $String.format():
 
 ```typescript
 var id = image.GetId()
-$String.Format("image_{0}.jpg", id)
+$String.format("image_{0}.jpg", id)
 output: "image_2db5da20-1c5d-4f1a-8fd4-b41e34c8c5b5.jpg";
 ```
 
 Specifier available!
 ```typescript
-var value = $String.Format("{0:L}", "APPLE"); //output "apple"
+var value = $String.format("{0:L}", "APPLE"); //output "apple"
 
-value = $String.Format("{0:U}", "apple"); // output "APPLE"
+value = $String.format("{0:U}", "apple"); // output "APPLE"
 
-value = $String.Format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
+value = $String.format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
 
 
-value = $String.Format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
+value = $String.format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
 
-value = $String.Format("{0:n}", 1000000);
+value = $String.format("{0:n}", 1000000);
 //output "1.000.000"
 
-value = $String.Format("{0:00}", 1);
+value = $String.format("{0:00}", 1);
 //output "01"
 ```
 
 ## UPDATE
-#### $String Format for Objects including specifiers
+#### $String.format for Objects including specifiers
 
 ```typescript
 var fruit = new Fruit();
@@ -68,7 +68,7 @@ fruit.color = "RED";
 fruit.shippingDate = new Date(2018, 1, 1);
 fruit.amount = 10000;
 
-String.Format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}", fruit);
+$String.format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}", fruit);
 // output: the APPLE is red shipped on 2018-01-01 with an amount of 10.000
 
 ```
@@ -88,18 +88,18 @@ String.Format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amo
 ### $String.Join():
 
 ```typescript
-var value = $String.Join("; ", "Apple", "Banana");
+var value = $String.join("; ", "Apple", "Banana");
 //output: "Apple; Banana";
 ```
 #### OR
 
 ```typescript
  let object = { Name: "Foo", Value: "Bar" };
- var value = $String.Join('.', object);
+ var value = $String.join('.', object);
 //output: "Foo.Bar";
 
 var array = ['Apple', 'Banana']
-var value = $String.Join("; ", array);
+var value = $String.join("; ", array);
 //output: "Apple; Banana";
 ```
 
@@ -107,11 +107,11 @@ var value = $String.Join("; ", array);
 
 | Method                    |  Type       |       Description          | Parameter  |
 | :------------------------:|:-----------:|:--------------------------:|:----------:|
-|  `Empty`                  | `Property`  |    simply returns `""`.    |
-| `IsNullOrWhiteSpace`      | `Method`    | returns true value if given parameter is either null, empty or undefined. | `format`, `args`
-| `Format`                  | `Method`    | Converts the value of objects to strings based on the formats specified and inserts them into another string. | `format`, `args`
-| `Join`                    | `Method`    |   Combines arguments delimited by given seperator.| `delimiter`,`args`
-| `Join`                    | `Method`    |   Combines arguments delimited by given seperator from array. | `delimiter`,`array` |
+|  `empty`                  | `Property`  |    simply returns `""`.    |
+| `isNullOrWhiteSpace`      | `Method`    | returns true value if given parameter is either null, empty or undefined. | `format`, `args`
+| `format`                  | `Method`    | Converts the value of objects to strings based on the formats specified and inserts them into another string. | `format`, `args`
+| `foin`                    | `Method`    |   Combines arguments delimited by given seperator.| `delimiter`,`args`
+| `foin`                    | `Method`    |   Combines arguments delimited by given seperator from array. | `delimiter`,`array` |
 
 
 ### StringBuilder
@@ -124,14 +124,14 @@ Just like you know from C#,
 var favoriteFruit: string = this.fruitService.getFavorite(); //Blueberries
 
 var builder = new StringBuilder("My favorite fruits are: ");
-builder.Append("Apples, ");
-builder.Append("Bananas ");
+builder.append("Apples, ");
+builder.append("Bananas ");
 
 // of course using $String.Format()
-builder.AppendFormat("and especially {0:U}!", favoriteFruit);
-builder.AppendFormat(" I eat {0} every day!", 10);
+builder.appendFormat("and especially {0:U}!", favoriteFruit);
+builder.appendFormat(" I eat {0} every day!", 10);
 
-var fruits = builder.ToString();
+var fruits = builder.toString();
 
 //output: "My favorite fruits are: Apples, Bananas and especially BLUEBERRIES! I eat 10 every day!";
 
@@ -140,7 +140,9 @@ var fruits = builder.ToString();
 
 | Method                    |  Type       |       Description          | Parameter  |
 | :------------------------:|:-----------:|:--------------------------:|:----------:|
-|  `Append`                 | `Method`    |    appends a string.       | `value`    |
-|  `AppendFormat`           | `Method`    |    see description for `$String.Format()`| `format`, `args`|
-|  `Clear`		            | `Method`    |    clears the `StringBuilder`   |       |
-|  `ToString`	            | `Method`    |    creates the actual string.  |       |
+|  `append`                 | `Method`    |    appends a string.       | `value`    |
+|  `appendLine`             | `Method`    |    like append and an extra line        | `value`    |
+|  `appendFormat`           | `Method`    |    see description for `$String.Format()`| `format`, `args`|
+|  `appendLineFormat`       | `Method`    |    like appendFormat and an extra line | `format`, `args`|
+|  `clear`		            | `Method`    |    clears the `StringBuilder`   |       |
+|  `toString`	            | `Method`    |    creates the actual string.  |       |
