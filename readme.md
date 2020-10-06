@@ -4,8 +4,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sevensc_typescript-string-operations&metric=alert_status)](https://sonarcloud.io/dashboard?id=sevensc_typescript-string-operations)![npm](https://img.shields.io/npm/v/typescript-string-operations)![npm](https://img.shields.io/npm/dw/typescript-string-operations)
 
 # Action Required !!
-in v2.0.0 `String` is renamed to `$String` to prevent overriding the native JS String. If you dont want to change all of your code,
-you can create an alias in your import statement like so:
+in v2.0.0 `String` is renamed to `$String` to prevent overriding the native JS String. 
+All uppercase methods are still available but deprecated. Those will be removed in v3.0.0.
+If you dont want to change all of your code, you can create an alias in your import statement like so:
 
 ```typescript
  import { $String as String, StringBuilder } from 'typescript-string-operations';
