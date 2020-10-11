@@ -99,7 +99,7 @@ export class String {
         });
     }
 
-    private static parsePattern(match: 'L' | 'U' | 'd' | 's' | 'n' | string, arg: string | Date | number | any): string {
+    private static parsePattern(match: 'L' | 'U' | 'd' | 's' | 'n' | 'x' | 'X' | string, arg: string | Date | number | any): string {
         switch (match) {
             case 'L': {
                 arg = arg.toLocaleLowerCase();
@@ -152,6 +152,12 @@ export class String {
                 arg = output + (parts.length > 1 ? ',' + parts[1] : '');
                 return arg;
             }
+            case 'x': {
+                return this.decimalToHexString(arg);
+            }
+            case 'X': {
+                return this.decimalToHexString(arg, true)
+            }
             default: {
                 break;
             }
@@ -162,6 +168,11 @@ export class String {
         }
 
         return arg;
+    }
+
+    private static decimalToHexString(number: number, upperCase: boolean = false) {
+        const hexNumber = number.toString(16);
+        return upperCase ? hexNumber.toLocaleUpperCase() : hexNumber;
     }
 
     private static getDisplayDateFromString(input: string): string {
