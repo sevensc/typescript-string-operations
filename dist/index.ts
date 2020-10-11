@@ -170,8 +170,9 @@ export class String {
         return arg;
     }
 
-    private static decimalToHexString(number: number, upperCase: boolean = false) {
-        const hexNumber = number.toString(16);
+    private static decimalToHexString(value: string, upperCase: boolean = false) {
+        const parsed = parseFloat(value as string);
+        const hexNumber = parsed.toString(16);
         return upperCase ? hexNumber.toLocaleUpperCase() : hexNumber;
     }
 
