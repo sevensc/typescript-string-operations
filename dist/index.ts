@@ -170,8 +170,9 @@ export class String {
         return arg;
     }
 
-    private static decimalToHexString(number: number, upperCase: boolean = false) {
-        const hexNumber = number.toString(16);
+    private static decimalToHexString(value: string, upperCase: boolean = false) {
+        const parsed = parseFloat(value as string);
+        const hexNumber = parsed.toString(16);
         return upperCase ? hexNumber.toLocaleUpperCase() : hexNumber;
     }
 
@@ -258,10 +259,14 @@ export class String {
 }
 
 export class StringBuilder {
-    public Values: string[] = [];
+    public Values: string[];
 
-    constructor(value: string = String.Empty) {
-        this.Values = new Array(value);
+    constructor(value?: string) {
+        this.Values = [];
+
+        if (!String.IsNullOrWhiteSpace(value)) {
+            this.Values = new Array(value);
+        }
     }
 
     public ToString() {

@@ -269,7 +269,27 @@ describe('String.Join', () => {
     });
 });
 
-describe('String.Append', () => {
+describe('StringBuilder initialization', () => {
+    it('should not add empty string if there is no ctor parameter', () => {
+        var builder = new StringBuilder();
+        builder.Append('First Part... ');
+        builder.Append('Second Part...');
+
+        expect(builder.ToString()).to
+        .equal('First Part... Second Part...');
+    });
+
+    it('should add a string if there is ctor parameter', () => {
+        var builder = new StringBuilder(String.Format("First {0}... ", "Part"));
+        builder.AppendFormat('Second {0}...', 'Part');
+
+        console.log(builder.ToString());
+        expect(builder.ToString()).to
+        .equal('First Part... Second Part...');
+    });
+});
+
+describe('StringBuilderng.Append', () => {
     it('should append characters', () => {
         var builder = new StringBuilder();
         builder.Append('First Part... ');
@@ -290,7 +310,7 @@ describe('String.Append', () => {
     });
 });
 
-describe('String.AppendLine', () => {
+describe('StringBuilder.AppendLine', () => {
     it('should append characters and new line', () => {
         var builder = new StringBuilder();
         builder.AppendLine('First Line...');
