@@ -183,6 +183,38 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal(expectedValue);
             });
         });
+    
+        describe('hexadecimal', () => {
+            it('number should be converted to hex lowercase', () => {
+                let result = String.Format('{0:x}', 500);
+                expect(result).to.equal('1f4');
+            });
+
+            it('number should be converted to hex uppercase', () => {
+                let result = String.Format('{0:X}', 500);
+                expect(result).to.equal('1F4');
+            });
+
+            it('decimal should be converted to hex lowercase', () => {
+                let result = String.Format('{0:x}', 321.124);
+                expect(result).to.equal('141.1fbe76c8b44');
+            });
+
+            it('decimal should be converted to hex uppercase', () => {
+                let result = String.Format('{0:X}', 321.124);
+                expect(result).to.equal('141.1FBE76C8B44');
+            });
+
+            it('minus decimal should be converted to hex lowercase', () => {
+                let result = String.Format('{0:x}', -321.124);
+                expect(result).to.equal('-141.1fbe76c8b44');
+            });
+
+            it('minus decimal should be converted to hex uppercase', () => {
+                let result = String.Format('{0:X}', -321.124);
+                expect(result).to.equal('-141.1FBE76C8B44');
+            });
+        });
     });
 
 });
