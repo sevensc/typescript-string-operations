@@ -259,10 +259,14 @@ export class String {
 }
 
 export class StringBuilder {
-    public Values: string[] = [];
+    public Values: string[];
 
-    constructor(value: string = String.Empty) {
-        this.Values = new Array(value);
+    constructor(value?: string) {
+        this.Values = [];
+
+        if (!String.IsNullOrWhiteSpace(value)) {
+            this.Values = new Array(value);
+        }
     }
 
     public ToString() {
