@@ -183,6 +183,38 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal(expectedValue);
             });
         });
+    
+        describe('hexadecimal', () => {
+            it('number should be converted to hex lowercase', () => {
+                let result = String.Format('{0:x}', 500);
+                expect(result).to.equal('1f4');
+            });
+
+            it('number should be converted to hex uppercase', () => {
+                let result = String.Format('{0:X}', 500);
+                expect(result).to.equal('1F4');
+            });
+
+            it('decimal should be converted to hex lowercase', () => {
+                let result = String.Format('{0:x}', 321.124);
+                expect(result).to.equal('141.1fbe76c8b44');
+            });
+
+            it('decimal should be converted to hex uppercase', () => {
+                let result = String.Format('{0:X}', 321.124);
+                expect(result).to.equal('141.1FBE76C8B44');
+            });
+
+            it('minus decimal should be converted to hex lowercase', () => {
+                let result = String.Format('{0:x}', -321.124);
+                expect(result).to.equal('-141.1fbe76c8b44');
+            });
+
+            it('minus decimal should be converted to hex uppercase', () => {
+                let result = String.Format('{0:X}', -321.124);
+                expect(result).to.equal('-141.1FBE76C8B44');
+            });
+        });
     });
 
 });
@@ -237,7 +269,27 @@ describe('String.Join', () => {
     });
 });
 
-describe('String.Append', () => {
+describe('StringBuilder initialization', () => {
+    it('should not add empty string if there is no ctor parameter', () => {
+        var builder = new StringBuilder();
+        builder.Append('First Part... ');
+        builder.Append('Second Part...');
+
+        expect(builder.ToString()).to
+        .equal('First Part... Second Part...');
+    });
+
+    it('should add a string if there is ctor parameter', () => {
+        var builder = new StringBuilder(String.Format("First {0}... ", "Part"));
+        builder.AppendFormat('Second {0}...', 'Part');
+
+        console.log(builder.ToString());
+        expect(builder.ToString()).to
+        .equal('First Part... Second Part...');
+    });
+});
+
+describe('StringBuilderng.Append', () => {
     it('should append characters', () => {
         var builder = new StringBuilder();
         builder.Append('First Part... ');
@@ -258,7 +310,7 @@ describe('String.Append', () => {
     });
 });
 
-describe('String.AppendLine', () => {
+describe('StringBuilder.AppendLine', () => {
     it('should append characters and new line', () => {
         var builder = new StringBuilder();
         builder.AppendLine('First Line...');
