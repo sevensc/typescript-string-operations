@@ -132,7 +132,7 @@ var fruits = builder.ToString();
 | :------------------------:|:-----------:|:--------------------------:|:----------:|
 |  `Append`                 | `Method`    |    appends a string.       | `value`    |
 |  `AppendFormat`           | `Method`    |    see description for `String.Format()`| `format`, `args`|
-|  `AppendLine`             | `Method`    |    see description for `String.Format()`| `format`, `args`|
-|  `AppendLineFormat`       | `Method`    |    see description for `String.Format()`| `format`, `args`|
+|  `AppendLine`             | `Method`    |    appends a string in a new line. | `format`, `args`|
+|  `AppendLineFormat`       | `Method`    |    like `String.Format()` in a new line | `format`, `args`|
 |  `Clear`		            | `Method`    |    clears the `StringBuilder`   |       |
 |  `ToString`	            | `Method`    |    creates the actual string.  |       |
