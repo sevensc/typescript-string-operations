@@ -46,7 +46,7 @@ jobs:
     steps:
       - ceckout-and-restore
       - run:
-          command: >
+          command: |
             ls
             echo: this will be a npm publish place
 
