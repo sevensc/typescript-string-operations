@@ -1,6 +1,6 @@
 
 
-![CircleCI](https://img.shields.io/circleci/build/github/sevensc/typescript-string-operations?logo=circleci&token=e3f75ec3d21d6da12384faf594c9d05fe9f65747)
+![CircleCI](https://img.shields.io/circleci/build/github/iwt-svenulrich/typescript-string-operations?logo=circleci&token=9234d9f6803b37ebfcd4887fa2d6d51aa2cf5214)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sevensc_typescript-string-operations&metric=alert_status)](https://sonarcloud.io/dashboard?id=sevensc_typescript-string-operations)![npm](https://img.shields.io/npm/v/typescript-string-operations)![npm](https://img.shields.io/npm/dw/typescript-string-operations)
 # Simple lightweight string operation library for Typescript.
 ## No jQuery required! Unit tested, works with Angular.
@@ -132,5 +132,7 @@ var fruits = builder.ToString();
 | :------------------------:|:-----------:|:--------------------------:|:----------:|
 |  `Append`                 | `Method`    |    appends a string.       | `value`    |
 |  `AppendFormat`           | `Method`    |    see description for `String.Format()`| `format`, `args`|
+|  `AppendLine`             | `Method`    |    see description for `String.Format()`| `format`, `args`|
+|  `AppendLineFormat`       | `Method`    |    see description for `String.Format()`| `format`, `args`|
 |  `Clear`		            | `Method`    |    clears the `StringBuilder`   |       |
 |  `ToString`	            | `Method`    |    creates the actual string.  |       |
