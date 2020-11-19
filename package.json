@@ -1,6 +1,6 @@
 {
   "name": "typescript-string-operations",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Simple lightweight string operation library for Typescript, works with Angular",
   "main": "dist/index.min.js",
   "files": [
