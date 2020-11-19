@@ -47,7 +47,7 @@ jobs:
     executor: nodejs
     steps:
       - ceckout-and-restore
-      - nun:
+      - run:
           name: npm login
           command: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
       - run:
