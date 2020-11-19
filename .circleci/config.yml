@@ -3,10 +3,10 @@ version: 2.1
 executors:
   nodejs:
       docker:
-        - image: circleci/node:7.10
+        - image: circleci/node
 
 commands:
-  ceckout-and-restore-cache:
+  ceckout-and-restore:
     description: "restore cache"
     steps:
       - checkout
@@ -14,6 +14,8 @@ commands:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
+      - attach_workspace:
+          at: ~/
   save-node-modules-cache:
     steps:
       - save_cache:
@@ -25,18 +27,28 @@ jobs:
   build:
     executor: nodejs
     steps:
-      - ceckout-and-restore-cache
-      - run: npm install
+      - ceckout-and-restore
+      - run: npm install --no-save
       - save-node-modules-cache
-      - run: npm run build
-
+      - run: npm run build && touch test_persist.md
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
   test:
     executor: nodejs
     steps:
-      - ceckout-and-restore-cache
-      - run: npm install
-      - run: npm run build
+      - ceckout-and-restore
       - run: npm run test
+
+  publish:
+    executor: nodejs
+    steps:
+      - ceckout-and-restore
+      - run:
+          command: >
+            ls
+            echo: this will be a npm publish place
 
 workflows:
   build-and-deploy:
@@ -45,3 +57,6 @@ workflows:
       - test:
           requires:
             - build
+      - publish:
+          requires:
+            - test
