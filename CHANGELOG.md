@@ -1,5 +1,9 @@
 # CHANGELOG
 
+#### 1.4.1
+- docs: added missing docs for `AppendLine` and `AppendLineFormat`
+- bufix: fixed circleci badge
+
 #### 1.4.0
 - feature: added `AppendLine` and `AppendLineFormat`
 - feature: added hexadecimal conversion specifier
