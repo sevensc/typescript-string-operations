@@ -5,10 +5,9 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
-        "target": "ES5", 
+        "target": "es5", 
         "module": "commonjs",
         "outDir": "./dist",
-        "skipLibCheck": true,
-        "experimentalDecorators": true
+        "skipLibCheck": true
     }    
 }
