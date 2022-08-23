@@ -1,8 +1,10 @@
-import { $String, String, StringBuilder } from '../index';
+import { String, StringBuilder } from '../index';
+import { $String } from '../string';
 import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
-import { EOL } from 'os';
+
+export const EOL = "\r\n";
 
 describe('String.IsNullOrWhitespace', () => {
 

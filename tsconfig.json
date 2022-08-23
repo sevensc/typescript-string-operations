@@ -5,9 +5,10 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
-        "target": "esnext",
-        "module": "commonjs",
+        "target": "ES2022",
+        "module": "CommonJS",
         "outDir": "./dist",
+        "esModuleInterop": true,
         "skipLibCheck": true
     }
 }
