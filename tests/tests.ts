@@ -1,4 +1,4 @@
-import { $String, String, StringBuilder } from '../index';
+import { String, StringBuilder, isNullOrWhiteSpace, format, join } from '../index';
 import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
@@ -13,7 +13,7 @@ describe('String.IsNullOrWhitespace', () => {
         expect(result).to.equal(true);
         result = String.isNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
-        result = $String.isNullOrWhiteSpace(teststring);
+        result = isNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
     });
 
@@ -23,7 +23,7 @@ describe('String.IsNullOrWhitespace', () => {
         expect(result).to.equal(true);
         result = String.isNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
-        result = $String.isNullOrWhiteSpace(teststring);
+        result = isNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
     });
 
@@ -33,7 +33,7 @@ describe('String.IsNullOrWhitespace', () => {
         expect(result).to.equal(true);
         result = String.isNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
-        result = $String.isNullOrWhiteSpace(teststring);
+        result = isNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
     });
 
@@ -43,7 +43,7 @@ describe('String.IsNullOrWhitespace', () => {
         expect(result).to.equal(false);
         result = String.isNullOrWhiteSpace(teststring);
         expect(result).to.equal(false);
-        result = $String.isNullOrWhiteSpace(teststring);
+        result = isNullOrWhiteSpace(teststring);
         expect(result).to.equal(false);
     });
 });
@@ -57,7 +57,7 @@ describe('String.Format Number Pattern', () => {
             expect(result).to.equal(template);
             result = String.format(template, valueToInsert);
             expect(result).to.equal(template);
-            result = $String.format(template, valueToInsert);
+            result = format(template, valueToInsert);
             expect(result).to.equal(template);
         });
 
@@ -68,7 +68,7 @@ describe('String.Format Number Pattern', () => {
             expect(result).to.equal(valueToInsert);
             result = String.format(template, valueToInsert);
             expect(result).to.equal(valueToInsert);
-            result = $String.format(template, valueToInsert);
+            result = format(template, valueToInsert);
             expect(result).to.equal(valueToInsert);
         });
 
@@ -80,7 +80,7 @@ describe('String.Format Number Pattern', () => {
             expect(result).to.equal(expectedValue);
             result = String.format(template, valueToInsert);
             expect(result).to.equal(expectedValue);
-            result = $String.format(template, valueToInsert);
+            result = format(template, valueToInsert);
             expect(result).to.equal(expectedValue);
         });
 
@@ -93,7 +93,7 @@ describe('String.Format Number Pattern', () => {
             expect(result).to.equal(expectedValue);
             result = String.format(template, valueToInsert, secondValueToInsert);
             expect(result).to.equal(expectedValue);
-            result = $String.format(template, valueToInsert, secondValueToInsert);
+            result = format(template, valueToInsert, secondValueToInsert);
             expect(result).to.equal(expectedValue);
         });
     });
@@ -110,7 +110,7 @@ describe('String.Format Number Pattern', () => {
                 result = String.format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
-                result = $String.format(template, valueToInsert);
+                result = format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
             });
@@ -126,7 +126,7 @@ describe('String.Format Number Pattern', () => {
                 result = String.format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
-                result = $String.format(template, valueToInsert);
+                result = format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
             });
@@ -142,7 +142,7 @@ describe('String.Format Number Pattern', () => {
                 result = String.format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
-                result = $String.format(template, valueToInsert);
+                result = format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
             });
@@ -158,7 +158,7 @@ describe('String.Format Number Pattern', () => {
                 result = String.format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
-                result = $String.format(template, valueToInsert);
+                result = format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
             });
@@ -174,7 +174,7 @@ describe('String.Format Number Pattern', () => {
                 result = String.format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
-                result = $String.format(template, valueToInsert);
+                result = format(template, valueToInsert);
                 console.log(result);
                 expect(result).to.equal(expectedValue);
             });
@@ -190,7 +190,7 @@ describe('String.Format Number Pattern', () => {
                 expect(actual).to.equal(expectedValue);
                 actual = String.format(template, valueToInsert);
                 expect(actual).to.equal(expectedValue);
-                actual = $String.format(template, valueToInsert);
+                actual = format(template, valueToInsert);
                 expect(actual).to.equal(expectedValue);
             });
 
@@ -203,7 +203,7 @@ describe('String.Format Number Pattern', () => {
                 expect(actual).to.equal(expectedValue);
                 actual = String.format(template, valueToInsert);
                 expect(actual).to.equal(expectedValue);
-                actual = $String.format(template, valueToInsert);
+                actual = format(template, valueToInsert);
                 expect(actual).to.equal(expectedValue);
             });
         });
@@ -216,7 +216,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('5');
                 result = String.format(template, 5);
                 expect(result).to.equal('5');
-                result = $String.format(template, 5);
+                result = format(template, 5);
                 expect(result).to.equal('5');
             });
 
@@ -226,7 +226,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('05');
                 result = String.format(template, 5);
                 expect(result).to.equal('05');
-                result = $String.format(template, 5);
+                result = format(template, 5);
                 expect(result).to.equal('05');
             });
 
@@ -236,7 +236,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('005');
                 result = String.format(template, 5);
                 expect(result).to.equal('005');
-                result = $String.format(template, 5);
+                result = format(template, 5);
                 expect(result).to.equal('005');
             });
 
@@ -246,7 +246,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('50000');
                 result = String.format(template, 50000);
                 expect(result).to.equal('50000');
-                result = $String.format(template, 50000);
+                result = format(template, 50000);
                 expect(result).to.equal('50000');
             });
 
@@ -259,7 +259,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal(expectedValue);
                 result = String.format(template, valueToInsert);
                 expect(result).to.equal(expectedValue);
-                result = $String.format(template, valueToInsert);
+                result = format(template, valueToInsert);
                 expect(result).to.equal(expectedValue);
             });
             it('should set the correct thousands seperator keeping the decimals', () => {
@@ -271,7 +271,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal(expectedValue);
                 result = String.format(template, valueToInsert);
                 expect(result).to.equal(expectedValue);
-                result = $String.format(template, valueToInsert);
+                result = format(template, valueToInsert);
                 expect(result).to.equal(expectedValue);
             });
         });
@@ -282,7 +282,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('1f4');
                 result = String.format('{0:x}', 500);
                 expect(result).to.equal('1f4');
-                result = $String.format('{0:x}', 500);
+                result = format('{0:x}', 500);
                 expect(result).to.equal('1f4');
             });
 
@@ -291,7 +291,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('1F4');
                 result = String.format('{0:X}', 500);
                 expect(result).to.equal('1F4');
-                result = $String.format('{0:X}', 500);
+                result = format('{0:X}', 500);
                 expect(result).to.equal('1F4');
             });
 
@@ -300,7 +300,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('141.1fbe76c8b44');
                 result = String.format('{0:x}', 321.124);
                 expect(result).to.equal('141.1fbe76c8b44');
-                result = $String.format('{0:x}', 321.124);
+                result = format('{0:x}', 321.124);
                 expect(result).to.equal('141.1fbe76c8b44');
             });
 
@@ -309,7 +309,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('141.1FBE76C8B44');
                 result = String.format('{0:X}', 321.124);
                 expect(result).to.equal('141.1FBE76C8B44');
-                result = $String.format('{0:X}', 321.124);
+                result = format('{0:X}', 321.124);
                 expect(result).to.equal('141.1FBE76C8B44');
             });
 
@@ -318,7 +318,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('-141.1fbe76c8b44');
                 result = String.format('{0:x}', -321.124);
                 expect(result).to.equal('-141.1fbe76c8b44');
-                result = $String.format('{0:x}', -321.124);
+                result = format('{0:x}', -321.124);
                 expect(result).to.equal('-141.1fbe76c8b44');
             });
 
@@ -327,7 +327,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal('-141.1FBE76C8B44');
                 result = String.format('{0:X}', -321.124);
                 expect(result).to.equal('-141.1FBE76C8B44');
-                result = $String.format('{0:X}', -321.124);
+                result = format('{0:X}', -321.124);
                 expect(result).to.equal('-141.1FBE76C8B44');
             });
         });
@@ -347,7 +347,7 @@ describe('String.Format Text Pattern', () => {
             expect(formatted).to.equal('the apple is red');
             formatted = String.format('the {type} is {color}', fruit);
             expect(formatted).to.equal('the apple is red');
-            formatted = $String.format('the {type} is {color}', fruit);
+            formatted = format('the {type} is {color}', fruit);
             expect(formatted).to.equal('the apple is red');
         });
 
@@ -361,7 +361,7 @@ describe('String.Format Text Pattern', () => {
             expect(formatted).to.equal('the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000');
             formatted = String.format('the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}', fruit);
             expect(formatted).to.equal('the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000');
-            formatted = $String.format('the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}', fruit);
+            formatted = format('the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}', fruit);
             expect(formatted).to.equal('the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000');
         });
     });
@@ -375,7 +375,7 @@ describe('String.Join', () => {
         expect(result).to.equal('red; yellow; blue');
         result = String.join('; ', stringOne, stringTwo, stringThree);
         expect(result).to.equal('red; yellow; blue');
-        result = $String.join('; ', stringOne, stringTwo, stringThree);
+        result = join('; ', stringOne, stringTwo, stringThree);
         expect(result).to.equal('red; yellow; blue');
     });
 
@@ -385,7 +385,7 @@ describe('String.Join', () => {
         expect(result).to.equal('red; yellow; blue');
         result = String.join('; ', object);
         expect(result).to.equal('red; yellow; blue');
-        result = $String.join('; ', object);
+        result = join('; ', object);
         expect(result).to.equal('red; yellow; blue');
     });
 
@@ -398,7 +398,7 @@ describe('String.Join', () => {
         result = String.join('.', object);
         console.log(result);
         expect(result).to.equal('Foo.Bar');
-        result = $String.join('.', object);
+        result = join('.', object);
         console.log(result);
         expect(result).to.equal('Foo.Bar');
     });
@@ -415,7 +415,7 @@ describe('StringBuilder initialization', () => {
     });
 
     it('should add a string if there is ctor parameter', () => {
-        const builder = new StringBuilder($String.format('First {0}... ', 'Part'));
+        const builder = new StringBuilder(format('First {0}... ', 'Part'));
         builder.AppendFormat('Second {0}...', 'Part');
 
         console.log(builder.ToString());

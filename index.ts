@@ -1,21 +1,47 @@
 const EOL = '\r\n';
 
-export class $String {
+export const empty = '';
+
+export function isNullOrWhiteSpace(value: string | null | undefined): boolean {
+    return String.isNullOrWhiteSpace(value);
+}
+
+export function join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
+    return String.join(delimiter, ...args);
+}
+
+export function format(format: string, ...args: any[]): string {
+    return String.format(format, ...args);
+}
+
+export class String {
     private static readonly regexNumber = /{(\d+(:\w*)?)}/g;
     private static readonly regexObject = /{(\w+(:\w*)?)}/g;
     public static empty = '';
+    /**
+     * @deprecated The property should not be used, and will be removed in future versions! Use `String.empty` instead.
+    */
     public static Empty = '';
 
+    /**
+     * @deprecated The method should not be used, and will be removed in future versions! Use `String.isNullOrWhiteSpace()` instead.
+    */
     public static IsNullOrWhiteSpace(value: string | null | undefined): boolean {
-        return $String.isNullOrWhiteSpace(value);
+        return String.isNullOrWhiteSpace(value);
     }
 
+    /**
+     * @deprecated The method should not be used, and will be removed in future versions! Use `String.join()` instead.
+    */
     public static Join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
-        return $String.join(delimiter, ...args);
+        return String.join(delimiter, ...args);
     }
 
+    /**
+     * @deprecated The method should not be used, and will be removed in future version!s Use `String.format()` instead.
+    */
     public static Format(format: string, ...args: any[]): string {
-        return $String.format(format, ...args);
+        return String.format(format, ...args);
     }
 
     public static isNullOrWhiteSpace(value: string | null | undefined): boolean {
@@ -36,7 +62,7 @@ export class $String {
         try {
             const firstArg = args[0];
             if (Array.isArray(firstArg) || firstArg instanceof Array) {
-                let tempString = $String.empty;
+                let tempString = String.empty;
 
                 for (let i = 0; i < firstArg.length; i++) {
                     const current = firstArg[i];
@@ -51,7 +77,7 @@ export class $String {
                 return tempString;
             }
             else if (typeof firstArg === 'object') {
-                let tempString = $String.empty;
+                let tempString = String.empty;
                 const objectArg = firstArg;
                 const keys = Object.keys(firstArg); //get all Properties of the Object as Array
                 keys.forEach(element => { tempString += (<any>objectArg)[element] + delimiter; });
@@ -61,29 +87,29 @@ export class $String {
 
             const stringArray = <string[]>args;
 
-            return $String.joinString(delimiter, ...stringArray);
+            return String.joinString(delimiter, ...stringArray);
         }
         catch (e) {
             console.log(e);
-            return $String.empty;
+            return String.empty;
         }
     }
 
     public static format(format: string, ...args: any[]): string {
         try {
-            if (format.match($String.regexNumber)) {
-                return $String.formatString($String.regexNumber, format, args);
+            if (format.match(String.regexNumber)) {
+                return String.formatString(String.regexNumber, format, args);
             }
 
-            if (format.match($String.regexObject)) {
-                return $String.formatString($String.regexObject, format, args, true);
+            if (format.match(String.regexObject)) {
+                return String.formatString(String.regexObject, format, args, true);
             }
 
             return format;
         }
         catch (e) {
             console.log(e);
-            return $String.empty;
+            return String.empty;
         }
     }
 
@@ -107,8 +133,8 @@ export class $String {
                 return arg;
             }
 
-            arg = $String.parsePattern(match, arg);
-            return typeof arg != 'undefined' && arg != null ? arg : $String.empty;
+            arg = String.parsePattern(match, arg);
+            return typeof arg != 'undefined' && arg != null ? arg : String.empty;
         });
     }
 
@@ -124,19 +150,19 @@ export class $String {
             }
             case 'd': {
                 if (typeof (arg) === 'string') {
-                    return $String.getDisplayDateFromString(arg);
+                    return String.getDisplayDateFromString(arg);
                 }
                 else if (arg instanceof Date) {
-                    return $String.format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
+                    return String.format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
                 }
                 break;
             }
             case 's': {
                 if (typeof (arg) === 'string') {
-                    return $String.getSortableDateFromString(arg);
+                    return String.getSortableDateFromString(arg);
                 }
                 else if (arg instanceof Date) {
-                    return $String.format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
+                    return String.format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
                 }
                 break;
             }
@@ -152,16 +178,16 @@ export class $String {
                 let parts = numberparts;
 
                 if (numberparts.length > 1) {
-                    parts = [$String.joinString('', ...(numberparts.splice(0, numberparts.length - 1))), numberparts[numberparts.length - 1]];
+                    parts = [String.joinString('', ...(numberparts.splice(0, numberparts.length - 1))), numberparts[numberparts.length - 1]];
                 }
 
                 const integer = parts[0];
 
                 const mod = integer.length % 3;
-                let output = (mod > 0 ? (integer.substring(0, mod)) : $String.empty);
+                let output = (mod > 0 ? (integer.substring(0, mod)) : String.empty);
 
                 const remainingGroups = integer.substring(mod).match(/.{3}/g);
-                output = output + '.' + $String.join('.', remainingGroups);
+                output = output + '.' + String.join('.', remainingGroups);
                 arg = output + (parts.length > 1 ? ',' + parts[1] : '');
                 return arg;
             }
@@ -176,8 +202,8 @@ export class $String {
             }
         }
 
-        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !$String.isNullOrWhiteSpace(arg)) {
-            return $String.formatNumber(arg, match);
+        if ((typeof (arg) === 'number' || !isNaN(arg)) && !isNaN(+match) && !String.isNullOrWhiteSpace(arg)) {
+            return String.formatNumber(arg, match);
         }
 
         return arg;
@@ -212,7 +238,7 @@ export class $String {
         }
 
         const times = splitted[splitted.length - 1].split(' ');
-        let time = $String.empty;
+        let time = String.empty;
         if (times.length > 1) {
             time = times[times.length - 1];
         }
@@ -222,7 +248,7 @@ export class $String {
         const day = splitted[splitted.length - 3];
         let result = `${year}-${month}-${day}`;
 
-        if (!$String.isNullOrWhiteSpace(time) && time.length > 1) {
+        if (!String.isNullOrWhiteSpace(time) && time.length > 1) {
             result += `T${time}`;
         }
         else {
@@ -246,9 +272,9 @@ export class $String {
     }
 
     private static joinString(delimiter: string, ...args: string[]): string {
-        let temp = $String.empty;
+        let temp = String.empty;
         for (let i = 0; i < args.length; i++) {
-            if ((typeof args[i] == 'string' && $String.isNullOrWhiteSpace(args[i]))
+            if ((typeof args[i] == 'string' && String.isNullOrWhiteSpace(args[i]))
                 || (typeof args[i] != 'number' && typeof args[i] != 'string')) {
                 continue;
             }
@@ -256,7 +282,7 @@ export class $String {
             const arg = '' + args[i];
             temp += arg;
             for (let i2 = i + 1; i2 < args.length; i2++) {
-                if ($String.isNullOrWhiteSpace(args[i2])) {
+                if (String.isNullOrWhiteSpace(args[i2])) {
                     continue;
                 }
 
@@ -270,7 +296,6 @@ export class $String {
     }
 }
 
-export class String extends $String { }
 
 export class StringBuilder {
     public Values: string[];
@@ -278,13 +303,13 @@ export class StringBuilder {
     constructor(value = '') {
         this.Values = [];
 
-        if (!$String.isNullOrWhiteSpace(value)) {
+        if (!String.isNullOrWhiteSpace(value)) {
             this.Values = new Array(value);
         }
     }
 
     public toString() {
-        return this.Values.join($String.empty);
+        return this.Values.join(String.empty);
     }
 
     public ToString() {
@@ -308,7 +333,7 @@ export class StringBuilder {
     }
 
     public appendFormat(format: string, ...args: any[]) {
-        this.Values.push($String.format(format, ...args));
+        this.Values.push(String.format(format, ...args));
     }
 
     public AppendFormat(format: string, ...args: any[]) {
@@ -316,7 +341,7 @@ export class StringBuilder {
     }
 
     public appendLineFormat(format: string, ...args: any[]) {
-        this.Values.push(EOL + $String.format(format, ...args));
+        this.Values.push(EOL + String.format(format, ...args));
     }
 
     public AppendLineFormat(format: string, ...args: any[]) {

@@ -1242,10 +1242,10 @@ type-fest@^0.20.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.20.2.tgz#1bf207f4b28f91583666cb5fbd327887301cd5f4"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
 
-typescript-string-operations@1.5.0-rc.3:
-  version "1.5.0-rc.3"
-  resolved "https://registry.yarnpkg.com/typescript-string-operations/-/typescript-string-operations-1.5.0-rc.3.tgz#8d0e9c867d5cc9a9b27866eb50ca39b08e8bb7f6"
-  integrity sha512-Ta80Fw1nkOXVSYgFXhfHH43WFwQfS0R+cSpabGZyzRP0CSVd10GJMYIt7k/P3giJlMy9NBwbWeSjWmWQGcFmjQ==
+typescript-string-operations@1.5.0-rc.7:
+  version "1.5.0-rc.7"
+  resolved "https://registry.yarnpkg.com/typescript-string-operations/-/typescript-string-operations-1.5.0-rc.7.tgz#d1712330f1933672723289a633fa6d1de61d9101"
+  integrity sha512-uKM9VJ5KcANu7qHlaPQqshnALzEc0MWvqWyqkR7oM1PDC+QK3bdZYmM7Nx2MQ7EirdTWgIdSslifMTameKE3Sg==
 
 typescript@^4.7.4:
   version "4.7.4"

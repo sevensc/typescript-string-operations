@@ -10,50 +10,51 @@
 
 
 ```typescript
- import { String, StringBuilder } from 'typescript-string-operations';
+ import { StringBuilder, join, format, isNullOrWhiteSpace } from 'typescript-string-operations';
  ```
  
-I recently got feedback that sometimes there are issues when using `String`, since its actually replacing the native `String` object from JavaScript. You can use `$String` instead.
+When migrating from Version 1.4.1 or lower, you can also import the class `String`. Using this String class would override the native `String` object from JavaScript. We will remove this declaration with the next major release
 
 ```typescript
- import { $String } from 'typescript-string-operations';
+ import { String } from 'typescript-string-operations';
 ```
 
 #### USAGE:
 
 ### String.empty
 ```typescript
-var id = String.empty;
+var id = empty; // or String.empty
+// output: id = '';
 ```
 
 ### String.isNullOrWhiteSpace():
 ```typescript
 var id = image.GetId();
-if(String.isNullOrWhiteSpace(id))
+if(isNullOrWhiteSpace(id)) // String.isNullOrWhiteSpace(id)
 	return image;
 ```
 ### String.format():
 
 ```typescript
 var id = image.GetId()
-String.format("image_{0}.jpg", id)
+format("image_{0}.jpg", id) // or String.format()
 output: "image_2db5da20-1c5d-4f1a-8fd4-b41e34c8c5b5.jpg";
 ```
 
 Specifier available!
 ```typescript
-var value = String.format("{0:L}", "APPLE"); //output "apple"
+var value = format("{0:L}", "APPLE"); //output "apple"
 
-value = String.format("{0:U}", "apple"); // output "APPLE"
+value = format("{0:U}", "apple"); // output "APPLE"
 
-value = String.format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
+value = format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
 
-value = String.format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
+value = format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
 
-value = String.format("{0:n}", 1000000);
+value = format("{0:n}", 1000000);
 //output "1.000.000"
 
-value = String.format("{0:00}", 1);
+value = format("{0:00}", 1);
 //output "01"
 ```
 
@@ -67,7 +68,7 @@ fruit.color = "RED";
 fruit.shippingDate = new Date(2018, 1, 1);
 fruit.amount = 10000;
 
-String.format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}", fruit);
+format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}", fruit);
 // output: the APPLE is red shipped on 2018-01-01 with an amount of 10.000
 
 ```
@@ -84,21 +85,21 @@ String.format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amo
 
 
 
-### String.Join():
+### String.join():
 
 ```typescript
-var value = String.join("; ", "Apple", "Banana");
+var value = join("; ", "Apple", "Banana"); // or String.join()
 //output: "Apple; Banana";
 ```
 #### OR
 
 ```typescript
  let object = { Name: "Foo", Value: "Bar" };
- var value = String.join('.', object);
+ var value = join('.', object);
 //output: "Foo.Bar";
 
 var array = ['Apple', 'Banana']
-var value = String.join("; ", array);
+var value = join("; ", array);
 //output: "Apple; Banana";
 ```
 
@@ -140,8 +141,8 @@ var fruits = builder.ToString();
 | Method                    |  Type       |       Description          | Parameter  |
 | :------------------------:|:-----------:|:--------------------------:|:----------:|
 |  `Append`                 | `Method`    |    appends a string.       | `value`    |
-|  `AppendFormat`           | `Method`    |    see description for `String.format()`| `format`, `args`|
+|  `AppendFormat`           | `Method`    |    see description for `format()`| `format`, `args`|
 |  `AppendLine`             | `Method`    |    appends a string in a new line. | `format`, `args`|
-|  `AppendLineFormat`       | `Method`    |    like `String.format()` in a new line | `format`, `args`|
+|  `AppendLineFormat`       | `Method`    |    like `format()` in a new line | `format`, `args`|
 |  `Clear`		            | `Method`    |    clears the `StringBuilder`   |       |
 |  `ToString`	            | `Method`    |    creates the actual string.  |       |

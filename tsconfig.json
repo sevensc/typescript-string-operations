@@ -4,11 +4,13 @@
     ],
     "compilerOptions": {
         "noImplicitAny": true,
-        "removeComments": true,
+        "removeComments": false,
         "target": "ES2022",
         "module": "CommonJS",
         "outDir": "./dist",
         "esModuleInterop": true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "declaration": true,
+        "declarationMap": true,
     }
 }

@@ -1,15 +1,15 @@
 {
   "name": "typescript-string-operations",
-  "version": "1.5.0",
+  "version": "1.5.0-rc.10",
   "description": "Simple lightweight string operation library for Typescript, works with Angular",
   "main": "dist/index.min.js",
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist/**/*.js",
-    "**/*.d.ts"
+    "dist/**/*"
   ],
   "scripts": {
     "test": "mocha -r ts-node/register tests/**/tests.ts",
-    "build": "tsc; uglifyjs ./dist/index.js --compress -o ./dist/index.min.js",
+    "build": "tsc; uglifyjs ./dist/index.js --compress -o ./dist/index.js",
     "lint": "eslint ."
   },
   "repository": "https://github.com/sevensc/typescript-string-operations.git",
@@ -41,7 +41,6 @@
     "uglify-js": "^3.17.0"
   },
   "directories": {
-    "test": "tests"
   },
   "resolutions": {
     "natives": "1.1.3"

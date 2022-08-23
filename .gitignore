@@ -1,7 +1,6 @@
 node_modules
 .vscode/*
 
-dist/*.js
 
 # Compiled source #
 ###################
@@ -12,7 +11,8 @@ dist/*.js
 *.o
 *.so
 *.min.js
-
+*.d.ts.map
+dist
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
