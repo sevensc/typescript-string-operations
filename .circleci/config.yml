@@ -6,7 +6,7 @@ executors:
         - image: cimg/node:18.7.0
 
 commands:
-  ceckout-and-restore-cache:
+  checkout-and-restore-cache:
     description: "restore cache"
     steps:
       - checkout
@@ -33,7 +33,7 @@ jobs:
   test:
     executor: nodejs
     steps:
-      - ceckout-and-restore-cache
+      - checkout-and-restore-cache
       - run: yarn install
       - run: yarn build
       - run: yarn test
