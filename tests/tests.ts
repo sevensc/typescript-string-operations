@@ -1,4 +1,4 @@
-import { String, $String, StringBuilder } from '../index';
+import { $String, String, StringBuilder } from '../index';
 import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
