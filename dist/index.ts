@@ -18,6 +18,87 @@ export class String {
         }
     }
 
+    public static Contains(value: string, search: string, comparison: StringComparison = StringComparison.Ordinal): boolean {
+        try {
+            if (value == null || value == 'undefined' || search == null || search == 'undefined')
+                return false;
+            const seachIn = comparison == StringComparison.Ordinal ? value.toString() : value.toString().toLocaleLowerCase();
+            const seachTerm = comparison == StringComparison.Ordinal ? search.toString() : search.toString().toLocaleLowerCase();
+            return seachIn.indexOf(seachTerm) !== -1;
+        }
+        catch (e) {
+            console.log(e);
+            return false;
+        }
+    }
+
+    public static Equals(value: string, compareTo: string, comparison: StringComparison = StringComparison.Ordinal): boolean {
+        try {
+            if (value == null || value == 'undefined') {
+                return compareTo == null || compareTo == 'undefined';
+            }
+            if (compareTo == null || compareTo == 'undefined') {
+                return false;
+            }
+            const compareValue = comparison == StringComparison.Ordinal ? value.toString() : value.toString().toLocaleLowerCase();
+            const compareToValue = comparison == StringComparison.Ordinal ? compareTo.toString() : compareTo.toString().toLocaleLowerCase();
+            return compareValue == compareToValue;
+        }
+        catch (e) {
+            console.log(e);
+            return false;
+        }
+    }
+
+    public static Compare(value: string, compareTo: string, comparison: StringComparison = StringComparison.Ordinal): number {
+        try {
+            if (value == null || value == 'undefined') {
+                return (compareTo == null || compareTo == 'undefined') ? 0 : -1;
+            }
+            if (compareTo == null || compareTo == 'undefined') {
+                return 1;
+            }
+            const compareValue = comparison == StringComparison.Ordinal ? value.toString() : value.toString().toLocaleLowerCase();
+            const compareToValue = comparison == StringComparison.Ordinal ? compareTo.toString() : compareTo.toString().toLocaleLowerCase();
+            if (compareValue == compareToValue) {
+                return 0;
+            }
+            return compareValue > compareToValue ? 1 : -1;
+        }
+        catch (e) {
+            console.log(e);
+            return 0;
+        }
+    }
+
+    public static ToLower(value: string): string
+    {
+        try {
+            if (value == null || value == 'undefined') {
+                return String.Empty;
+            }
+            return value.toLocaleLowerCase();
+        }
+        catch (e) {
+            console.log(e);
+            return String.Empty;
+        }
+    }
+
+    public static ToUpper(value: string): string
+    {
+        try {
+            if (value == null || value == 'undefined') {
+                return String.Empty;
+            }
+            return value.toLocaleUpperCase();
+        }
+        catch (e) {
+            console.log(e);
+            return String.Empty;
+        }
+    }
+
     public static Join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
         try {
             let firstArg = args[0];
@@ -292,4 +373,9 @@ export class StringBuilder {
     public Clear() {
         this.Values = [];
     }
+}
+
+export enum StringComparison {
+    Ordinal,
+    OrdinalIgnoreCase,
 }
