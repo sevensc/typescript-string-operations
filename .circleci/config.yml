@@ -50,7 +50,7 @@ workflows:
   build-and-deploy:
     jobs:
       - lint
-      - build
+      - build:
           requires:
             - lint
       - test:
