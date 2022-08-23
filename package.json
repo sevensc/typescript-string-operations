@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "mocha -r ts-node/register tests/**/tests.ts",
-    "build": "tsc; uglifyjs ./dist/index.js --compress -o ./dist/index.min.js; rm ./dist/index.js",
+    "build": "tsc; uglifyjs ./dist/index.js --compress -o ./dist/index.min.js",
     "lint": "eslint ."
   },
   "repository": "https://github.com/sevensc/typescript-string-operations.git",
