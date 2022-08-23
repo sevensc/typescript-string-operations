@@ -13,4 +13,5 @@
 #### 1.5.0
 - feature: !IMPORTANT methods/properties starting with uppercase are marked deprecated now and will be removed with version 2.0.0! Check the deprecated infos
 - feature: added class `$String` for everybody who is facing issues when `String` is used.
+- feature: `String.isNullOrWhiteSpace` accepts null or undefined now
 - chore: Updated packages

@@ -4,9 +4,9 @@ export class $String {
     private static readonly regexNumber = /{(\d+(:\w*)?)}/g;
     private static readonly regexObject = /{(\w+(:\w*)?)}/g;
 
-    public static empty: string = '';
+    public static empty = '';
 
-    public static isNullOrWhiteSpace(value: string): boolean {
+    public static isNullOrWhiteSpace(value: string | null | undefined): boolean {
         try {
             if (value == null || value == 'undefined') {
                 return true;
@@ -22,13 +22,12 @@ export class $String {
 
     public static join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
         try {
-            let firstArg = args[0];
+            const firstArg = args[0];
             if (Array.isArray(firstArg) || firstArg instanceof Array) {
                 let tempString = $String.empty;
-                let count = 0;
 
                 for (let i = 0; i < firstArg.length; i++) {
-                    let current = firstArg[i];
+                    const current = firstArg[i];
                     if (i < firstArg.length - 1) {
                         tempString += current + delimiter;
                     }
@@ -41,14 +40,14 @@ export class $String {
             }
             else if (typeof firstArg === 'object') {
                 let tempString = $String.empty;
-                let objectArg = firstArg;
-                let keys = Object.keys(firstArg); //get all Properties of the Object as Array
+                const objectArg = firstArg;
+                const keys = Object.keys(firstArg); //get all Properties of the Object as Array
                 keys.forEach(element => { tempString += (<any>objectArg)[element] + delimiter; });
                 tempString = tempString.slice(0, tempString.length - delimiter.length); //remove last delimiter
                 return tempString;
             }
 
-            let stringArray = <string[]>args;
+            const stringArray = <string[]>args;
 
             return $String.joinString(delimiter, ...stringArray);
         }
@@ -76,9 +75,9 @@ export class $String {
         }
     }
 
-    private static formatString(regex: any, format: string, args: any, parseByObject: boolean = false): string {
+    private static formatString(regex: any, format: string, args: any, parseByObject = false): string {
         return format.replace(regex, function (match, x) { //0
-            let s = match.split(':');
+            const s = match.split(':');
             if (s.length > 1) {
                 x = s[0].replace('{', '');
                 match = s[1].replace('}', ''); //U
@@ -130,26 +129,26 @@ export class $String {
                 break;
             }
             case 'n': {//Tausender Trennzeichen
-                if (typeof (arg) !== "string")
+                if (typeof (arg) !== 'string')
                     arg = arg.toString();
-                let replacedString = arg.replace(/,/g, '.');
+                const replacedString = arg.replace(/,/g, '.');
                 if (isNaN(parseFloat(replacedString)) || replacedString.length <= 3) {
                     break;
                 }
 
-                let numberparts = replacedString.split(/[^0-9]+/g);
+                const numberparts = replacedString.split(/[^0-9]+/g);
                 let parts = numberparts;
 
                 if (numberparts.length > 1) {
                     parts = [$String.joinString('', ...(numberparts.splice(0, numberparts.length - 1))), numberparts[numberparts.length - 1]];
                 }
 
-                let integer = parts[0];
+                const integer = parts[0];
 
-                var mod = integer.length % 3;
-                var output = (mod > 0 ? (integer.substring(0, mod)) : $String.empty);
-                var firstGroup = output;
-                var remainingGroups = integer.substring(mod).match(/.{3}/g);
+                const mod = integer.length % 3;
+                let output = (mod > 0 ? (integer.substring(0, mod)) : $String.empty);
+
+                const remainingGroups = integer.substring(mod).match(/.{3}/g);
                 output = output + '.' + $String.join('.', remainingGroups);
                 arg = output + (parts.length > 1 ? ',' + parts[1] : '');
                 return arg;
@@ -158,7 +157,7 @@ export class $String {
                 return this.decimalToHexString(arg);
             }
             case 'X': {
-                return this.decimalToHexString(arg, true)
+                return this.decimalToHexString(arg, true);
             }
             default: {
                 break;
@@ -172,23 +171,22 @@ export class $String {
         return arg;
     }
 
-    private static decimalToHexString(value: string, upperCase: boolean = false) {
+    private static decimalToHexString(value: string, upperCase = false) {
         const parsed = parseFloat(value as string);
         const hexNumber = parsed.toString(16);
         return upperCase ? hexNumber.toLocaleUpperCase() : hexNumber;
     }
 
     private static getDisplayDateFromString(input: string): string {
-        let splitted: string[];
-        splitted = input.split('-');
+        const splitted: string[] = input.split('-');
 
         if (splitted.length <= 1) {
             return input;
         }
 
         let day = splitted[splitted.length - 1];
-        let month = splitted[splitted.length - 2];
-        let year = splitted[splitted.length - 3];
+        const month = splitted[splitted.length - 2];
+        const year = splitted[splitted.length - 3];
         day = day.split('T')[0];
         day = day.split(' ')[0];
 
@@ -196,35 +194,35 @@ export class $String {
     }
 
     private static getSortableDateFromString(input: string): string {
-        let splitted = input.replace(',', '').split('.');
+        const splitted = input.replace(',', '').split('.');
         if (splitted.length <= 1) {
             return input;
         }
 
-        let times = splitted[splitted.length - 1].split(' ');
+        const times = splitted[splitted.length - 1].split(' ');
         let time = $String.empty;
         if (times.length > 1) {
             time = times[times.length - 1];
         }
 
-        let year = splitted[splitted.length - 1].split(' ')[0];
-        let month = splitted[splitted.length - 2];
-        let day = splitted[splitted.length - 3];
-        let result = `${year}-${month}-${day}`
+        const year = splitted[splitted.length - 1].split(' ')[0];
+        const month = splitted[splitted.length - 2];
+        const day = splitted[splitted.length - 3];
+        let result = `${year}-${month}-${day}`;
 
         if (!$String.isNullOrWhiteSpace(time) && time.length > 1) {
             result += `T${time}`;
         }
         else {
-            result += "T00:00:00";
+            result += 'T00:00:00';
         }
 
         return result;
     }
 
     private static formatNumber(input: number, formatTemplate: string): string {
-        let count = formatTemplate.length;
-        let stringValue = input.toString();
+        const count = formatTemplate.length;
+        const stringValue = input.toString();
         if (count <= stringValue.length) {
             return stringValue;
         }
@@ -239,11 +237,11 @@ export class $String {
         let temp = $String.empty;
         for (let i = 0; i < args.length; i++) {
             if ((typeof args[i] == 'string' && $String.isNullOrWhiteSpace(args[i]))
-                || (typeof args[i] != "number" && typeof args[i] != "string")) {
+                || (typeof args[i] != 'number' && typeof args[i] != 'string')) {
                 continue;
             }
 
-            let arg = "" + args[i];
+            const arg = '' + args[i];
             temp += arg;
             for (let i2 = i + 1; i2 < args.length; i2++) {
                 if ($String.isNullOrWhiteSpace(args[i2])) {
@@ -261,9 +259,9 @@ export class $String {
 }
 
 export class String extends $String {
-    public static Empty: string = '';
+    public static Empty = '';
 
-    public static IsNullOrWhiteSpace(value: string): boolean {
+    public static IsNullOrWhiteSpace(value: string | null | undefined): boolean {
         return $String.isNullOrWhiteSpace(value);
     }
 
@@ -279,7 +277,7 @@ export class String extends $String {
 export class StringBuilder {
     public Values: string[];
 
-    constructor(value: string = "") {
+    constructor(value = '') {
         this.Values = [];
 
         if (!$String.isNullOrWhiteSpace(value)) {

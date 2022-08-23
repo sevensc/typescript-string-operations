@@ -1,7 +1,7 @@
 
 export declare class $String {
     static empty: string;
-    static isNullOrWhiteSpace(value: string): boolean;
+    static isNullOrWhiteSpace(value: string | null | undefined): boolean;
     static join(delimiter: string, ...args: (string | object | Array<any>)[]): string;
     static format(format: string, ...args: any[]): string;
 }
@@ -14,7 +14,7 @@ export declare class String extends $String {
     /**
      * @deprecated The method should not be used, and will be removed with version 2.0.0 use `String.isNullOrWhiteSpace()` instead.
     */
-    static IsNullOrWhiteSpace(value: string): boolean;
+    static IsNullOrWhiteSpace(value: string | null | undefined): boolean;
     /**
      * @deprecated The method should not be used, and will be removed with version 2.0.0 use `String.join()` instead.
     */

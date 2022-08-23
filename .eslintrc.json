@@ -9,8 +9,7 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended"
     ],
-    "overrides": [
-    ],
+    "overrides": [],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest"
@@ -19,21 +18,41 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "@typescript-eslint/no-explicit-any": [
+            "off"
+        ],
+        "@typescript-eslint/no-var-requires": [
+            "off"
+        ],
+        "@typescript-eslint/no-inferrable-types": [
+            "off"
+        ],
         "indent": [
-            "error",
-            4
+            "off",
+            "tab"
         ],
         "linebreak-style": [
-            "error",
+            "warn",
             "unix"
         ],
+        "no-mixed-spaces-and-tabs": [
+            "warn",
+            "smart-tabs"
+        ],
         "quotes": [
-            "error",
-            "single"
+            "warn",
+            "single",
+            {
+                "allowTemplateLiterals": true
+            }
         ],
         "semi": [
-            "error",
+            "warn",
             "always"
+        ],
+        "comma-dangle": [
+            "warn",
+            "always-multiline"
         ]
     }
 }

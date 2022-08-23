@@ -22,6 +22,14 @@ commands:
             - node_modules
 
 jobs:
+  lint:
+    executor: nodejs
+    steps:
+      - checkout-and-restore-cache
+      - run: yarn install
+      - save-node-modules-cache
+      - run: yarn lint
+
   build:
     executor: nodejs
     steps:
@@ -41,7 +49,10 @@ jobs:
 workflows:
   build-and-deploy:
     jobs:
+      - lint
       - build
+          requires:
+            - lint
       - test:
           requires:
             - build
