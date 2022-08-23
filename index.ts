@@ -312,6 +312,9 @@ export class StringBuilder {
         return this.Values.join(String.empty);
     }
 
+    /**
+     * @deprecated The method should not be used, and will be removed in future versions! Use `toString()` instead.
+    */
     public ToString() {
         return this.toString();
     }
@@ -320,6 +323,9 @@ export class StringBuilder {
         this.Values.push(value);
     }
 
+    /**
+     * @deprecated The method should not be used, and will be removed in future versions! Use `append()` instead.
+    */
     public Append(value: string) {
         this.append(value);
     }
@@ -328,6 +334,9 @@ export class StringBuilder {
         this.Values.push(EOL + value);
     }
 
+    /**
+     * @deprecated The method should not be used, and will be removed in future versions! Use `appendLine()` instead.
+    */
     public AppendLine(value: string) {
         this.appendLine(value);
     }
@@ -336,6 +345,9 @@ export class StringBuilder {
         this.Values.push(String.format(format, ...args));
     }
 
+    /**
+     * @deprecated The method should not be used, and will be removed in future versions! Use `appendFormat()` instead.
+    */
     public AppendFormat(format: string, ...args: any[]) {
         this.appendFormat(format, ...args);
     }
@@ -344,6 +356,9 @@ export class StringBuilder {
         this.Values.push(EOL + String.format(format, ...args));
     }
 
+    /**
+     * @deprecated The method should not be used, and will be removed in future versions! Use `appendLineFormat()` instead.
+    */
     public AppendLineFormat(format: string, ...args: any[]) {
         return this.appendLineFormat(format, ...args);
     }
@@ -352,6 +367,9 @@ export class StringBuilder {
         this.Values = [];
     }
 
+    /**
+     * @deprecated The method should not be used, and will be removed in future versions! Use `clear()` instead.
+    */
     public Clear() {
         this.clear();
     }

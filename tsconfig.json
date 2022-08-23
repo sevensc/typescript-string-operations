@@ -6,11 +6,12 @@
         "noImplicitAny": true,
         "removeComments": false,
         "target": "ES2022",
-        "module": "CommonJS",
+        "module": "ES2022",
         "outDir": "./dist",
         "esModuleInterop": true,
         "skipLibCheck": true,
         "declaration": true,
-        "declarationMap": true,
+        "declarationDir": "./",
+        "inlineSourceMap": true,
     }
 }
