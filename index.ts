@@ -270,7 +270,6 @@ export class $String {
     }
 }
 
-
 export class String extends $String { }
 
 export class StringBuilder {
@@ -284,27 +283,52 @@ export class StringBuilder {
         }
     }
 
-    public ToString() {
+    public toString() {
         return this.Values.join($String.empty);
     }
 
-    public Append(value: string) {
+    public ToString() {
+        return this.toString();
+    }
+
+    public append(value: string) {
         this.Values.push(value);
     }
 
-    public AppendLine(value: string) {
+    public Append(value: string) {
+        this.append(value);
+    }
+
+    public appendLine(value: string) {
         this.Values.push(EOL + value);
     }
 
-    public AppendFormat(format: string, ...args: any[]) {
+    public AppendLine(value: string) {
+        this.appendLine(value);
+    }
+
+    public appendFormat(format: string, ...args: any[]) {
         this.Values.push($String.format(format, ...args));
     }
 
-    public AppendLineFormat(format: string, ...args: any[]) {
+    public AppendFormat(format: string, ...args: any[]) {
+        this.appendFormat(format, ...args);
+    }
+
+    public appendLineFormat(format: string, ...args: any[]) {
         this.Values.push(EOL + $String.format(format, ...args));
     }
 
-    public Clear() {
+    public AppendLineFormat(format: string, ...args: any[]) {
+        return this.appendLineFormat(format, ...args);
+    }
+
+    public clear() {
         this.Values = [];
     }
+
+    public Clear() {
+        this.clear();
+    }
+
 }

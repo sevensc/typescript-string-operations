@@ -126,7 +126,7 @@ var builder = new StringBuilder("My favorite fruits are: ");
 builder.Append("Apples, ");
 builder.Append("Bananas ");
 
-// using String.Format() internally
+// using String.format() internally
 builder.AppendFormat("and especially {0:U}!", favoriteFruit);
 builder.AppendFormat(" I eat {0} every day!", 10);
 

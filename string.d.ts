@@ -1,4 +1,3 @@
-
 export declare class $String {
     static empty: string;
     static isNullOrWhiteSpace(value: string | null | undefined): boolean;
@@ -24,4 +23,3 @@ export declare class String extends $String {
     */
     static Format(format: string, ...args: any[]): string;
 }
-
