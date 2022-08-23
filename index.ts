@@ -2,7 +2,7 @@ const EOL = '\r\n';
 
 export const empty = '';
 
-export function isNullOrWhiteSpace(value: string | null | undefined): boolean {
+export function isNullOrWhiteSpace(value: string | null): boolean {
     return String.isNullOrWhiteSpace(value);
 }
 
@@ -44,7 +44,7 @@ export class String {
         return String.format(format, ...args);
     }
 
-    public static isNullOrWhiteSpace(value: string | null | undefined): boolean {
+    public static isNullOrWhiteSpace(value: string | null): boolean {
         try {
             if (value == null || value == 'undefined') {
                 return true;
