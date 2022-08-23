@@ -4,13 +4,13 @@ import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
 
-export const EOL = "\r\n";
+export const EOL = '\r\n';
 
 describe('String.IsNullOrWhitespace', () => {
 
     it('should return true on null string', () => {
         const teststring: string | null = null;
-        let result = String.IsNullOrWhiteSpace(teststring!);
+        let result = String.IsNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
         result = String.isNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
