@@ -6,9 +6,6 @@ export declare class $String {
     static format(format: string, ...args: any[]): string;
 }
 
-/**
- * @deprecated String is overriding the native `String` object, this class will be removed in the future! Use `$String` instead.
-*/
 export declare class String extends $String {
     /**
      * @deprecated The property should not be used, and will be removed in future versions! Use `String.empty` instead.

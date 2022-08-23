@@ -8,58 +8,57 @@
 # Simple lightweight string operation library for Typescript.
 ## No jQuery required! Unit tested, works with Angular.
 
-I recently got feedback that sometimes there are issues when using `String`, since its actually replacing the native `String` object from JavaScript. You can use `$String` instead. 
 
 ```typescript
- import { $String, StringBuilder } from 'typescript-string-operations';
+ import { String, StringBuilder } from 'typescript-string-operations';
  ```
  
-The class `String` is still available, but will be removed in the future.
+I recently got feedback that sometimes there are issues when using `String`, since its actually replacing the native `String` object from JavaScript. You can use `$String` instead.
 
 ```typescript
- import { String } from 'typescript-string-operations';
+ import { $String } from 'typescript-string-operations';
 ```
 
 #### USAGE:
 
-### $String.empty
+### String.empty
 ```typescript
-var id = $String.empty;
+var id = String.empty;
 ```
 
-### $String.isNullOrWhiteSpace():
+### String.isNullOrWhiteSpace():
 ```typescript
 var id = image.GetId();
-if($String.isNullOrWhiteSpace(id))
+if(String.isNullOrWhiteSpace(id))
 	return image;
 ```
-### $String.format():
+### String.format():
 
 ```typescript
 var id = image.GetId()
-$String.format("image_{0}.jpg", id)
+String.format("image_{0}.jpg", id)
 output: "image_2db5da20-1c5d-4f1a-8fd4-b41e34c8c5b5.jpg";
 ```
 
 Specifier available!
 ```typescript
-var value = $String.format("{0:L}", "APPLE"); //output "apple"
+var value = String.format("{0:L}", "APPLE"); //output "apple"
 
-value = $String.format("{0:U}", "apple"); // output "APPLE"
+value = String.format("{0:U}", "apple"); // output "APPLE"
 
-value = $String.format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
+value = String.format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
 
-value = $String.format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
+value = String.format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
 
-value = $String.format("{0:n}", 1000000);
+value = String.format("{0:n}", 1000000);
 //output "1.000.000"
 
-value = $String.format("{0:00}", 1);
+value = String.format("{0:00}", 1);
 //output "01"
 ```
 
 ## UPDATE
-#### $String.format for Objects including specifiers
+#### String.format for Objects including specifiers
 
 ```typescript
 var fruit = new Fruit();
@@ -68,7 +67,7 @@ fruit.color = "RED";
 fruit.shippingDate = new Date(2018, 1, 1);
 fruit.amount = 10000;
 
-$String.format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}", fruit);
+String.format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}", fruit);
 // output: the APPLE is red shipped on 2018-01-01 with an amount of 10.000
 
 ```
@@ -88,18 +87,18 @@ $String.format("the {type:U} is {color:L} shipped on {shippingDate:s} with an am
 ### String.Join():
 
 ```typescript
-var value = $String.join("; ", "Apple", "Banana");
+var value = String.join("; ", "Apple", "Banana");
 //output: "Apple; Banana";
 ```
 #### OR
 
 ```typescript
  let object = { Name: "Foo", Value: "Bar" };
- var value = $String.join('.', object);
+ var value = String.join('.', object);
 //output: "Foo.Bar";
 
 var array = ['Apple', 'Banana']
-var value = $String.join("; ", array);
+var value = String.join("; ", array);
 //output: "Apple; Banana";
 ```
 
@@ -127,7 +126,7 @@ var builder = new StringBuilder("My favorite fruits are: ");
 builder.Append("Apples, ");
 builder.Append("Bananas ");
 
-// using $String.Format() internally
+// using String.Format() internally
 builder.AppendFormat("and especially {0:U}!", favoriteFruit);
 builder.AppendFormat(" I eat {0} every day!", 10);
 
@@ -141,8 +140,8 @@ var fruits = builder.ToString();
 | Method                    |  Type       |       Description          | Parameter  |
 | :------------------------:|:-----------:|:--------------------------:|:----------:|
 |  `Append`                 | `Method`    |    appends a string.       | `value`    |
-|  `AppendFormat`           | `Method`    |    see description for `$String.format()`| `format`, `args`|
+|  `AppendFormat`           | `Method`    |    see description for `String.format()`| `format`, `args`|
 |  `AppendLine`             | `Method`    |    appends a string in a new line. | `format`, `args`|
-|  `AppendLineFormat`       | `Method`    |    like `$String.format()` in a new line | `format`, `args`|
+|  `AppendLineFormat`       | `Method`    |    like `String.format()` in a new line | `format`, `args`|
 |  `Clear`		            | `Method`    |    clears the `StringBuilder`   |       |
 |  `ToString`	            | `Method`    |    creates the actual string.  |       |
