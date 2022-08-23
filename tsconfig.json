@@ -1,13 +1,14 @@
 {
     "files": [
-        "index.ts"
+        "main/index.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
-        "target": "es5", 
+        "target": "ES2022", 
         "module": "commonjs",
         "outDir": "./dist",
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "experimentalDecorators": true
     }    
 }

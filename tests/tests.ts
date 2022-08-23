@@ -1,31 +1,80 @@
-import { String, StringBuilder } from '../index';
+import { $String, String, StringBuilder } from '../index';
 import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
+import { EOL } from 'os';
 
 describe('String.IsNullOrWhitespace', () => {
 
-    it('should return true on null string', () => {
+    it('`String.IsNullOrWhiteSpace`: should return true on null string', () => {
         let teststring: string | null = null;
         let result = String.IsNullOrWhiteSpace(teststring!);
         expect(result).to.equal(true);
     });
+    
+    it('`String.isNullOrWhiteSpace`: should return true on null string', () => {
+        let teststring: string | null = null;
+        let result = String.isNullOrWhiteSpace(teststring!);
+        expect(result).to.equal(true);
+    });
+    
+    it('`$String.isNullOrWhiteSpace` should return true on null string', () => {
+        let teststring: string | null = null;
+        let result = $String.isNullOrWhiteSpace(teststring!);
+        expect(result).to.equal(true);
+    });
 
-    it('should return true on empty string', () => {
+    it('`String.IsNullOrWhiteSpace`: should return true on empty string', () => {
         let teststring = '';
         let result = String.IsNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
     });
 
-    it('should return true only whitespace', () => {
+    it('`String.isNullOrWhiteSpace`: should return true on empty string', () => {
+        let teststring = '';
+        let result = String.isNullOrWhiteSpace(teststring);
+        expect(result).to.equal(true);
+    });
+
+    it('`$String.IsNullOrWhiteSpace`: should return true on empty string', () => {
+        let teststring = '';
+        let result = $String.isNullOrWhiteSpace(teststring);
+        expect(result).to.equal(true);
+    });
+
+    it('`String.IsNullOrWhiteSpace`: should return true only whitespace', () => {
         let teststring = '    ';
         let result = String.IsNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
     });
 
-    it('should return false contains non-whitespace characters', () => {
+    it('`String.isNullOrWhiteSpace`: should return true only whitespace', () => {
+        let teststring = '    ';
+        let result = String.isNullOrWhiteSpace(teststring);
+        expect(result).to.equal(true);
+    });
+
+    it('`$String.isNullOrWhiteSpace`: should return true only whitespace', () => {
+        let teststring = '    ';
+        let result = $String.isNullOrWhiteSpace(teststring);
+        expect(result).to.equal(true);
+    });
+
+    it('`String.IsNullOrWhiteSpace`: should return false contains non-whitespace characters', () => {
         let teststring = '  s  ';
         let result = String.IsNullOrWhiteSpace(teststring);
+        expect(result).to.equal(false);
+    });
+
+    it('`String.isNullOrWhiteSpace`: should return false contains non-whitespace characters', () => {
+        let teststring = '  s  ';
+        let result = String.isNullOrWhiteSpace(teststring);
+        expect(result).to.equal(false);
+    });
+
+    it('`$String.isNullOrWhiteSpace`: should return false contains non-whitespace characters', () => {
+        let teststring = '  s  ';
+        let result = $String.isNullOrWhiteSpace(teststring);
         expect(result).to.equal(false);
     });
 });
@@ -317,7 +366,7 @@ describe('StringBuilder.AppendLine', () => {
         builder.AppendLine('Second Line...');
 
         expect(builder.ToString()).to
-            .equal('\r\nFirst Line...\r\nSecond Line...');
+            .equal(`${EOL}First Line...${EOL}Second Line...`);
     });
 
     it('should append characters and new line', () => {
@@ -327,7 +376,7 @@ describe('StringBuilder.AppendLine', () => {
 
         console.log(builder.ToString());
         expect(builder.ToString()).to
-            .equal('\r\nFirst Line...\r\nSecond Line...');
+            .equal(`${EOL}First Line...${EOL}Second Line...`);
     });
 
     it('should append characters and new line', () => {
@@ -337,6 +386,6 @@ describe('StringBuilder.AppendLine', () => {
 
         console.log(builder.ToString());
         expect(builder.ToString()).to
-            .equal('\r\nFirst Line...\r\nSecond Line...');
+            .equal(`${EOL}First Line...${EOL}Second Line...`);
     });
 });

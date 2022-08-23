@@ -1,6 +1,6 @@
-export interface StringBuilder {
+export declare class StringBuilder {
     Values: string[];
-    constructor(value?: string): any;
+    constructor(value?: string);
     ToString(): string;
     Append(value: string): void;
     AppendLine(value: string): void;
