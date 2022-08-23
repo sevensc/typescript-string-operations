@@ -6,7 +6,7 @@ import 'mocha';
 describe('String.IsNullOrWhitespace', () => {
 
     it('should return true on null string', () => {
-        let teststring = null;
+        let teststring: string | null = null;
         let result = String.IsNullOrWhiteSpace(teststring!);
         expect(result).to.equal(true);
     });
