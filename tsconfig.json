@@ -5,9 +5,9 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
-        "target": "es5", 
+        "target": "esnext",
         "module": "commonjs",
         "outDir": "./dist",
         "skipLibCheck": true
-    }    
+    }
 }
