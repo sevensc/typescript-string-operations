@@ -7,7 +7,7 @@ describe('String.IsNullOrWhitespace', () => {
 
     it('should return true on null string', () => {
         let teststring = null;
-        let result = String.IsNullOrWhiteSpace(teststring);
+        let result = String.IsNullOrWhiteSpace(teststring!);
         expect(result).to.equal(true);
     });
 
@@ -183,7 +183,7 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal(expectedValue);
             });
         });
-    
+
         describe('hexadecimal', () => {
             it('number should be converted to hex lowercase', () => {
                 let result = String.Format('{0:x}', 500);
@@ -276,7 +276,7 @@ describe('StringBuilder initialization', () => {
         builder.Append('Second Part...');
 
         expect(builder.ToString()).to
-        .equal('First Part... Second Part...');
+            .equal('First Part... Second Part...');
     });
 
     it('should add a string if there is ctor parameter', () => {
@@ -285,7 +285,7 @@ describe('StringBuilder initialization', () => {
 
         console.log(builder.ToString());
         expect(builder.ToString()).to
-        .equal('First Part... Second Part...');
+            .equal('First Part... Second Part...');
     });
 });
 
@@ -296,7 +296,7 @@ describe('StringBuilderng.Append', () => {
         builder.Append('Second Part...');
 
         expect(builder.ToString()).to
-        .equal('First Part... Second Part...');
+            .equal('First Part... Second Part...');
     });
 
     it('should append characters', () => {
@@ -306,7 +306,7 @@ describe('StringBuilderng.Append', () => {
 
         console.log(builder.ToString());
         expect(builder.ToString()).to
-        .equal('First Part... Second Part...');
+            .equal('First Part... Second Part...');
     });
 });
 
@@ -317,7 +317,7 @@ describe('StringBuilder.AppendLine', () => {
         builder.AppendLine('Second Line...');
 
         expect(builder.ToString()).to
-        .equal('\r\nFirst Line...\r\nSecond Line...');
+            .equal('\r\nFirst Line...\r\nSecond Line...');
     });
 
     it('should append characters and new line', () => {
@@ -327,7 +327,7 @@ describe('StringBuilder.AppendLine', () => {
 
         console.log(builder.ToString());
         expect(builder.ToString()).to
-        .equal('\r\nFirst Line...\r\nSecond Line...');
+            .equal('\r\nFirst Line...\r\nSecond Line...');
     });
 
     it('should append characters and new line', () => {
@@ -337,6 +337,6 @@ describe('StringBuilder.AppendLine', () => {
 
         console.log(builder.ToString());
         expect(builder.ToString()).to
-        .equal('\r\nFirst Line...\r\nSecond Line...');
+            .equal('\r\nFirst Line...\r\nSecond Line...');
     });
 });

@@ -9,12 +9,10 @@
   ],
   "scripts": {
     "test": "mocha -r ts-node/register tests/**/tests.ts",
-    "build": "gulp default && gulp compress"
+    "build": "gulp default && gulp compress",
+    "lint": "eslint ."
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sevensc/typescript-string-operations.git"
-  },
+  "repository": "https://github.com/sevensc/typescript-string-operations.git",
   "keywords": [
     "typescript",
     "string format",
@@ -29,10 +27,12 @@
     "url": "https://github.com/sevensc/typescript-string-operations/issues"
   },
   "homepage": "https://github.com/sevensc/typescript-string-operations#readme",
-  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.2.7",
     "@types/mocha": "^2.2.48",
+    "@typescript-eslint/eslint-plugin": "^5.34.0",
+    "@typescript-eslint/parser": "^5.34.0",
+    "eslint": "^8.22.0",
     "chai": "^4.2.0",
     "gulp": "^4.0.2",
     "gulp-rename": "^1.4.0",
