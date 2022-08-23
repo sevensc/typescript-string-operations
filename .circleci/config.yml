@@ -3,7 +3,7 @@ version: 2.1
 executors:
   nodejs:
       docker:
-        - image: circleci/node:7.10
+        - image: cimg/node:18.7.0
 
 commands:
   ceckout-and-restore-cache:
@@ -25,18 +25,18 @@ jobs:
   build:
     executor: nodejs
     steps:
-      - ceckout-and-restore-cache
-      - run: npm install
+      - checkout-and-restore-cache
+      - run: yarn install
       - save-node-modules-cache
-      - run: npm run build
+      - run: yarn build
 
   test:
     executor: nodejs
     steps:
       - ceckout-and-restore-cache
-      - run: npm install
-      - run: npm run build
-      - run: npm run test
+      - run: yarn install
+      - run: yarn build
+      - run: yarn test
 
 workflows:
   build-and-deploy:

@@ -1,6 +1,6 @@
 {
   "name": "typescript-string-operations",
-  "version": "1.4.1",
+  "version": "1.5.0-beta",
   "description": "Simple lightweight string operation library for Typescript, works with Angular",
   "main": "dist/index.min.js",
   "files": [
@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "mocha -r ts-node/register tests/**/tests.ts",
-    "build": "gulp default && gulp compress",
+    "build": "tsc; uglifyjs ./dist/index.js --compress -o ./dist/index.min.js; rm ./dist/index.js",
     "lint": "eslint ."
   },
   "repository": "https://github.com/sevensc/typescript-string-operations.git",
@@ -29,19 +29,20 @@
   "homepage": "https://github.com/sevensc/typescript-string-operations#readme",
   "devDependencies": {
     "@types/chai": "^4.2.7",
-    "@types/mocha": "^2.2.48",
+    "@types/mocha": "^9.1.1",
     "@typescript-eslint/eslint-plugin": "^5.34.0",
     "@typescript-eslint/parser": "^5.34.0",
-    "eslint": "^8.22.0",
     "chai": "^4.2.0",
+    "eslint": "^8.22.0",
     "gulp": "^4.0.2",
-    "gulp-rename": "^1.4.0",
-    "gulp-typescript": "^3.2.4",
+    "gulp-rename": "^2.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglify": "^3.0.2",
-    "mocha": "^5.2.0",
-    "pump": "^2.0.1",
-    "ts-node": "^3.2.0",
-    "typescript": "^2.9.2"
+    "mocha": "^10.0.0",
+    "pump": "^3.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4",
+    "uglify-js": "^3.17.0"
   },
   "directories": {
     "test": "tests"
