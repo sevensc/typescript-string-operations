@@ -4,6 +4,19 @@ export class $String {
     private static readonly regexNumber = /{(\d+(:\w*)?)}/g;
     private static readonly regexObject = /{(\w+(:\w*)?)}/g;
     public static empty = '';
+    public static Empty = '';
+
+    public static IsNullOrWhiteSpace(value: string | null | undefined): boolean {
+        return $String.isNullOrWhiteSpace(value);
+    }
+
+    public static Join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
+        return $String.join(delimiter, ...args);
+    }
+
+    public static Format(format: string, ...args: any[]): string {
+        return $String.format(format, ...args);
+    }
 
     public static isNullOrWhiteSpace(value: string | null | undefined): boolean {
         try {
@@ -258,21 +271,7 @@ export class $String {
 }
 
 
-export class String extends $String {
-    public static Empty = '';
-
-    public static IsNullOrWhiteSpace(value: string | null | undefined): boolean {
-        return $String.isNullOrWhiteSpace(value);
-    }
-
-    public static Join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
-        return $String.join(delimiter, ...args);
-    }
-
-    public static Format(format: string, ...args: any[]): string {
-        return $String.format(format, ...args);
-    }
-}
+export class String extends $String { }
 
 export class StringBuilder {
     public Values: string[];

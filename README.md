@@ -8,14 +8,16 @@
 # Simple lightweight string operation library for Typescript.
 ## No jQuery required! Unit tested, works with Angular.
 
+I recently got feedback that sometimes there are issues when using `String`, since its actually replacing the native `String` object from JavaScript. You can use `$String` instead. 
+
 ```typescript
- import { String, StringBuilder } from 'typescript-string-operations';
+ import { $String, StringBuilder } from 'typescript-string-operations';
  ```
-
-I recently got feedback that sometimes there are issues when using `String`, since its actually replacing the native `String` object from JavaScript. Youcan use `$String` instead. 
+ 
+The class `String` is still available, but will be removed in the future.
 
 ```typescript
- import { $String } from 'typescript-string-operations';
+ import { String } from 'typescript-string-operations';
 ```
 
 #### USAGE:
