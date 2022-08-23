@@ -1,5 +1,5 @@
 export declare const empty = "";
-export declare function isNullOrWhiteSpace(value: string | null | undefined): boolean;
+export declare function isNullOrWhiteSpace(value: string | null): boolean;
 export declare function join(delimiter: string, ...args: (string | object | Array<any>)[]): string;
 export declare function format(format: string, ...args: any[]): string;
 export declare class String {
@@ -22,7 +22,7 @@ export declare class String {
      * @deprecated The method should not be used, and will be removed in future version!s Use `String.format()` instead.
     */
     static Format(format: string, ...args: any[]): string;
-    static isNullOrWhiteSpace(value: string | null | undefined): boolean;
+    static isNullOrWhiteSpace(value: string | null): boolean;
     static join(delimiter: string, ...args: (string | object | Array<any>)[]): string;
     static format(format: string, ...args: any[]): string;
     private static formatString;

@@ -1,4 +1,4 @@
-import { String, StringBuilder, isNullOrWhiteSpace, format, join } from '../index';
+import { String, StringBuilder, isNullOrWhiteSpace, format, join } from '..';
 import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';

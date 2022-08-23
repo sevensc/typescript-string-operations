@@ -6,7 +6,7 @@
         "noImplicitAny": true,
         "removeComments": false,
         "target": "ES2022",
-        "module": "ES2022",
+        "module": "nodenext",
         "outDir": "./dist",
         "esModuleInterop": true,
         "skipLibCheck": true,
