@@ -1,13 +1,17 @@
 {
     "files": [
-        "./dist/index.ts"
+        "index.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
-        "removeComments": true,
-        "target": "es5", 
-        "module": "commonjs",
+        "removeComments": false,
+        "target": "ES2022",
+        "module": "nodenext",
         "outDir": "./dist",
-        "skipLibCheck": true
-    }    
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "declaration": true,
+        "declarationDir": "./",
+        "inlineSourceMap": true,
+    }
 }

@@ -1,0 +1,8 @@
+{
+  "name": "typescript-string-operations-tests",
+  "scripts": {
+  },
+  "devDependencies": {
+    "typescript-string-operations": "^1.4.1"
+  }
+}

@@ -8,4 +8,12 @@
 - feature: added `AppendLine` and `AppendLineFormat`
 - feature: added hexadecimal conversion specifier
 - bugfix: `StringBuilder` initialization without parameter adds empty string to internal Values Array.
-- bugfix: When there is no placeholder in the template passed to String.Format it should return the original template
+- bugfix: When there is no placeholder in the template passed to String.format it should return the original template
+
+#### 1.5.0
+- Using latest typescript version, please check if your environment still works with this version before upgrading!
+- feature: !IMPORTANT methods/properties starting with uppercase are marked deprecated now and will be removed in future versions! Check the deprecated infos
+- feature: added class `$String` for everybody who is facing issues when `String` is used.
+- feature: `String.isNullOrWhiteSpace` accepts null or undefined now
+- chore: Updated packages
+- chore: added linting
