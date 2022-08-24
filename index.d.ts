@@ -1,7 +1,7 @@
 export declare const empty = "";
 export declare function isNullOrWhiteSpace(value: string | null): boolean;
-export declare function join(delimiter: string, ...args: (string | object | Array<any>)[]): string;
-export declare function format(format: string, ...args: any[]): string;
+export declare function joinString(delimiter: string, ...args: (string | object | Array<any>)[]): string;
+export declare function formatString(format: string, ...args: any[]): string;
 export declare class String {
     private static readonly regexNumber;
     private static readonly regexObject;

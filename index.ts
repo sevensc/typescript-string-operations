@@ -6,11 +6,11 @@ export function isNullOrWhiteSpace(value: string | null): boolean {
     return String.isNullOrWhiteSpace(value);
 }
 
-export function join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
+export function joinString(delimiter: string, ...args: (string | object | Array<any>)[]): string {
     return String.join(delimiter, ...args);
 }
 
-export function format(format: string, ...args: any[]): string {
+export function formatString(format: string, ...args: any[]): string {
     return String.format(format, ...args);
 }
 
