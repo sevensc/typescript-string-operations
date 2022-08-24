@@ -1,5 +1,3 @@
-const EOL = '\r\n';
-
 export const emptyString = '';
 
 export function isNullOrWhiteSpace(value: string | null): boolean {
@@ -299,6 +297,9 @@ export class String {
 
 export class StringBuilder {
     public Values: string[];
+    private EOL = (typeof process != 'undefined' && 'win32' === process.platform)
+        ? '\r\n'
+        : '\n'
 
     constructor(value = '') {
         this.Values = [];
@@ -331,7 +332,7 @@ export class StringBuilder {
     }
 
     public appendLine(value: string) {
-        this.Values.push(EOL + value);
+        this.Values.push(this.EOL + value);
     }
 
     /**
@@ -353,7 +354,7 @@ export class StringBuilder {
     }
 
     public appendLineFormat(format: string, ...args: any[]) {
-        this.Values.push(EOL + String.format(format, ...args));
+        this.Values.push(this.EOL + String.format(format, ...args));
     }
 
     /**

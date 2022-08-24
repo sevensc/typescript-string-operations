@@ -3,11 +3,13 @@ import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
 
-export const EOL = '\r\n';
+var isWindows = typeof process != 'undefined' && 'win32' === process.platform
+const EOL = isWindows ? '\r\n' : '\n'
 
 describe('String.IsNullOrWhitespace', () => {
 
     it('should return true on null string', () => {
+
         const teststring: string | null = null;
         let result = String.IsNullOrWhiteSpace(teststring);
         expect(result).to.equal(true);
@@ -424,7 +426,7 @@ describe('StringBuilder initialization', () => {
     });
 });
 
-describe('StringBuilderng.Append', () => {
+describe('StringBuilder.Append', () => {
     it('should append characters', () => {
         const builder = new StringBuilder();
         builder.Append('First Part... ');

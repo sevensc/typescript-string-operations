@@ -35,6 +35,7 @@ export declare class String {
 }
 export declare class StringBuilder {
     Values: string[];
+    private EOL;
     constructor(value?: string);
     toString(): string;
     /**
