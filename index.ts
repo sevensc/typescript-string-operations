@@ -1,6 +1,6 @@
 const EOL = '\r\n';
 
-export const empty = '';
+export const emptyString = '';
 
 export function isNullOrWhiteSpace(value: string | null): boolean {
     return String.isNullOrWhiteSpace(value);

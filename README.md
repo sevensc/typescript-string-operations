@@ -23,7 +23,7 @@ When migrating from Version 1.4.1 or lower, you can also import the class `Strin
 
 ### String.empty
 ```typescript
-var id = empty; // or String.empty
+var id = emptyString; // or String.empty
 // output: id = '';
 ```
 
@@ -37,24 +37,24 @@ if(isNullOrWhiteSpace(id)) // String.isNullOrWhiteSpace(id)
 
 ```typescript
 var id = image.GetId()
-format("image_{0}.jpg", id) // or String.format()
+formatString("image_{0}.jpg", id) // or String.format()
 output: "image_2db5da20-1c5d-4f1a-8fd4-b41e34c8c5b5.jpg";
 ```
 
 Specifier available!
 ```typescript
-var value = format("{0:L}", "APPLE"); //output "apple"
+var value = formatString("{0:L}", "APPLE"); //output "apple"
 
-value = format("{0:U}", "apple"); // output "APPLE"
+value = formatString("{0:U}", "apple"); // output "APPLE"
 
-value = format("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
+value = formatString("{0:d}", "2017-01-23 00:00"); //output "23.01.2017"
 
-value = format("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
+value = formatString("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:01"
 
-value = format("{0:n}", 1000000);
+value = formatString("{0:n}", 1000000);
 //output "1.000.000"
 
-value = format("{0:00}", 1);
+value = formatString("{0:00}", 1);
 //output "01"
 ```
 
@@ -88,18 +88,18 @@ format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of 
 ### String.join():
 
 ```typescript
-var value = join("; ", "Apple", "Banana"); // or String.join()
+var value = joinString("; ", "Apple", "Banana"); // or String.join()
 //output: "Apple; Banana";
 ```
 #### OR
 
 ```typescript
  let object = { Name: "Foo", Value: "Bar" };
- var value = join('.', object);
+ var value = joinString('.', object);
 //output: "Foo.Bar";
 
 var array = ['Apple', 'Banana']
-var value = join("; ", array);
+var value = joinString("; ", array);
 //output: "Apple; Banana";
 ```
 
@@ -108,10 +108,10 @@ var value = join("; ", array);
 | Method                    |  Type       |       Description          | Parameter  |
 | :------------------------:|:-----------:|:--------------------------:|:----------:|
 |  `empty`                  | `Property`  |    simply returns `""`.    |
-| `isNullOrWhiteSpace`      | `Method`    | returns true value if given parameter is either null, empty or undefined. | `format`, `args`
-| `format`                  | `Method`    | Converts the value of objects to strings based on the formats specified and inserts them into another string. | `format`, `args`
-| `join`                    | `Method`    |   Combines arguments delimited by given seperator.| `delimiter`,`args`
-| `join`                    | `Method`    |   Combines arguments delimited by given seperator from array. | `delimiter`,`array` |
+| `isNullOrWhiteSpace`      | `Method`    | returns true value if given parameter is either null, empty or undefined. | `format`, `...args`
+| `format`/`formatString`   | `Method`    | Converts the value of objects to strings based on the formats specified and inserts them into another string. | `format`, `...args`
+| `join`/`joinString`       | `Method`    |   Combines arguments delimited by given seperator.| `delimiter`,`...args`
+| `join`/`joinString`       | `Method`    |   Combines arguments delimited by given seperator from array. | `delimiter`,`array` |
 
 
 ### StringBuilder
