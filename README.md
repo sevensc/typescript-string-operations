@@ -10,7 +10,7 @@
 
 
 ```typescript
- import { StringBuilder, join, format, isNullOrWhiteSpace } from 'typescript-string-operations';
+ import { StringBuilder, emptyString, joinString, formatString, isNullOrWhiteSpace } from 'typescript-string-operations';
  ```
  
 When migrating from Version 1.4.1 or lower, you can also import the class `String`. Using this String class would override the native `String` object from JavaScript. We will remove this declaration with the next major release
