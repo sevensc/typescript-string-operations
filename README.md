@@ -6,6 +6,14 @@
 
 
 # Simple lightweight string operation library for Typescript.
+
+
+## Installation
+
+```
+npm install typescript-string-operations
+```
+
 ## No jQuery required! Unit tested, works with Angular.
 
 
