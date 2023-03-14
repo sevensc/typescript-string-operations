@@ -3,7 +3,9 @@ import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
 
-export const EOL = '\r\n';
+const isWindows = typeof process != 'undefined' && 'win32' === process.platform;
+const newLine = isWindows ? '\r\n' : '\n';
+
 
 describe('String.IsNullOrWhitespace', () => {
 
@@ -452,7 +454,7 @@ describe('StringBuilder.AppendLine', () => {
         builder.AppendLine('Second Line...');
 
         expect(builder.ToString()).to
-            .equal(`${EOL}First Line...${EOL}Second Line...`);
+            .equal(`${newLine}First Line...${newLine}Second Line...`);
     });
 
     it('should append characters and new line', () => {
@@ -462,7 +464,7 @@ describe('StringBuilder.AppendLine', () => {
 
         console.log(builder.ToString());
         expect(builder.ToString()).to
-            .equal(`${EOL}First Line...${EOL}Second Line...`);
+            .equal(`${newLine}First Line...${newLine}Second Line...`);
     });
 
     it('should append characters and new line', () => {
@@ -472,6 +474,6 @@ describe('StringBuilder.AppendLine', () => {
 
         console.log(builder.ToString());
         expect(builder.ToString()).to
-            .equal(`${EOL}First Line...${EOL}Second Line...`);
+            .equal(`${newLine}First Line...${newLine}Second Line...`);
     });
 });
