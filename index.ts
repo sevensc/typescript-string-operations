@@ -1,4 +1,5 @@
-const EOL = '\r\n';
+const isWindows = typeof process != 'undefined' && 'win32' === process.platform;
+const newLine = isWindows ? '\r\n' : '\n';
 
 export const emptyString = '';
 
@@ -331,7 +332,7 @@ export class StringBuilder {
     }
 
     public appendLine(value: string) {
-        this.Values.push(EOL + value);
+        this.Values.push(newLine + value);
     }
 
     /**
@@ -353,7 +354,7 @@ export class StringBuilder {
     }
 
     public appendLineFormat(format: string, ...args: any[]) {
-        this.Values.push(EOL + String.format(format, ...args));
+        this.Values.push(newLine + String.format(format, ...args));
     }
 
     /**
