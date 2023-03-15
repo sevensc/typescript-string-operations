@@ -3,8 +3,17 @@ import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
 
-const isWindows = typeof process != 'undefined' && 'win32' === process.platform;
-const newLine = isWindows ? '\r\n' : '\n';
+let newLine = '\r\n';
+const isNode = new Function('try {return this===global;}catch(e){return false;}');
+
+if (isNode()) {
+    console.log('running under node.js');
+    const isWindows = typeof process != 'undefined' && 'win32' === process.platform;
+
+    if (!isWindows) {
+        newLine = '\n';
+    }
+}
 
 
 describe('String.IsNullOrWhitespace', () => {
