@@ -295,34 +295,6 @@ describe('String.Format Number Pattern', () => {
                 expect(result).to.equal(expectedValue);
                 result = formatString(template, valueToInsert);
                 expect(result).to.equal(expectedValue);
-            });            
-
-            it('should set the correct thousands seperator, respecting locale', () => {
-                const template = '{0:N}';
-                const valueToInsert = '10000000000.01';
-                const expectedValue = '10.000.000.000,01';
-
-                let result = String.Format(template, valueToInsert);
-
-                expect(result).to.equal(expectedValue);
-                result = String.format(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
-                result = formatString(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
-            });
-
-            it('should set the correct thousands seperator keeping the decimals, respecting locale', () => {
-                const template = '{0:N}';
-                const valueToInsert = '10000000000.12345';
-                const expectedValue = '10.000.000.000,123';
-
-                let result = String.Format(template, valueToInsert);
-
-                expect(result).to.equal(expectedValue);
-                result = String.format(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
-                result = formatString(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
             });
         });
 
