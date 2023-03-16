@@ -54,6 +54,7 @@ export class String {
         }
         catch (e) {
             console.log(e);
+
             return false;
         }
     }
@@ -61,11 +62,13 @@ export class String {
     public static join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
         try {
             const firstArg = args[0];
+
             if (Array.isArray(firstArg) || firstArg instanceof Array) {
                 let tempString = String.empty;
 
                 for (let i = 0; i < firstArg.length; i++) {
                     const current = firstArg[i];
+
                     if (i < firstArg.length - 1) {
                         tempString += current + delimiter;
                     }
@@ -80,8 +83,10 @@ export class String {
                 let tempString = String.empty;
                 const objectArg = firstArg;
                 const keys = Object.keys(firstArg); //get all Properties of the Object as Array
+
                 keys.forEach(element => { tempString += (<any>objectArg)[element] + delimiter; });
                 tempString = tempString.slice(0, tempString.length - delimiter.length); //remove last delimiter
+
                 return tempString;
             }
 
@@ -91,6 +96,7 @@ export class String {
         }
         catch (e) {
             console.log(e);
+
             return String.empty;
         }
     }
@@ -109,6 +115,7 @@ export class String {
         }
         catch (e) {
             console.log(e);
+
             return String.empty;
         }
     }
@@ -116,12 +123,14 @@ export class String {
     private static formatString(regex: any, format: string, args: any, parseByObject = false): string {
         return format.replace(regex, function (match, x) { //0
             const s = match.split(':');
+
             if (s.length > 1) {
                 x = s[0].replace('{', '');
                 match = s[1].replace('}', ''); //U
             }
 
             let arg;
+
             if (parseByObject) {
                 arg = args[0][x];
             }
@@ -134,6 +143,7 @@ export class String {
             }
 
             arg = String.parsePattern(match, arg);
+
             return typeof arg != 'undefined' && arg != null ? arg : String.empty;
         });
     }
@@ -142,10 +152,12 @@ export class String {
         switch (match) {
             case 'L': {
                 arg = arg.toLocaleLowerCase();
+
                 return arg;
             }
             case 'U': {
                 arg = arg.toLocaleUpperCase();
+
                 return arg;
             }
             case 'd': {
@@ -155,6 +167,7 @@ export class String {
                 else if (arg instanceof Date) {
                     return String.format('{0:00}.{1:00}.{2:0000}', arg.getDate(), arg.getMonth(), arg.getFullYear());
                 }
+
                 break;
             }
             case 's': {
@@ -164,12 +177,15 @@ export class String {
                 else if (arg instanceof Date) {
                     return String.format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
                 }
+
                 break;
             }
             case 'n': {//Tausender Trennzeichen
                 if (typeof (arg) !== 'string')
                     arg = arg.toString();
+
                 const replacedString = arg.replace(/,/g, '.');
+
                 if (isNaN(parseFloat(replacedString)) || replacedString.length <= 3) {
                     break;
                 }
@@ -187,8 +203,10 @@ export class String {
                 let output = (mod > 0 ? (integer.substring(0, mod)) : String.empty);
 
                 const remainingGroups = integer.substring(mod).match(/.{3}/g);
+
                 output = output + '.' + String.join('.', remainingGroups);
                 arg = output + (parts.length > 1 ? ',' + parts[1] : '');
+
                 return arg;
             }
             case 'x': {
@@ -212,6 +230,7 @@ export class String {
     private static decimalToHexString(value: string, upperCase = false) {
         const parsed = parseFloat(value);
         const hexNumber = parsed.toString(16);
+
         return upperCase ? hexNumber.toLocaleUpperCase() : hexNumber;
     }
 
@@ -225,6 +244,7 @@ export class String {
         let day = splitted[splitted.length - 1];
         const month = splitted[splitted.length - 2];
         const year = splitted[splitted.length - 3];
+
         day = day.split('T')[0];
         day = day.split(' ')[0];
 
@@ -233,12 +253,14 @@ export class String {
 
     private static getSortableDateFromString(input: string): string {
         const splitted = input.replace(',', '').split('.');
+
         if (splitted.length <= 1) {
             return input;
         }
 
         const times = splitted[splitted.length - 1].split(' ');
         let time = String.empty;
+
         if (times.length > 1) {
             time = times[times.length - 1];
         }
@@ -261,11 +283,13 @@ export class String {
     private static formatNumber(input: number, formatTemplate: string): string {
         const count = formatTemplate.length;
         const stringValue = input.toString();
+
         if (count <= stringValue.length) {
             return stringValue;
         }
 
         let remainingCount = count - stringValue.length;
+
         remainingCount += 1; //Array must have an extra entry
 
         return new Array(remainingCount).join('0') + stringValue;
@@ -273,6 +297,7 @@ export class String {
 
     private static joinString(delimiter: string, ...args: string[]): string {
         let temp = String.empty;
+
         for (let i = 0; i < args.length; i++) {
             if ((typeof args[i] == 'string' && String.isNullOrWhiteSpace(args[i]))
                 || (typeof args[i] != 'number' && typeof args[i] != 'string')) {
@@ -280,7 +305,9 @@ export class String {
             }
 
             const arg = '' + args[i];
+
             temp += arg;
+
             for (let i2 = i + 1; i2 < args.length; i2++) {
                 if (String.isNullOrWhiteSpace(args[i2])) {
                     continue;
@@ -288,6 +315,7 @@ export class String {
 
                 temp += delimiter;
                 i = i2 - 1;
+
                 break;
             }
         }
