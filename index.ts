@@ -1,4 +1,40 @@
-import { newLine } from './environment';
+let newLine = '\r\n';
+const locale = {
+    lang: '',
+};
+let env;
+
+function isNode() {
+    try {
+        return this === global;
+    }
+    catch {
+        return false;
+    }
+}
+
+if (isNode()) {
+    const isWindows = typeof process != 'undefined' && 'win32' === process.platform;
+
+    env = process?.env;
+    locale.lang = env.LC_ALL || env.LC_MESSAGES || env.LANG || env.LANGUAGE;
+
+    if (!isWindows) {
+        newLine = '\n';
+    }
+}
+else {
+    try {
+        if (typeof navigator != undefined) {
+            locale.lang = navigator.language;
+        }
+    }
+    catch {
+        locale.lang = '';
+    }
+}
+
+export { locale, newLine };
 
 export const emptyString = '';
 
@@ -180,7 +216,18 @@ export class String {
 
                 break;
             }
-            case 'n': {//Tausender Trennzeichen
+            case 'N': { // thousands seperator respecting locale
+
+                if (locale?.lang) {
+                    const result = parseFloat(arg);
+
+                    return result.toLocaleString(locale.lang);
+                }
+
+                break;
+            }
+            case 'n': { // thousands seperator       
+
                 if (typeof (arg) !== 'string')
                     arg = arg.toString();
 
@@ -401,5 +448,4 @@ export class StringBuilder {
     public Clear() {
         this.clear();
     }
-
 }

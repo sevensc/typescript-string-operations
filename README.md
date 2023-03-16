@@ -41,6 +41,19 @@ formatString("image_{0}.jpg", id) // or String.format()
 output: "image_2db5da20-1c5d-4f1a-8fd4-b41e34c8c5b5.jpg";
 ```
 
+Locale Settings:
+
+Currently only browsers are considered for this.
+But you can edit your locale Settings by importing `locale`. 
+```typescript
+
+// to adjust your locale: 
+import { locale } from 'typescript-string-operations'
+locale.lang = 'en-EN';
+
+```
+
+
 Specifier available!
 ```typescript
 var value = formatString("{0:L}", "APPLE"); //output "apple"
@@ -53,6 +66,11 @@ value = formatString("{0:s}", "21.03.2017 22:15:01") //output "2017-03-21T22:15:
 
 value = formatString("{0:n}", 1000000);
 //output "1.000.000"
+
+value = formatString("{0:N}", 10000000000.01);
+//output depends on your locale settings.
+// en-EN -> 10,000,000,000
+// de-DE -> 10.000.000.000,01
 
 value = formatString("{0:00}", 1);
 //output "01"
@@ -74,14 +92,17 @@ format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of 
 ```
 
 
-|	Specifier	  |	 			Result 	   	    |
-| :-------------: |:---------------------------:|
-|		`L`		  |	LowerCase					|
-|		`U`		  |	UpperCase					|
-|		`d`		  |	ShortDatePattern			|
-|		`s`		  |	SortableDateTimePattern		|
-|		`n`		  |	Thousand seperator			|
-|		`00`	  |	Padding numbers				|
+|	Specifier	  |	 			Result 	   	    					|
+| :-------------: | :---------------------------------------------: |
+|		`L`		  |	LowerCase										|
+|		`U`		  |	UpperCase										|
+|		`d`		  |	ShortDatePattern								|
+|		`s`		  |	SortableDateTimePattern							|
+|		`n`		  |	Thousand seperator								|
+|		`N`		  |	Thousand seperator, with respecting locale		|
+|		`x`		  |	Hexadecimal 									|
+|		`X`		  |	Hexadecimal Uppercase							|
+|		`00`	  |	Padding numbers									|
 
 
 

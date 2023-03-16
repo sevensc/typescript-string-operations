@@ -1,8 +1,9 @@
-import { String, StringBuilder, isNullOrWhiteSpace, formatString, joinString } from '..';
-import { newLine } from './../environment';
+import { String, StringBuilder, isNullOrWhiteSpace, formatString, joinString, newLine, locale } from '..';
 import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
+
+locale.lang = 'de-DE';
 
 describe('String.IsNullOrWhitespace', () => {
 
@@ -281,10 +282,39 @@ describe('String.Format Number Pattern', () => {
                 result = formatString(template, valueToInsert);
                 expect(result).to.equal(expectedValue);
             });
+
             it('should set the correct thousands seperator keeping the decimals', () => {
                 const template = '{0:n}';
                 const valueToInsert = '10000000000,12345';
                 const expectedValue = '10.000.000.000,12345';
+
+                let result = String.Format(template, valueToInsert);
+
+                expect(result).to.equal(expectedValue);
+                result = String.format(template, valueToInsert);
+                expect(result).to.equal(expectedValue);
+                result = formatString(template, valueToInsert);
+                expect(result).to.equal(expectedValue);
+            });            
+
+            it('should set the correct thousands seperator, respecting locale', () => {
+                const template = '{0:N}';
+                const valueToInsert = '10000000000.01';
+                const expectedValue = '10.000.000.000,01';
+
+                let result = String.Format(template, valueToInsert);
+
+                expect(result).to.equal(expectedValue);
+                result = String.format(template, valueToInsert);
+                expect(result).to.equal(expectedValue);
+                result = formatString(template, valueToInsert);
+                expect(result).to.equal(expectedValue);
+            });
+
+            it('should set the correct thousands seperator keeping the decimals, respecting locale', () => {
+                const template = '{0:N}';
+                const valueToInsert = '10000000000.12345';
+                const expectedValue = '10.000.000.000,123';
 
                 let result = String.Format(template, valueToInsert);
 
