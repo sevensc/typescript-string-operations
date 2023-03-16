@@ -19,26 +19,26 @@ export class String {
     private static readonly regexObject = /{(\w+(:\w*)?)}/g;
     public static empty = '';
     /**
-     * @deprecated The property should not be used, and will be removed in future versions! Use `String.empty` instead.
+     * @deprecated The property should not be used, and will be removed in future versions! Use `emptyString` instead.
     */
     public static Empty = '';
 
     /**
-     * @deprecated The method should not be used, and will be removed in future versions! Use `String.isNullOrWhiteSpace()` instead.
+     * @deprecated The method should not be used, and will be removed in future versions! Use `isNullOrWhiteSpace()` instead.
     */
     public static IsNullOrWhiteSpace(value: string | null | undefined): boolean {
         return String.isNullOrWhiteSpace(value);
     }
 
     /**
-     * @deprecated The method should not be used, and will be removed in future versions! Use `String.join()` instead.
+     * @deprecated The method should not be used, and will be removed in future versions! Use `joinString()` instead.
     */
     public static Join(delimiter: string, ...args: (string | object | Array<any>)[]): string {
         return String.join(delimiter, ...args);
     }
 
     /**
-     * @deprecated The method should not be used, and will be removed in future version!s Use `String.format()` instead.
+     * @deprecated The method should not be used, and will be removed in future version!s Use `formatString()` instead.
     */
     public static Format(format: string, ...args: any[]): string {
         return String.format(format, ...args);
