@@ -20,9 +20,12 @@
     "string operations",
     "stringbuilder",
     "string builder",
-    "angular"
+    "angular",
+    "browser",
+    "node",
+    "nodejs"
   ],
-  "author": "Sven Ulrich <mail@sven-ulrich.net> (sven-ulrich.net)",
+  "author": "Sven Ulrich",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sevensc/typescript-string-operations/issues"
