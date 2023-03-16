@@ -1,3 +1,4 @@
+export declare let newLine: string;
 export declare const emptyString = "";
 export declare function isNullOrWhiteSpace(value: string | null): boolean;
 export declare function joinString(delimiter: string, ...args: (string | object | Array<any>)[]): string;

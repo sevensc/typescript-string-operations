@@ -1,5 +1,5 @@
 
-let newLine = '\r\n';
+export let newLine = '\r\n';
 const isNode = new Function('try {return this===global;}catch(e){return false;}');
 
 if (isNode()) {
