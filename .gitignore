@@ -12,6 +12,7 @@ ui
 *.so
 *.min.js
 *.d.ts.map
+*.d.ts
 dist
 # Packages #
 ############

@@ -12,6 +12,6 @@
         "skipLibCheck": true,
         "declaration": true,
         "declarationDir": "./",
-        "inlineSourceMap": true,
+        "inlineSourceMap": true
     }
 }
