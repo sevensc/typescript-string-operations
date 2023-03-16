@@ -2,6 +2,9 @@
     "files": [
         "index.ts"
     ],
+    "exclude": [
+        "./environment.ts"
+    ],
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": false,
@@ -12,6 +15,6 @@
         "skipLibCheck": true,
         "declaration": true,
         "declarationDir": "./",
-        "inlineSourceMap": true,
+        "inlineSourceMap": true
     }
 }

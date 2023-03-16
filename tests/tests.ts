@@ -1,4 +1,5 @@
-import { String, StringBuilder, isNullOrWhiteSpace, formatString, joinString, newLine } from '..';
+import { String, StringBuilder, isNullOrWhiteSpace, formatString, joinString } from '..';
+import { newLine } from './../environment';
 import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
