@@ -1,8 +1,4 @@
 let newLine = '\r\n';
-const locale = {
-    lang: '',
-};
-let env;
 
 function isNode() {
     try {
@@ -16,25 +12,12 @@ function isNode() {
 if (isNode()) {
     const isWindows = typeof process != 'undefined' && 'win32' === process.platform;
 
-    env = process?.env;
-    locale.lang = env.LC_ALL || env.LC_MESSAGES || env.LANG || env.LANGUAGE;
-
     if (!isWindows) {
         newLine = '\n';
     }
 }
-else {
-    try {
-        if (typeof navigator != undefined) {
-            locale.lang = navigator.language;
-        }
-    }
-    catch {
-        locale.lang = '';
-    }
-}
 
-export { locale, newLine };
+export { newLine };
 
 export const emptyString = '';
 
@@ -212,16 +195,6 @@ export class String {
                 }
                 else if (arg instanceof Date) {
                     return String.format('{0:0000}-{1:00}-{2:00}', arg.getFullYear(), arg.getMonth(), arg.getDate());
-                }
-
-                break;
-            }
-            case 'N': { // thousands seperator respecting locale
-
-                if (locale?.lang) {
-                    const result = parseFloat(arg);
-
-                    return result.toLocaleString(locale.lang);
                 }
 
                 break;
