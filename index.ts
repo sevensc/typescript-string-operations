@@ -3,7 +3,6 @@ let newLine = '\r\n';
 const isNode = new Function('try {return this===global;}catch(e){return false;}');
 
 if (isNode()) {
-    console.log('running under node.js');
     const isWindows = typeof process != 'undefined' && 'win32' === process.platform;
 
     if (!isWindows) {
