@@ -1,9 +1,7 @@
-import { String, StringBuilder, isNullOrWhiteSpace, formatString, joinString, newLine, locale } from '..';
+import { String, StringBuilder, isNullOrWhiteSpace, formatString, joinString, newLine } from '..';
 import { Fruit } from './fruit';
 import { expect } from 'chai';
 import 'mocha';
-
-locale.lang = 'de-DE';
 
 describe('String.IsNullOrWhitespace', () => {
 
