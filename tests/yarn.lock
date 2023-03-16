@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-typescript-string-operations@^1.5.0-rc.10:
-  version "1.5.0-rc.10"
-  resolved "https://registry.yarnpkg.com/typescript-string-operations/-/typescript-string-operations-1.5.0-rc.10.tgz#1e0b3992d1f57768117ac88343633014215179b1"
-  integrity sha512-GUZC98vkgsp1ZmsDfGCZn/voV3sHRqbn22AeoAgMrwLoBOiu9VN9e55ZQpSIbLqUzQVERi4wwVoN00qpViYpmQ==
+typescript-string-operations@1.6.0-rc.1:
+  version "1.6.0-rc.1"
+  resolved "https://registry.yarnpkg.com/typescript-string-operations/-/typescript-string-operations-1.6.0-rc.1.tgz#b13639fd19396a60271bb0a6766c347915b4c993"
+  integrity sha512-FX8oZEeH22AGzzBTf//b4FshTb3AiWRmC1i5m91Ezqcwh+WPpLWNS0yfe371HJ7qG/S/BdbvX6FIL8bsQiNXow==

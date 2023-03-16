@@ -3,6 +3,6 @@
   "scripts": {
   },
   "devDependencies": {
-    "typescript-string-operations": "1.5.0"
+    "typescript-string-operations": "1.6.0"
   }
 }
