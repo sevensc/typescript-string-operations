@@ -81,7 +81,6 @@ format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of 
 |		`d`		  |	ShortDatePattern								|
 |		`s`		  |	SortableDateTimePattern							|
 |		`n`		  |	Thousand seperator								|
-|		`N`		  |	Thousand seperator, with respecting locale		|
 |		`x`		  |	Hexadecimal 									|
 |		`X`		  |	Hexadecimal Uppercase							|
 |		`00`	  |	Padding numbers									|
