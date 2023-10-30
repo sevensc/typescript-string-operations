@@ -6,7 +6,7 @@ export const EOL = '\r\n';
 describe('String.IsNullOrWhitespace', () => {
 
     it('should return true on null string', () => {
-        const teststring: String | null = null;
+        const teststring: string | null = null;
         let result = String.IsNullOrWhiteSpace(teststring);
         expect(result).toBe(true);
         result = String.isNullOrWhiteSpace(teststring);
