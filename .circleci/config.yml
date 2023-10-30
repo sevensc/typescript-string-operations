@@ -44,7 +44,7 @@ jobs:
       - checkout-and-restore-cache
       - run: yarn install
       - run: yarn build
-      - run: yarn test
+      - run: yarn test --coverage
 
 workflows:
   build-and-deploy:
