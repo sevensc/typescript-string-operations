@@ -1,58 +1,129 @@
 {
     "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2021": true,
-        "node": true
+      "browser": true,
+      "es2021": true
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
     ],
-    "overrides": [],
+    "ignorePatterns": [
+      "*.js"
+    ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": "latest"
+      "ecmaVersion": "latest",
+      "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint"
+      "@typescript-eslint"
     ],
     "rules": {
-        "@typescript-eslint/no-explicit-any": [
-            "off"
-        ],
-        "@typescript-eslint/no-var-requires": [
-            "off"
-        ],
-        "@typescript-eslint/no-inferrable-types": [
-            "off"
-        ],
-        "indent": [
-            "off",
-            "tab"
-        ],
-        "linebreak-style": [
-            "warn",
-            "unix"
-        ],
-        "no-mixed-spaces-and-tabs": [
-            "warn",
-            "smart-tabs"
-        ],
-        "quotes": [
-            "warn",
-            "single",
-            {
-                "allowTemplateLiterals": true
-            }
-        ],
-        "semi": [
-            "warn",
-            "always"
-        ],
-        "comma-dangle": [
-            "warn",
-            "always-multiline"
-        ]
+      "@typescript-eslint/lines-between-class-members": [
+        "error",
+        {
+          "exceptAfterOverload": true
+        }
+      ],
+      "@typescript-eslint/no-explicit-any": [
+        "off"
+      ],
+      "@typescript-eslint/no-inferrable-types": [
+        "off"
+      ],
+      "prefer-const": [
+        "warn"
+      ],
+      "lines-between-class-members": [
+        "off"
+      ],
+      "space-in-parens": [
+        "error", 
+        "never"
+      ],
+      "padding-line-between-statements": [
+        "warn",
+        {
+          "blankLine": "always",
+          "prev": "*",
+          "next": "*"
+        },
+        {
+          "blankLine": "always",
+          "prev": "import",
+          "next": "*"
+        },
+        {
+          "blankLine": "never",
+          "prev": "import",
+          "next": "import"
+        },
+        {
+          "blankLine": "any",
+          "prev": [
+            "const",
+            "let",
+            "var"
+          ],
+          "next": [
+            "const",
+            "let",
+            "var"
+          ]
+        },
+        {
+          "blankLine": "any",
+          "prev": [
+            "expression"
+          ],
+          "next": [
+            "expression"
+          ]
+        },
+        {
+          "blankLine": "any",
+          "prev": [
+            "case",
+            "default"
+          ],
+          "next": [
+            "case",
+            "default"
+          ]
+        }
+      ],
+      "indent": [
+        "off",
+        4
+      ],
+      "linebreak-style": [
+        "warn",
+        "unix"
+      ],
+      "keyword-spacing": [
+        "warn",
+        {
+          "before": true
+        }
+      ],
+      "no-mixed-spaces-and-tabs": [
+        "warn",
+        "smart-tabs"
+      ],
+      "quotes": [
+        "warn",
+        "single",
+        {
+          "allowTemplateLiterals": true
+        }
+      ],
+      "semi": [
+        "warn",
+        "always"
+      ],
+      "comma-dangle": [
+        "warn",
+        "always-multiline"
+      ]
     }
-}
+  }

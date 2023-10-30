@@ -1,4 +1,7 @@
 # CHANGELOG
+#### 1.6.0
+- updated dependencies
+- fixed "deprecated" text
 
 #### 1.5.0
 - Using latest typescript version, please check if your environment still works with this version before upgrading!

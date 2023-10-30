@@ -82,14 +82,16 @@ format("the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of 
 ```
 
 
-|	Specifier	  |	 			Result 	   	    |
-| :-------------: |:---------------------------:|
-|		`L`		  |	LowerCase					|
-|		`U`		  |	UpperCase					|
-|		`d`		  |	ShortDatePattern			|
-|		`s`		  |	SortableDateTimePattern		|
-|		`n`		  |	Thousand seperator			|
-|		`00`	  |	Padding numbers				|
+|	Specifier	  |	 			Result 	   	    					|
+| :-------------: | :---------------------------------------------: |
+|		`L`		  |	LowerCase										|
+|		`U`		  |	UpperCase										|
+|		`d`		  |	ShortDatePattern								|
+|		`s`		  |	SortableDateTimePattern							|
+|		`n`		  |	Thousand seperator								|
+|		`x`		  |	Hexadecimal 									|
+|		`X`		  |	Hexadecimal Uppercase							|
+|		`00`	  |	Padding numbers									|
 
 
 
