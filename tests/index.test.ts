@@ -1,50 +1,48 @@
 import { String, StringBuilder, isNullOrWhiteSpace, formatString, joinString } from '..';
 import { Fruit } from './fruit';
-import { expect } from 'chai';
-import 'mocha';
 
 export const EOL = '\r\n';
 
 describe('String.IsNullOrWhitespace', () => {
 
     it('should return true on null string', () => {
-        const teststring: string | null = null;
+        let teststring: any = null;
         let result = String.IsNullOrWhiteSpace(teststring);
-        expect(result).to.equal(true);
+        expect(result).toBe(true);
         result = String.isNullOrWhiteSpace(teststring);
-        expect(result).to.equal(true);
+        expect(result).toBe(true);
         result = isNullOrWhiteSpace(teststring);
-        expect(result).to.equal(true);
+        expect(result).toBe(true);
     });
 
     it('should return true on empty string', () => {
         const teststring = '';
         let result = String.IsNullOrWhiteSpace(teststring);
-        expect(result).to.equal(true);
+        expect(result).toBe(true);
         result = String.isNullOrWhiteSpace(teststring);
-        expect(result).to.equal(true);
+        expect(result).toBe(true);
         result = isNullOrWhiteSpace(teststring);
-        expect(result).to.equal(true);
+        expect(result).toBe(true);
     });
 
     it('should return true only whitespace', () => {
         const teststring = '    ';
         let result = String.IsNullOrWhiteSpace(teststring);
-        expect(result).to.equal(true);
+        expect(result).toBe(true);
         result = String.isNullOrWhiteSpace(teststring);
-        expect(result).to.equal(true);
+        expect(result).toBe(true);
         result = isNullOrWhiteSpace(teststring);
-        expect(result).to.equal(true);
+        expect(result).toBe(true);
     });
 
     it('should return false contains non-whitespace characters', () => {
         const teststring = '  s  ';
         let result = String.IsNullOrWhiteSpace(teststring);
-        expect(result).to.equal(false);
+        expect(result).toBe(false);
         result = String.isNullOrWhiteSpace(teststring);
-        expect(result).to.equal(false);
+        expect(result).toBe(false);
         result = isNullOrWhiteSpace(teststring);
-        expect(result).to.equal(false);
+        expect(result).toBe(false);
     });
 });
 
@@ -54,22 +52,22 @@ describe('String.Format Number Pattern', () => {
             const template = 'Bar';
             const valueToInsert = 'Foo';
             let result = String.Format(template, valueToInsert);
-            expect(result).to.equal(template);
+            expect(result).toBe(template);
             result = String.format(template, valueToInsert);
-            expect(result).to.equal(template);
+            expect(result).toBe(template);
             result = formatString(template, valueToInsert);
-            expect(result).to.equal(template);
+            expect(result).toBe(template);
         });
 
         it('should format the string correct', () => {
             const template = '{0}';
             const valueToInsert = 'Foo';
             let result = String.Format(template, valueToInsert);
-            expect(result).to.equal(valueToInsert);
+            expect(result).toBe(valueToInsert);
             result = String.format(template, valueToInsert);
-            expect(result).to.equal(valueToInsert);
+            expect(result).toBe(valueToInsert);
             result = formatString(template, valueToInsert);
-            expect(result).to.equal(valueToInsert);
+            expect(result).toBe(valueToInsert);
         });
 
         it('should format the string correct multiple times', () => {
@@ -77,11 +75,11 @@ describe('String.Format Number Pattern', () => {
             const valueToInsert = 'Foo';
             const expectedValue = 'FooBarFoo';
             let result = String.Format(template, valueToInsert);
-            expect(result).to.equal(expectedValue);
+            expect(result).toBe(expectedValue);
             result = String.format(template, valueToInsert);
-            expect(result).to.equal(expectedValue);
+            expect(result).toBe(expectedValue);
             result = formatString(template, valueToInsert);
-            expect(result).to.equal(expectedValue);
+            expect(result).toBe(expectedValue);
         });
 
         it('should format the string correct multiple values', () => {
@@ -90,11 +88,11 @@ describe('String.Format Number Pattern', () => {
             const secondValueToInsert = 'Baz';
             const expectedValue = 'FooBarBaz';
             let result = String.Format(template, valueToInsert, secondValueToInsert);
-            expect(result).to.equal(expectedValue);
+            expect(result).toBe(expectedValue);
             result = String.format(template, valueToInsert, secondValueToInsert);
-            expect(result).to.equal(expectedValue);
+            expect(result).toBe(expectedValue);
             result = formatString(template, valueToInsert, secondValueToInsert);
-            expect(result).to.equal(expectedValue);
+            expect(result).toBe(expectedValue);
         });
     });
     describe('formating', () => {
@@ -106,13 +104,13 @@ describe('String.Format Number Pattern', () => {
                 const expectedValue = '13.04.2017';
                 let result = String.Format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = String.format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = formatString(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
             });
 
             it('should set the correct sortable date using Date', () => {
@@ -122,13 +120,13 @@ describe('String.Format Number Pattern', () => {
                 const expectedValue = '2017-04-13';
                 let result = String.Format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = String.format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = formatString(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
             });
 
             it('should set the correct display date using string', () => {
@@ -138,13 +136,13 @@ describe('String.Format Number Pattern', () => {
                 const expectedValue = '23.01.2017';
                 let result = String.Format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = String.format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = formatString(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
             });
 
             it('should set the correct sortable date using string', () => {
@@ -154,13 +152,13 @@ describe('String.Format Number Pattern', () => {
                 const expectedValue = '2017-03-21T22:15:01';
                 let result = String.Format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = String.format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = formatString(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
             });
 
             it('should set the correct sortable date without time using string', () => {
@@ -170,13 +168,13 @@ describe('String.Format Number Pattern', () => {
                 const expectedValue = '2017-03-21T00:00:00';
                 let result = String.Format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = String.format(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = formatString(template, valueToInsert);
                 console.log(result);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
             });
         });
 
@@ -187,11 +185,11 @@ describe('String.Format Number Pattern', () => {
                 const valueToInsert = 'awesome';
 
                 let actual = String.Format(template, valueToInsert);
-                expect(actual).to.equal(expectedValue);
+                expect(actual).toBe(expectedValue);
                 actual = String.format(template, valueToInsert);
-                expect(actual).to.equal(expectedValue);
+                expect(actual).toBe(expectedValue);
                 actual = formatString(template, valueToInsert);
-                expect(actual).to.equal(expectedValue);
+                expect(actual).toBe(expectedValue);
             });
 
             it('should return the string as lowercase', () => {
@@ -200,11 +198,11 @@ describe('String.Format Number Pattern', () => {
                 const valueToInsert = 'AWESOME';
 
                 let actual = String.Format(template, valueToInsert);
-                expect(actual).to.equal(expectedValue);
+                expect(actual).toBe(expectedValue);
                 actual = String.format(template, valueToInsert);
-                expect(actual).to.equal(expectedValue);
+                expect(actual).toBe(expectedValue);
                 actual = formatString(template, valueToInsert);
-                expect(actual).to.equal(expectedValue);
+                expect(actual).toBe(expectedValue);
             });
         });
 
@@ -213,41 +211,41 @@ describe('String.Format Number Pattern', () => {
             it('should not pad without specifier using {0}', () => {
                 const template = '{0}';
                 let result = String.Format(template, 5);
-                expect(result).to.equal('5');
+                expect(result).toBe('5');
                 result = String.format(template, 5);
-                expect(result).to.equal('5');
+                expect(result).toBe('5');
                 result = formatString(template, 5);
-                expect(result).to.equal('5');
+                expect(result).toBe('5');
             });
 
             it('should pad 5 to 05 using {0:00}', () => {
                 const template = '{0:00}';
                 let result = String.Format(template, 5);
-                expect(result).to.equal('05');
+                expect(result).toBe('05');
                 result = String.format(template, 5);
-                expect(result).to.equal('05');
+                expect(result).toBe('05');
                 result = formatString(template, 5);
-                expect(result).to.equal('05');
+                expect(result).toBe('05');
             });
 
             it('should pad 5 to 005 using {0:000}', () => {
                 const template = '{0:000}';
                 let result = String.Format(template, 5);
-                expect(result).to.equal('005');
+                expect(result).toBe('005');
                 result = String.format(template, 5);
-                expect(result).to.equal('005');
+                expect(result).toBe('005');
                 result = formatString(template, 5);
-                expect(result).to.equal('005');
+                expect(result).toBe('005');
             });
 
             it('should ignore padding when input is longer then template', () => {
                 const template = '{0:000}';
                 let result = String.Format(template, 50000);
-                expect(result).to.equal('50000');
+                expect(result).toBe('50000');
                 result = String.format(template, 50000);
-                expect(result).to.equal('50000');
+                expect(result).toBe('50000');
                 result = formatString(template, 50000);
-                expect(result).to.equal('50000');
+                expect(result).toBe('50000');
             });
 
             it('should set the correct thousands seperator', () => {
@@ -256,11 +254,11 @@ describe('String.Format Number Pattern', () => {
                 const expectedValue = '10.000.000.000';
 
                 let result = String.Format(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = String.format(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = formatString(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
             });
             it('should set the correct thousands seperator keeping the decimals', () => {
                 const template = '{0:n}';
@@ -268,67 +266,67 @@ describe('String.Format Number Pattern', () => {
                 const expectedValue = '10.000.000.000,12345';
 
                 let result = String.Format(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = String.format(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
                 result = formatString(template, valueToInsert);
-                expect(result).to.equal(expectedValue);
+                expect(result).toBe(expectedValue);
             });
         });
 
         describe('hexadecimal', () => {
             it('number should be converted to hex lowercase', () => {
                 let result = String.Format('{0:x}', 500);
-                expect(result).to.equal('1f4');
+                expect(result).toBe('1f4');
                 result = String.format('{0:x}', 500);
-                expect(result).to.equal('1f4');
+                expect(result).toBe('1f4');
                 result = formatString('{0:x}', 500);
-                expect(result).to.equal('1f4');
+                expect(result).toBe('1f4');
             });
 
             it('number should be converted to hex uppercase', () => {
                 let result = String.Format('{0:X}', 500);
-                expect(result).to.equal('1F4');
+                expect(result).toBe('1F4');
                 result = String.format('{0:X}', 500);
-                expect(result).to.equal('1F4');
+                expect(result).toBe('1F4');
                 result = formatString('{0:X}', 500);
-                expect(result).to.equal('1F4');
+                expect(result).toBe('1F4');
             });
 
             it('decimal should be converted to hex lowercase', () => {
                 let result = String.Format('{0:x}', 321.124);
-                expect(result).to.equal('141.1fbe76c8b44');
+                expect(result).toBe('141.1fbe76c8b44');
                 result = String.format('{0:x}', 321.124);
-                expect(result).to.equal('141.1fbe76c8b44');
+                expect(result).toBe('141.1fbe76c8b44');
                 result = formatString('{0:x}', 321.124);
-                expect(result).to.equal('141.1fbe76c8b44');
+                expect(result).toBe('141.1fbe76c8b44');
             });
 
             it('decimal should be converted to hex uppercase', () => {
                 let result = String.Format('{0:X}', 321.124);
-                expect(result).to.equal('141.1FBE76C8B44');
+                expect(result).toBe('141.1FBE76C8B44');
                 result = String.format('{0:X}', 321.124);
-                expect(result).to.equal('141.1FBE76C8B44');
+                expect(result).toBe('141.1FBE76C8B44');
                 result = formatString('{0:X}', 321.124);
-                expect(result).to.equal('141.1FBE76C8B44');
+                expect(result).toBe('141.1FBE76C8B44');
             });
 
             it('minus decimal should be converted to hex lowercase', () => {
                 let result = String.Format('{0:x}', -321.124);
-                expect(result).to.equal('-141.1fbe76c8b44');
+                expect(result).toBe('-141.1fbe76c8b44');
                 result = String.format('{0:x}', -321.124);
-                expect(result).to.equal('-141.1fbe76c8b44');
+                expect(result).toBe('-141.1fbe76c8b44');
                 result = formatString('{0:x}', -321.124);
-                expect(result).to.equal('-141.1fbe76c8b44');
+                expect(result).toBe('-141.1fbe76c8b44');
             });
 
             it('minus decimal should be converted to hex uppercase', () => {
                 let result = String.Format('{0:X}', -321.124);
-                expect(result).to.equal('-141.1FBE76C8B44');
+                expect(result).toBe('-141.1FBE76C8B44');
                 result = String.format('{0:X}', -321.124);
-                expect(result).to.equal('-141.1FBE76C8B44');
+                expect(result).toBe('-141.1FBE76C8B44');
                 result = formatString('{0:X}', -321.124);
-                expect(result).to.equal('-141.1FBE76C8B44');
+                expect(result).toBe('-141.1FBE76C8B44');
             });
         });
     });
@@ -344,11 +342,11 @@ describe('String.Format Text Pattern', () => {
             // Act
             // Assert
             let formatted = String.Format('the {type} is {color}', fruit);
-            expect(formatted).to.equal('the apple is red');
+            expect(formatted).toBe('the apple is red');
             formatted = String.format('the {type} is {color}', fruit);
-            expect(formatted).to.equal('the apple is red');
+            expect(formatted).toBe('the apple is red');
             formatted = formatString('the {type} is {color}', fruit);
-            expect(formatted).to.equal('the apple is red');
+            expect(formatted).toBe('the apple is red');
         });
 
         it('Should parse out the word with specifiers and TS Class', () => {
@@ -358,11 +356,11 @@ describe('String.Format Text Pattern', () => {
             // Act
             // Assert
             let formatted = String.Format('the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}', fruit);
-            expect(formatted).to.equal('the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000');
+            expect(formatted).toBe('the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000');
             formatted = String.format('the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}', fruit);
-            expect(formatted).to.equal('the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000');
+            expect(formatted).toBe('the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000');
             formatted = formatString('the {type:U} is {color:L} shipped on {shippingDate:s} with an amount of {amount:n}', fruit);
-            expect(formatted).to.equal('the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000');
+            expect(formatted).toBe('the APPLE is red shipped on 2018-12-31T01:02:03 with an amount of 10.000');
         });
     });
 });
@@ -372,21 +370,21 @@ describe('String.Join', () => {
         const stringOne = 'red', stringTwo = 'yellow', stringThree = 'blue';
 
         let result = String.Join('; ', stringOne, stringTwo, stringThree);
-        expect(result).to.equal('red; yellow; blue');
+        expect(result).toBe('red; yellow; blue');
         result = String.join('; ', stringOne, stringTwo, stringThree);
-        expect(result).to.equal('red; yellow; blue');
+        expect(result).toBe('red; yellow; blue');
         result = joinString('; ', stringOne, stringTwo, stringThree);
-        expect(result).to.equal('red; yellow; blue');
+        expect(result).toBe('red; yellow; blue');
     });
 
     it('should join the given array', () => {
         const object = ['red', 'yellow', 'blue'];
         let result = String.Join('; ', object);
-        expect(result).to.equal('red; yellow; blue');
+        expect(result).toBe('red; yellow; blue');
         result = String.join('; ', object);
-        expect(result).to.equal('red; yellow; blue');
+        expect(result).toBe('red; yellow; blue');
         result = joinString('; ', object);
-        expect(result).to.equal('red; yellow; blue');
+        expect(result).toBe('red; yellow; blue');
     });
 
     it('should join the given object', () => {
@@ -394,13 +392,13 @@ describe('String.Join', () => {
 
         let result = String.Join('.', object);
         console.log(result);
-        expect(result).to.equal('Foo.Bar');
+        expect(result).toBe('Foo.Bar');
         result = String.join('.', object);
         console.log(result);
-        expect(result).to.equal('Foo.Bar');
+        expect(result).toBe('Foo.Bar');
         result = joinString('.', object);
         console.log(result);
-        expect(result).to.equal('Foo.Bar');
+        expect(result).toBe('Foo.Bar');
     });
 });
 
@@ -410,8 +408,7 @@ describe('StringBuilder initialization', () => {
         builder.Append('First Part... ');
         builder.Append('Second Part...');
 
-        expect(builder.ToString()).to
-            .equal('First Part... Second Part...');
+        expect(builder.ToString()).toBe('First Part... Second Part...');
     });
 
     it('should add a string if there is ctor parameter', () => {
@@ -419,8 +416,7 @@ describe('StringBuilder initialization', () => {
         builder.AppendFormat('Second {0}...', 'Part');
 
         console.log(builder.ToString());
-        expect(builder.ToString()).to
-            .equal('First Part... Second Part...');
+        expect(builder.ToString()).toBe('First Part... Second Part...');
     });
 });
 
@@ -430,8 +426,7 @@ describe('StringBuilderng.Append', () => {
         builder.Append('First Part... ');
         builder.Append('Second Part...');
 
-        expect(builder.ToString()).to
-            .equal('First Part... Second Part...');
+        expect(builder.ToString()).toBe('First Part... Second Part...');
     });
 
     it('should append characters', () => {
@@ -440,8 +435,7 @@ describe('StringBuilderng.Append', () => {
         builder.AppendFormat('Second {0}...', 'Part');
 
         console.log(builder.ToString());
-        expect(builder.ToString()).to
-            .equal('First Part... Second Part...');
+        expect(builder.ToString()).toBe('First Part... Second Part...');
     });
 });
 
@@ -451,8 +445,7 @@ describe('StringBuilder.AppendLine', () => {
         builder.AppendLine('First Line...');
         builder.AppendLine('Second Line...');
 
-        expect(builder.ToString()).to
-            .equal(`${EOL}First Line...${EOL}Second Line...`);
+        expect(builder.ToString()).toBe(`${EOL}First Line...${EOL}Second Line...`);
     });
 
     it('should append characters and new line', () => {
@@ -461,8 +454,7 @@ describe('StringBuilder.AppendLine', () => {
         builder.AppendLineFormat('Second {0}...', 'Line');
 
         console.log(builder.ToString());
-        expect(builder.ToString()).to
-            .equal(`${EOL}First Line...${EOL}Second Line...`);
+        expect(builder.ToString()).toBe(`${EOL}First Line...${EOL}Second Line...`);
     });
 
     it('should append characters and new line', () => {
@@ -471,7 +463,6 @@ describe('StringBuilder.AppendLine', () => {
         builder.AppendLine('Second Line...');
 
         console.log(builder.ToString());
-        expect(builder.ToString()).to
-            .equal(`${EOL}First Line...${EOL}Second Line...`);
+        expect(builder.ToString()).toBe(`${EOL}First Line...${EOL}Second Line...`);
     });
 });
