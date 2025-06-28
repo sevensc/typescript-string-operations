@@ -1,5 +1,10 @@
 # CHANGELOG
 
+#### 1.6.0
+- Using latest typescript version, please check if your environment still works with this version before upgrading!
+- chore: upgraded packages
+- chore: migrated eslint to 9.x
+
 #### 1.5.0
 - Using latest typescript version, please check if your environment still works with this version before upgrading!
 - feature: !IMPORTANT methods/properties starting with uppercase are marked deprecated now and will be removed in future versions! Check the deprecated infos
