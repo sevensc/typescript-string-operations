@@ -1,5 +1,15 @@
 {
-    "extends": [
-        "config:recommended"
+    "extends": ["config:recommended"],
+    "regexManagers": [
+      {
+        "fileMatch": ["^.circleci/config\\.ya?ml$"],
+        "matchStrings": [
+          "image: (?<depName>[^:@\\s]+)(:(?<currentValue>[\\w.-]+))?",
+          "circleci/(?<depName>[^@\\s]+)@(?<currentValue>[\\d.]+)"
+        ],
+        "datasourceTemplate": "docker",
+        "versioningTemplate": "docker"
+      }
     ]
-}
+  }
+  
