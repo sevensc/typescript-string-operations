@@ -4,6 +4,7 @@
     ],
     "compilerOptions": {
         "noImplicitAny": true,
+        "isolatedModules": true,
         "removeComments": false,
         "target": "ES2022",
         "module": "nodenext",
