@@ -3,7 +3,7 @@ version: 2.1
 executors:
   nodejs:
       docker:
-        - image: cimg/node:24.14.1
+        - image: cimg/node:24.15.0
 
 commands:
   checkout-and-restore-cache:
