@@ -1,5 +1,5 @@
 
-[![CircleCI](https://circleci.com/gh/sevensc/typescript-string-operations.svg?style=shield)](https://app.circleci.com/pipelines/github/sevensc/typescript-string-operations)
+[![CI](https://github.com/sevensc/typescript-string-operations/actions/workflows/ci.yml/badge.svg)](https://github.com/sevensc/typescript-string-operations/actions/workflows/ci.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sevensc_typescript-string-operations&metric=alert_status)](https://sonarcloud.io/dashboard?id=sevensc_typescript-string-operations)
 ![npm](https://img.shields.io/npm/v/typescript-string-operations)
 ![npm](https://img.shields.io/npm/dw/typescript-string-operations)
