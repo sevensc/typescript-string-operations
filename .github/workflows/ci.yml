@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 24.18.1
           cache: yarn
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --frozen-lockfile --ignore-scripts
       - run: yarn lint
 
   build:
@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: 24.18.1
           cache: yarn
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --frozen-lockfile --ignore-scripts
       - run: yarn build
 
   test:
@@ -42,6 +42,6 @@ jobs:
         with:
           node-version: 24.18.1
           cache: yarn
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --frozen-lockfile --ignore-scripts
       - run: yarn build
       - run: yarn test --coverage
