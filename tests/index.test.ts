@@ -44,6 +44,16 @@ describe('String.IsNullOrWhitespace', () => {
         result = isNullOrWhiteSpace(teststring);
         expect(result).toBe(false);
     });
+
+    it('should return false for the literal string "undefined"', () => {
+        const teststring = 'undefined';
+        let result = String.IsNullOrWhiteSpace(teststring);
+        expect(result).toBe(false);
+        result = String.isNullOrWhiteSpace(teststring);
+        expect(result).toBe(false);
+        result = isNullOrWhiteSpace(teststring);
+        expect(result).toBe(false);
+    });
 });
 
 describe('String.Format Number Pattern', () => {

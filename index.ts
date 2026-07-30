@@ -46,7 +46,7 @@ export class String {
 
     public static isNullOrWhiteSpace(value: string | null): boolean {
         try {
-            if (value == null || value == 'undefined') {
+            if (value == null) {
                 return true;
             }
 
